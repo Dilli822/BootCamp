@@ -1,0 +1,10 @@
+h1 {
+  color: #ff0000;
+  text-align: center;
+  background-image: url("/img/Uchiha-Crest.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+/*# sourceMappingURL=style.css.map */
