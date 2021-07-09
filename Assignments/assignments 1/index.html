@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 1</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  
+   <style>
+      
+      
+       #loading{
+           text-align: center;
+           color: red;
+           font-size: 2rem;
+          margin-top: -5rem;
+           background-color: #ffffffdc;
+       }
+       img{
+           max-width: 100%;
+           padding: 1rem;
+       }
+       
+       div.main {
+           width: 70%;
+           display: block;
+           margin: 0 auto;
+           text-align: center;
+           font-family: sans-serif;
+           background-color: #010a0fdc;
+           color:#fff;
+       }
+       a{
+           color:#ff8000;
+       }
+
+       a#public-repo:hover,
+       a#bootcamp:hover,
+       a#githubLink:hover{
+           color:#ff0000;
+       }
+       h6{
+           text-align: center;
+           font-size: 2rem;
+           
+       }
+   </style>
+   </head>
+   <body>
+
+  
+    <header>
+        <h6>Welcome</h6>
+    </header>
+    <div class="hero-container"> 
+    <div class="inner-hero-container">
+       <div id="loading">
+           <span><i class="fa fa-spinner fa-spin"></i></span>
+        </div>
+
+    <div class="main" id="main-container"hidden>
+     
+    <!-- <a href="https://placeholder.com"><img src="https://via.placeholder.com/150" alt="dilli.img"></a> -->
+     <!-- Now we make our page dynamic -->
+     <img
+     width = ""
+     height = ""
+     id="profileImage"
+
+     />
+
+    <h2 id="fullName"></h2>
+    About Me:
+    <p id="bio">
+      
+    </p>
+
+
+     <p>
+         Check me on <a id="githubLink">Github</a> <br>
+         Check my github <a id="public-repo"> Api </a>
+     </p> 
+  
+     <p>
+        Check it on github <a id="bootcamp" href="https://github.com/Dilli822/BootCamp"> BootCamp</a> <br>
+        Check Repo <a id="public-repo"> Api </a>
+
+     </p>
+     
+     <a class="twitter-timeline" data-width="600" data-height="700" data-theme="dark"
+      href="https://twitter.com/dilli_hangrae?ref_src=twsrc%5Etfw">
+      Tweets by dilli_hangrae</a> 
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+   </div>
+   </div>
+   </div>
+   <footer>
+       <h6>Thank You!</h6>
+   </footer>
+
+  <!-- SCript js  -->
+    <script>
+        fetch("https://api.github.com/users/dilli822")
+        .then(response => response.json())
+        .then(function(data){
+            console.log(data);
+        
+            
+            document.getElementById('profileImage').src = data["avatar_url"]
+            document.getElementById('fullName').textContent = data["name"]
+            document.getElementById('bio').textContent  =  data["bio"]
+
+            
+            document.getElementById('githubLink').href= data ['url']
+            document.getElementById('public-repo').href= data ['repos_url']
+
+            // document.getElementById('public_reposnum').textContent = followersCount
+
+            //this will unhide the main element after hard reset
+            document.getElementById('main-container').hidden= false
+
+            //remove the loading after the main element is unhidden
+            document.getElementById('loading').hidden= true
+
+        })
+
+    </script>
+   
+   </body>
+   </html>
