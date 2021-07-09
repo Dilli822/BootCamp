@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project PortFolio</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  
+   <style>
+       .main {
+           /* display: block;
+           margin: 0 auto; */
+           text-align: center;
+           font-family: sans-serif;
+       }
+   </style>
+   </head>
+   <body>
+       <div id="loading">
+           <span><i class="fa fa-spinner fa-spin"></i></span>
+        </div>
+
+    <div class="main" id="main-container"hidden>
+    <!-- <a href="https://placeholder.com"><img src="https://via.placeholder.com/150" alt="dilli.img"></a> -->
+     <!-- Now we make our page dynamic -->
+     <img
+     width = "50%"
+     height = "50%"
+     id="profileImage"
+
+     />
+
+    <h2 id="fullName"></h2>
+    <p id="bio"></p>
+    <h5 id="followersInformation"></h5>
+     <p>
+         check me on <a id="githubLink">Github</a>
+     </p> 
+     <a class="twitter-timeline" data-width="450" data-height="500" 
+     href="https://twitter.com/dilli_hangrae?ref_src=twsrc%5Etfw">
+    Tweets by dilli_hangrae</a> 
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+   </div>
+
+
+  <!-- SCript js  -->
+    <script>
+        fetch("https://api.github.com/users/dilli822")
+        .then(response => response.json())
+        .then(function(data){
+            console.log(data);
+
+            let followersCount = data['followers']
+            let followersInfo = `I have been followed by ${followersCount} people on github`
+            
+            document.getElementById('profileImage').src = data["avatar_url"]
+            document.getElementById('fullName').textContent = data["name"]
+            document.getElementById('bio').textContent  =  data["bio"]
+
+            document.getElementById('followersInformation').textContent = followersCount
+            
+            document.getElementById('githubLink').href= data ['url']
+
+            //this will unhide the main element after hard reset
+            document.getElementById('main-container').hidden= false
+
+            //remove the loading after the main element is unhidden
+            document.getElementById('loading').hidden= true
+
+        })
+
+    </script>
+   
+   </body>
+   </html>
