@@ -18,3 +18,14 @@ id(a)
 binary = 01010 #value is 520
 print(binary)
 type(binary)
+
+a = ("")
+bool(a)
+
+b = 5
+bool(b)
+
+# this is inline comment
+
+#this is continous comment / this is 
+
