@@ -12,7 +12,7 @@
    #use single quotation
    str1 = 'we\r' here'
    str2 = "I'm here"
-   str3 = "He says,"We are friends"'
+   str3 = "He says,'We are friends'"
 
 
 

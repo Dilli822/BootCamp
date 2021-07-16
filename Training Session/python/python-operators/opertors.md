@@ -1,18 +1,16 @@
 
 
-  #sign/symbols to do task like airthmetic operators
-  #addition,subtraction,division,multiplication
-  #modules %
+  # sign/symbols to do task like airthmetic operators
+  # addition,subtraction,division,multiplication
+  # modules %
 
-  #comparison operators
+  # comparison operators
   !=
   ==
+  # logical operators
 
-  #logical operators
 
-
-  #identity operators
-
+  # identity operators
   # == checks only value of variables whereas
   # is and is not check whether the obj is same or not
 
