@@ -1,5 +1,4 @@
 
-
   # set in python
   # collection of the unordered elements
   # represented by elements enclosed in the curly braces separated by comma.
@@ -9,4 +8,101 @@
   # {1,2,3,(1,2,3)}
   # set is mutable but its elements are immutable
   # sets can be assigned in randomness and when it is printed repeated values are not printed
-  # 
+  # >>> set = {1,2,3}
+  >>> type(set)
+  <class 'set'>
+  >>> set1 = {[1,2,3],[4,5,6]}
+  Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  TypeError: unhashable type: 'list'
+
+   #Adding and Removing set elements
+   # we use remove it by using discard(), clear() or pop() method.
+   # s1 = {1,2,3}
+
+   >>> s1.add(4)
+   >>> s1
+   {1, 2, 3, 4}
+   >>> s1.update([4,5,6,7]}
+   File "<stdin>", line 1
+    s1.update([4,5,6,7]}
+                       ^
+   SyntaxError: closing parenthesis '}' does not match opening parenthesis '('
+   >>> s1.update([4,5,6,7])
+   >>> s1
+    {1, 2, 3, 4, 5, 6, 7}
+   >>> # here set is immutable but elements of sets are mutable
+   >>> s1.update([4,5,6,7])
+   >>> s1
+   {1, 2, 3, 4, 5, 6, 7}
+   >>> # here set is immutable but elements of sets are mutable
+   >>> s1.pop()
+   1
+  >>> s1
+  {2, 3, 4, 5, 6, 7}
+  >>> #pop randomly remove the elements of set
+  >>> s1.discard(2)
+  >>> s1
+  {3, 4, 5, 6, 7}
+  >>> #remove elements by using the discord()
+  >>> s1.clear()
+  >>> s1
+  set()
+  >>> #clear will delete all elements of set and completey clear it
+  >>> 
+
+  # Only Main Difference between discard & remove 
+  # is from below examples
+  >>> s1 = {1,2,3,4,5}
+  >>> s1.discard(10)
+  >>> s1
+  {1, 2, 3, 4, 5}
+  >>> s1.remove(10)
+  Traceback (most recent call last):
+   File "<stdin>", line 1, in <module>
+  KeyError: 10
+   >>> 
+
+   #python set methods 
+   copy()....etc
+
+   # set operations
+   # just like we studied sets in mathematics 
+   # similarly we can perform set operations on python
+   # union a|b or a.union(b) a ={1,2,3} b ={4,5,6}
+   #>>> a = {1,2,3}
+   >>> b ={4,5,6}
+   >>> a|b
+   {1, 2, 3, 4, 5, 6}
+   >>> a.union(b)
+   {1, 2, 3, 4, 5, 6}
+
+   # intersection>>> a = {1,2,3}
+   >>> b= {4,5,6}
+   >>> a&b
+   set()
+   >>> a.intersection(b)
+   set()
+   >>> a = {1,1,2,3}
+   >>> b ={1,4,5,6}
+   >>> a&b
+   {1}
+   # Difference A-B orA.Difference(B)
+   >>> a-b
+  {2, 3}
+  # Symmetric Difference A^B or A.Symmetric_difference(B)
+  # >>> a = {1,1,2,3}
+  >>> b ={1,4,5,6}
+  >>> a^b
+  {2, 3, 4, 5, 6}
+
+ # special cases
+ # Frozenset
+ # normally sets are mutable but the frozen sets are immutable
+ # can be created by using frozenset()function.
+ # add() and remove() cannot be accessed by frozenset due to its nature
+ # but we can use another set methods like copy(), union(), intersection()
+
+
+
+
