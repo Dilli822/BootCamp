@@ -1,0 +1,23 @@
+
+  # python supports both indexing and slicing
+  # slicing in python
+
+  >>> a  = "python is beginner-friendly"
+>>> a[0]
+'p'
+>>> a[2:9]  
+'thon is' //print the string between index 2  and  8
+>>> a.length()
+
+>>> id(a)
+140079042765408
+>>> a[-1] //print the string between from right sde ending index
+'y'
+>>> a[2:]
+'thon is beginner-friendly' //print the string between from left side leaving 0 index
+>>> a[:2] 
+'py' //print the string before the index 2 ie.index0 and 1 of left side
+>>> a[:]
+'python is beginner-friendly' //print the whole string
+>>> here [:] is called colon
+
