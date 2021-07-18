@@ -1,0 +1,51 @@
+
+
+  # Formatted string literal (f-string)
+  # introduced in python 3.6
+  # they are string literals that have "f" at the begining and curly braces
+  # containing expressions that will be replaced 
+  # first we make variables like 
+  # name = "dilli"
+  # then we put this variable after the f-strings literals
+  >>> name = "diili"
+  >>> print(f"hi! {name}")
+  hi! diili
+  # f-strings are evaluated at runtime
+  # we put variables inside the curly braces {}
+
+  # multiple f-strings literals
+  >>> id = "822"
+  >>> profession = "student"
+  >>> age = 22
+  >>> print(
+   ...    f"Hi! I am {name}. "
+   ...    f"My id is {id}. "
+   ...    f"I am {profession} & {age} years old. "
+   ... 
+    ... )
+   Hi! I am diili. My id is 822. I am student & 22 years old. 
+
+   # we can use triple quotation on f strings by keeping only strings 
+   # or not keeping variables
+
+   #double quotation with single quotation
+    >>> f"hi ! {'dilli'}"
+   'hi ! dilli'
+   >>> f'hi! I am {'dilli'}
+
+   #single with double 
+   >>> f'hi! I am {"dilli"}'
+   'hi! I am dilli'
+
+   # triple quotation
+   >>> f"""john"""
+   'john'
+   >>> f'''hang'''
+   'hang'
+   
+   # special cases on double & single braces
+   >>> print(f"{{2+3}}")
+   {2+3}
+   >>> #but with triple braces it acts like we are adding the numbers
+   >>> print(f"{{{6+6}}}")
+   {12}

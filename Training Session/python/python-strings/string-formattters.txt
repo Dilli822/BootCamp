@@ -14,18 +14,31 @@
   # %f is for float
   # %.2f is for float with 2-digit floating point
   # %.4f float with 4-digit floating point
->>> 'I am currently learning %s and my skill level is %f'%('python',0.99)
-'I am currently learning python and my skill level is 0.990000'
 
->>> 'I am currently learning %s and my skill level is %f.2f'%('python', '0.99')
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-TypeError: must be real number, not str
->>> 'I am currently learning %s and my skill level is %f.2F'%('python', '0.99')
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-TypeError: must be real number, not str
+  #for larger number of placeholders
 
->>> 'Hi I am %s and my weight is %.2F'%('Dilli', 58.5626145)
-'Hi I am Dilli and my weight is 58.56'
->>> 
+  >>> 'I am currently learning %s and my skill level is %f'%('python',0.99)
+  'I am currently learning python and my skill level is 0.990000'
+
+  >>> 'I am currently learning %s and my skill level is %f.2f'%('python', '0.99')
+  Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  TypeError: must be real number, not str
+  >>> 'I am currently learning %s and my skill level is %f.2F'%('python', '0.99')
+  Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  TypeError: must be real number, not str
+
+  >>> 'Hi I am %s and my weight is %.2F'%('Dilli', 58.5626145)
+  'Hi I am Dilli and my weight is 58.56'
+
+  # other examples of string format methods in python
+  # format() method arguments (keyword arguments)
+  # >>> '{a}, {b}, {c}'.format(a='hello', b='everyone', c='from python')
+  'hello, everyone, from python'
+  >>> #mixing positional and keyword arguments all the positional arguments must come before keyword arguments
+      
+  >>> '{0}{a}{1}'.format('python','version', a='three')
+   'pythonthreeversion'
+   
+
