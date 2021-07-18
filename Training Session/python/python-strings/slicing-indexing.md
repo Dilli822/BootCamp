@@ -21,3 +21,13 @@
 'python is beginner-friendly' //print the whole string
 >>> here [:] is called colon
 
+>> a = "i love python"
+>>> a[-6:-1]
+'pytho'
+>>> a[10:]
+'hon'
+>>> a[20:]
+''
+>>> a[0:]
+'i love python'
+>>> a[:0]
