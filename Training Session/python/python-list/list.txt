@@ -1,0 +1,125 @@
+
+# python list data type are inbuilt data type
+# they are collection of different data types enclosed in the big brackets '[]'
+# separated by commas
+# they contain heterogeneous elements
+# they are mutable and its elements position can be changed after its creation
+>>> # example of different lists
+>>> a = [1,2,3,4]
+>>> # list of only integer data
+>>> a =['a','b','1','2']
+>>> #list of both integer & string data
+>>> a = ['strings','names',{1,2,3},['a','e','i'],{"name":"dilli","age": 22}]
+>>> # list of mixed data types like sets,list itself, dict , strings and integers
+
+# just like slicing in string awe can also do slicing and indexing on lists
+#>>> a = [1,2,3,4]
+>>> a[:1]
+[1]
+>>> a[-1]
+4
+>>> a[0]
+1
+>>> a[2]
+3
+>>> #indexing the position of elements
+
+# change the list elements
+>>> a[0] = 0
+>>> a
+[0, 2, 3, 4]
+
+# slicing the elements
+>>> x = ['a','b','c','d']
+>>> x[:]
+['a', 'b', 'c', 'd']
+>>> x[1:]
+['b', 'c', 'd']
+>>>>>> x[-1:]
+['d']
+>>> x[:-1]
+['a', 'b', 'c']
+['a', 'b', 'c']
+>>> x[:5]
+['a', 'b', 'c', 'd']
+>>> x[:6]
+['a', 'b', 'c', 'd']
+>>> x[5:]
+[]
+>>> x[4:]
+[]
+>>> x[-4]
+'a'
+>>> x[-5]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: list index out of range
+>>> x[:-4]
+[]
+>>> x[-4:]
+['a', 'b', 'c', 'd']
+>>>>>> x[-3:-2]
+['b']
+
+# lists operations in python
+# concatenation in list operations
+#addition
+>>> a1 = [1,2,3]
+>>> a2 = [4,5,6]
+>>> a1+a2
+[1, 2, 3, 4, 5, 6]
+>>> a3 = [1,2,3,1]
+>>> a1+a2+a3
+[1, 2, 3, 4, 5, 6, 1, 2, 3, 1]
+# unlike sets all the elements gets repeated in python lists
+
+# repeat operations with * asteric
+>>> x = a1+a2+a3
+>>> x
+[1, 2, 3, 4, 5, 6, 1, 2, 3, 1]
+>>> x*2
+[1, 2, 3, 4, 5, 6, 1, 2, 3, 1, 1, 2, 3, 4, 5, 6, 1, 2, 3, 1]
+
+# checking elements of lists
+>>> x = [1,2,3,4]
+>>> 1 in x
+True
+>>> 5 in x
+False
+
+# similarly we have in and not in option
+>>> x = [1,2,3,4]
+>>> 1 in x
+True
+>>> 5 in x
+False
+>>> 1 in x
+True
+>>> 6 in x
+False
+>>> 6 not in x
+True
+>>> 4 in x
+True
+>>> 1 not in x
+False
+
+# literation in lists with loops
+>> v = ["a","e","i","o","u"]
+>>> for x in x:
+...  print(x)
+...
+1
+2
+3
+4
+>>> for x in v:
+...   print(x)
+...
+a
+e
+i
+o
+u
+
+#

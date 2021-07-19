@@ -1,0 +1,105 @@
+
+
+  #list methods
+  #append add the elements
+  >>> a
+  [0, 2, 3, 4]
+  >>> a.append(5)
+  >>> a
+  [0, 2, 3, 4, 5]
+  >>> #joining another list with extend
+  >>> a1 = [6,7,8,9]
+  >>> a.extend(a1)
+  >>> a1
+  [6, 7, 8, 9]
+  >>> a
+  [0, 2, 3, 4, 5, 6, 7, 8, 9]
+
+  # extend
+  >>> l1 = [1,2,3,4,5]
+>>> l2 = [6,7,8,9,10]
+>>> l1.extend(l2)
+>>> l1
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+>>> l2
+[6, 7, 8, 9, 10]
+
+# insert method
+# this method replace the existing value
+# by taking parameters
+l1.insert(0,0)
+>>> l1
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# here 0 came at o index
+
+# remove method takes value as parameters
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+>>> l1.remove(10)
+>>> l1
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+# here we wanted to remove the 10
+
+# pop method on list with indexing
+>>> l1.pop(7)
+7
+>>> l1
+[0, 1, 2, 3, 4, 5, 6, 8]
+# removing the elements at index 7 i.e. 7
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> l1.pop()
+9
+# pop the data from last
+ #clear delete all the elements of lists
+ >>> l1
+ [0, 1, 2, 3, 4, 5, 6, 8]
+ >>> l1.clear()
+ >>> l1
+ []
+
+# finding the index of list elements
+ >>> l2
+[6, 7, 8, 9, 10]
+>>> # with index method we can get the index numbering of lists elements
+>>> l2.index(1)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: 1 is not in list
+>>> l2
+[6, 7, 8, 9, 10]
+>>> l2.index(7)
+1
+# hacks to find the numbers between the indexing
+>>> l2
+[6, 7, 8, 9, 10]
+>>> l2.index(7)
+1
+>>> l2.index(4, 1, 2)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: 4 is not in list
+>>> l2.index(7, 0, 1)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: 7 is not in list
+>>> l2.index(6, 0, 1)
+0
+>>>
+# above we put the parameters to find the value indexing
+# search 4 in between index 1 and 2 and if found return index number\
+# if not found return Value Error
+#>>> l2
+[6, 7, 8, 9, 10]
+>>> l2.index(8, 0, 5)
+2
+# try without start and end parameters i.e ls.index(6)
+>>> # count method
+>>> l2.count(6)
+1
+>>> l2.append(7)
+>>> l2
+[6, 7, 8, 9, 10, 7]
+>>> l2.count(7)
+2
+# this method count the number of elements repeated!
+
+# reverse method
