@@ -1,0 +1,43 @@
+>>> #dictionary in python
+>>> x = {
+...  "name": "ford",
+...   "id" : 7
+...    "age" : 22,
+  File "<stdin>", line 4
+    "age" : 22,
+    ^
+SyntaxError: invalid syntax
+>>> dictionary are used to store data values in key:value pairs
+  File "<stdin>", line 1
+    dictionary are used to store data values in key:value pairs
+               ^
+SyntaxError: invalid syntax
+>>> # dictionary is a collection which is ordered , unchangeable and doesnot allow duplicates
+>>> x = {
+... "name" : "dilli",
+... "id" : 7,
+... "weight": 58.85,
+... "disable": "false",
+...  }
+>>> print(x)
+{'name': 'dilli', 'id': 7, 'weight': 58.85, 'disable': 'false'}
+>>> #i found this is similar to json data format
+
+>>> #determine the items length
+>>> print(len(dict))
+>>> print(len(x))
+4
+
+Python Collections (Arrays)
+
+There are four collection data types in the Python programming language:
+
+    List is a collection which is ordered and changeable. Allows duplicate members.
+    Tuple is a collection which is ordered and unchangeable. Allows duplicate members.
+    Set is a collection which is unordered and unindexed. No duplicate members.
+    Dictionary is a collection which is ordered and changeable. No duplicate members.
+
+When choosing a collection type, it is useful to understand the properties of that type. Choosing the right type for a particular data set could mean retention of meaning, and, it could mean an increase in efficiency or security.
+
+
+>>> d= {"name":[], "data":{},"abc":set(),"age":1}

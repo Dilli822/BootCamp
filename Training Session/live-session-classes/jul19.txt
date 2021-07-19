@@ -1,0 +1,82 @@
+0
+>>> x = [1,2,3]
+>>> tuple(x)
+(1, 2, 3)
+>>> dict(x)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: cannot convert dictionary update sequence element #0 to a sequence
+>>> #set are unindexed and unarranged
+>>> # tuple are immutable
+>>> # lists are mutab;e
+>>> s = {0,1,2,3,4}
+>>> s.append(4)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'set' object has no attribute 'append'
+>>> l = [1,2,3,4,5]
+>>> l.append(6)
+>>> l
+[1, 2, 3, 4, 5, 6]
+>>> a,b,c = 1,2,3
+>>> a+b+c
+6
+>>> a-b*c
+-5
+>>> a-b*c
+-5
+>>> a -b / c
+0.33333333333333337
+>>> a,c = 1
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: cannot unpack non-iterable int object
+>>> d= {"name":[], "data":{},"abc":set(),"age":1}
+>>> d[
+... "data"]
+{}
+>>> {'a': (1,2,3)}
+{'a': (1, 2, 3)}
+>>> #special syntax to perform specific action in python like for in loop
+>>> x = [1,2,3,4,5,6,7,8,9,10]
+>>> for i in x:
+...  print(i)
+... 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+>>> x = {1,2,3,4,5,6,7,8,9,10}
+>>> for i in x:
+...  print(i)
+... 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+>>> #json and python dictionary have key and value pair 
+>>> 
+>>> #range ?
+>>> # start,stop,increment
+>>> # it starts from zero & increment (maybe +1,+2)
+>>> # stop (stopvalue - ending value)
+>>> list(range(0,10,2))
+[0, 2, 4, 6, 8]
+>>> #stop means position stop whereas start means indexing starts
+>>> 
+>>> #stop means position stop whereas start means indexing starts
+>>> string = "dilli"
+>>> string[::-1]
+'illid'
