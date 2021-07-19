@@ -1,0 +1,58 @@
+
+ # Adding and updating items in dictionary
+ # since dictionary is mutable so we can add and update items
+
+
+ # adding key value to the dict 
+ >>> print(my_dict)
+{'name': 'dilli', 'age': 22, 'gender': 'male'}
+>>> my_dict['id'] = 7
+>>> my_dict
+{'name': 'dilli', 'age': 22, 'gender': 'male', 'id': 7}
+
+>>> # adding mutiples value for single key
+>>> my_dict['skills'] = ['html','css','js','python']
+>>> my_dict
+{'name': 'dilli', 'age': 22, 'gender': 'male', 'id': 7, 'skills': ['html', 'css', 'js', 'python']}
+
+# similarly updating items in dictionary
+# it will update and replace the existing item on dictionary
+>>> my_dict
+{'name': 'dilli', 'age': 22, 'gender': 'male', 'id': 7, 'skills': ['html', 'css', 'js', 'python']}
+>>> my_dict['skills'] = 'scss'
+>>> my_dict
+{'name': 'dilli', 'age': 22, 'gender': 'male', 'id': 7, 'skills': 'scss'}
+
+
+
+# removing the dictionary items
+# we point dict elements as tuple to remove it
+# we send key to remove the items of dict which wil remove both keyvalue pair
+
+>> my_dict
+{'name': 'dilli', 'age': 22, 'gender': 'male', 'id': 7, 'skills': ['html', 'css', 'js']}
+>>> my_dict('skills'))
+>>> print(my_dict.pop('skills'))
+['html', 'css', 'js']
+# key pair values were returned 
+>>> my_dict
+{'name': 'dilli', 'age': 22, 'gender': 'male', 'id': 7}
+
+# with .popitem()
+# remove the items from last
+>>> my_dict = {'a': 1, 'b': 2, 'c': 3, 'd':4, 'e': 5}
+>>> print(my_dict.popitem())
+('e', 5)
+
+
+#clear method remove the dict items
+>>> my_dict.clear()
+>>> my_dict
+{}
+
+# del keyword will delete the whole dict
+>>> del(my_dict)
+>>> my_dict
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'my_dict' is not defined

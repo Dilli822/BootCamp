@@ -1,0 +1,22 @@
+
+# Accessing values in dictionary
+# we donot use indexing / not accesible usign index values
+# accessed by using  brackets [] 
+#>>> print(my_dict['name'])
+dilli
+>>> print(my_dict['gender'])
+male
+# if there is not such value then keyerror arises
+>>> print(my_dict['id'])
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 'id'
+
+
+# we can also access the values in dictionary by using the get()method
+>>> print(my_dict.get('id'))
+None
+# but we donot get error if we try to get the values which is not in dictionary
+# get method is used for this purpose too
+
+

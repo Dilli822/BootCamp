@@ -1,4 +1,12 @@
 >>> #dictionary in python
+# data type in python with key value: pair separated by comma
+# introduced the order of the item from python 3.7
+# but before that it was unordered Collections
+
+
+# empty dict
+my_dict = {}
+
 >>> x = {
 ...  "name": "ford",
 ...   "id" : 7
@@ -39,5 +47,31 @@ There are four collection data types in the Python programming language:
 
 When choosing a collection type, it is useful to understand the properties of that type. Choosing the right type for a particular data set could mean retention of meaning, and, it could mean an increase in efficiency or security.
 
-
 >>> d= {"name":[], "data":{},"abc":set(),"age":1}
+
+# creating dict in python 
+# using built in dict() function
+>>> my_dict = dict()
+>>> my_dict()
+>>> print(my_dict)
+{}
+
+>>> # we can also make dict with using data type inside it 
+>>> my_dict = dict({
+...   'name': 'dilli',
+...     22: ['age', 'old']
+...    })
+>>> print(my_dict)
+{'name': 'dilli', 22: ['age', 'old']}
+>>> # above we had inserted set and list as both mixed data type
+
+>>> # list of tuples inside the dictionary 
+>>> my_dict = dict ([
+...    ('name', 'dilli'),
+...    ('age', 22),
+...     ('gender', 'male')
+...   ])
+>>> print(my_dict)
+{'name': 'dilli', 'age': 22, 'gender': 'male'}
+
+
