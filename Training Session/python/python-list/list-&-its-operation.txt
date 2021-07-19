@@ -62,7 +62,9 @@ IndexError: list index out of range
 ['b']
 
 # lists operations in python
+
 # concatenation in list operations
+
 #addition
 >>> a1 = [1,2,3]
 >>> a2 = [4,5,6]
