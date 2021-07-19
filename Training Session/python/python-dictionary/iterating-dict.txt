@@ -1,0 +1,39 @@
+>>> # loop with iterating through dic
+>>> for item in y:
+...   print(item)
+... 
+a
+c
+d
+b
+e
+>>> # here only key is generated
+>>> for item in y.values():
+...   print(item)
+... 
+1
+3
+4
+2
+5
+>>> #here all the key's value is generated
+>>> for item in y.items():
+...   print(item)
+... 
+('a', 1)
+('c', 3)
+('d', 4)
+('b', 2)
+('e', 5)
+>>> # y.items() will generate all key pairs value
+>>> for key, value in y.items():
+...    print(key, value)
+... 
+a 1
+c 3
+d 4
+b 2
+e 5
+>>> #here key and value is generated not as tuple like above 
+
+

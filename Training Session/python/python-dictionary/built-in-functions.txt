@@ -1,0 +1,83 @@
+
+
+# built in functions
+all() return true if it is not empty
+>>> a = {'x': 1, 'z': 3, 'y': 2}
+>>> print(all(a))
+True
+any () if any one key is not empty
+>>> print(any(a))
+True
+
+>>> print(all({}))
+True
+
+>>> print(any({}))
+False
+
+#return true if any one items is not empty
+>>> print(any({'':2, 'x': 3}))
+True
+
+all() return only true if all items are non-empty
+>>> print(all({'': 2, 'x': 3}))
+False
+
+
+# len ()
+>> a = {'x': 1, 'z': 3, 'y': 2}
+>>> print(len(a))
+3
+>>> print(sorted(a))
+['x', 'y', 'z']
+
+>>> str(a)
+"{'x': 1, 'z': 3, 'y': 2}"
+
+
+# clear(), pop(), get(), copy()
+
+# examples
+
+>>> y = {'a': 1, 'c':3, 'd': 4, 'b': 2}
+>>> print(y.keys())
+dict_keys(['a', 'c', 'd', 'b'])
+>>> print(y.values())
+dict_values([1, 3, 4, 2])
+>>> print(y.items())
+dict_items([('a', 1), ('c', 3), ('d', 4), ('b', 2)])
+>>> x = y.copy()
+>>> print(x)
+{'a': 1, 'c': 3, 'd': 4, 'b': 2}
+>>> a = {'e': 5}
+>>> y.update(a)
+>>> y
+{'a': 1, 'c': 3, 'd': 4, 'b': 2, 'e': 5
+
+
+>>> y = {'a': 1, 'c': 3, 'd': 4, 'b': 2}
+>>> a = y.fromkeys(['e', 'f'], 1)
+>>> a
+{'e': 1, 'f': 1}
+>>> # we have send key value pair 
+>>> # above key is e and f 
+>>> # and value is 1
+
+>>> b = y.fromkeys(['e', 'f'])
+>>> b
+{'e': None, 'f': None}
+>>> # here we didnot give any value so the key pair value is none
+
+>>> y.setdefault('c', 45)
+3
+>>> y
+{'a': 1, 'c': 3, 'd': 4, 'b': 2}
+>>> # this will bring no changes if c has already value
+>>> y.setdefault('e', 5)
+5
+>>> print(y)
+{'a': 1, 'c': 3, 'd': 4, 'b': 2, 'e': 5}
+>>> # but with default 5 will be key value pair of e
+
+
+

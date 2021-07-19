@@ -1,0 +1,54 @@
+
+
+  #restriction in dictionary keys:
+  # rules to be a key of dictionary
+  # they mustbe immutabe tupleto be 
+  >>> a = {'1':1, '2': 2}
+>>> a
+{'1': 1, '2': 2}
+>>> type(a)
+<class 'dict'>
+>>> #using tuple in key
+>>> a = {(1,2): 1}
+>>> # here we used tuple inside dict
+>>> # as tuple is also immutable 
+>>> # and int is also immutable objects
+>>> # we can create a dict
+
+# special cases
+>>> a = {([1,2], ): 1}
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unhashable type: 'list'
+>>> # unhasable type beacuse the elements is list
+>>> # which is mutable
+>>> # so to be a key of dict 
+>>> # we must use immutable objects 
+# tuples can only be used as keys if they contain only immutable objects
+
+# Restriction in dictionary values
+# no restiction on dictionary values
+
+
+# same like in other data types we can use membership method
+# in dict we use membership method
+>>> a = {'a': 1, 'b': 'str'}
+>>> type(a)
+<class 'dict'>
+
+>>> 'a' in a
+True
+>>> 1 in a
+False
+
+>>> 'b' in a
+True
+
+>>> 'c' in a
+False
+
+>>> 'e' not in a
+True
+
+# dict also supports built in functions
+
