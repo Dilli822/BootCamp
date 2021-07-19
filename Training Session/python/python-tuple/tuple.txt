@@ -1,0 +1,136 @@
+
+
+  # Tuple is a immutable data type in python
+  # it is ordered and separated by commas
+  # it is somehow similar to lists in terms of 
+  # indexing, nestes objects and repetition
+  # it is also collection of elements
+  >>> a = (1,2,3,4,5)
+  >>> type(a)
+  <class 'tuple'>
+
+  # creating tuples
+  # empty tuple
+  >>> empty_tuple = ()
+  >>> print(empty_tuple)
+    ())
+  >>> type(empty_tuple)
+  <class 'tuple'>
+
+  #non_empty tuples
+  >>> a = (1,2,3,4,5)
+  >>> type(a)
+  <class 'tuple'>
+
+ # it also supports mixed data and nested tuple
+>>> tup = ('dilli', (1,2,3,4), ['a', 'b'])
+>> tup = ('dilli', (1,2,3,4), ['a', 'b'],{1,2,3,4})
+>>> type(tup)
+<class 'tuple'>
+   
+
+# hack on tuple
+>>> # str and tuple
+>>> a = ('dilli')
+>>> type(a)
+<class 'str'>
+>>> # this is string so we must add comma at the end to make it tuple
+>>> a = ('dilli',)
+>>> type(a)
+<class 'tuple'>
+>>> a
+('dilli',)
+
+
+# we can create tuple using built in functions tuple
+
+>>> # using in-built to make it tuple
+>>> my_tuple = tuple()
+>>> print(my_tuple)
+()
+>>> # this is without iterable
+>>> my_tuble = tuple([1,2,3,4,5])
+>>> print(my_tuble)
+(1, 2, 3, 4, 5)
+>>> # here list is used as parameter
+>>> my_tuple = tuple("hello")
+>>> print(my_tuple)
+('h', 'e', 'l', 'l', 'o')
+>>> # this shows string can also be used as param to make tuple
+
+>>> # but int is not an iterable 
+>>> my_tuple = tuple(1)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'int' object is not iterable
+
+# tuple packing and unpacking
+# if we made tuple without using the param it is simply packing
+>>> my_tuple = '1,2,3', 'dilli'
+>>> my_tuple
+('1,2,3', 'dilli')
+>>> my_typle(type)
+>>> type(my_tuple)
+<class 'tuple'>
+
+# unpacking 
+# creating variables and making tuples
+>>> my_tuple = ('dilli', 'student', 22)
+>>> name, profession, age = my_tuple
+>>> print(name)
+dilli
+>>> print(profession)
+student
+>>> print(age)
+22
+>>> type(my_tuple)
+<class 'tuple'>
+
+# common errors on unpacking
+# too many values to unpacking#
+# variables != assigned values
+
+# Accessing Tuple elements
+# -ve indexing and +ve indexing
+>>> my_tuple
+('dilli', 'student', 22)
+>>> print(my_tuple[-1])
+22
+>>> print(my_tuple[-3])
+dilli
+>>> print(my_tuple[-4])
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: tuple index out of range
+
+#slicing is same as list
+
+#tuple cannot be changed but can be deleted
+
+# tuple operations
+# concatenation +
+# repetition *2
+# to check membership in and not in
+# they can used literal loops method
+
+# since tuple is immutable so it doesnot support
+# append(),remove(),extend()
+# tuple objects can only call two methods 
+# count() and index() methods
+# same as list methods
+# python built-in-functions 
+# sum() can be used
+>>> tup1 = (1,2,3,4,5)
+>>> sum(tup1)
+15
+# max() returns largest item
+>>> max(tup1)
+5
+# reverse() reverse sorting
+# sorted() returns sorting
+# reversed() returns reversing of items
+
+
+
+
+
