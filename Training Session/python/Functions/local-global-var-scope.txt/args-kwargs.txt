@@ -1,0 +1,68 @@
+
+
+# *arguments
+# incidated by asterix
+# we use *args for multiple or numerous parameters 
+to give numerous arguments
+# args produce tuple data types
+
+# example 
+
+>>> def add(a,b, *args):
+...   print(args)
+...   return a+b
+
+>>> r = add(1,2,3,4)
+(3, 4)     # thiis result of print(args)
+>>> print(r)  
+3     # whereas this is result of a+b
+#the most interesting thing is it args produce tuple as seen in example
+# no matter how much you pass arguments
+
+# in the following param has taken the arguments
+# a = 1  b =2  and argss = 3 and 4
+
+
+# we just added sum as builtin functions to args as
+#tuple is iterals in python
+
+>>> def add(a,b, *args):
+...   r = sum(args)   
+...   return r+a+b
+... 
+>>> r = add(1,2,3,4,6)
+>>> print(r)
+16
+
+
+# kwargs -------> keyword args
+# it accepts keywords which are passed as arguments 
+# and return askey value 
+#producing dict data types
+#The special syntax **kwargs in function definitions 
+in python is used to pass a keyworded, variable-length 
+argument list. We use the name kwargs with the double star. 
+The reason is because the double star allows us to pass 
+through keyword arguments (and any number of them).
+
+>>> def add(a, b, *args, **kwargs):
+...   print(kwargs)
+...   r = sum(args)
+...   return r+a+b
+... 
+>>> r = add(1,2,3,4,5, c=6, d=7)
+{'c': 6, 'd': 7}
+>>> print(r)
+15
+
+# here kwwards separated the key pair into dict 
+
+# now if we have to perform airthmetic operations
+# as kwargs produces dict 
+# so it supports iterals
+# we use .values() method to sum the data
+
+
+
+
+

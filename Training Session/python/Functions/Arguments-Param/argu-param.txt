@@ -1,2 +1,53 @@
 
-  #
+  
+  # arguments ?
+  # Arguments are variables used only in that specific 
+  function
+  #n argument of a function is a value that must be
+   provided to obtain the function's result. It is also 
+   called an independent variable
+
+   # parameter ?
+   # A parameter is a special kind of variable in 
+   computer programming language that is used to pass 
+   information between functions or procedures. The actual 
+   information passed is called an argument.
+
+   # types of arguments in python
+   1. positional arguments/param
+   2. keywords arguments /param
+
+
+   # positional arguments
+   # with non-default param
+   >>> def add(a, b):
+...   return a + b
+... 
+>>> add(2, 5)
+7
+
+# keyword arguments with default param
+   >>> def add(a,b= 2):
+...   return a+b
+... 
+>>> r = add(2,3)
+>>> print(r)
+5
+# here positional default param is not executed as 
+#arguments value is passed down below mannually
+
+>>> def add(a, b=2):
+...  return a+b
+... 
+>>> add(1)
+3
+# but here no arguments value passed
+# so function takes it from default param value
+
+# passing both default param with no argu passed down below>>> def sub(a=4 , b=2):
+...   return a-b
+... 
+>>> s = sub()
+>>> print(s)
+2
+
