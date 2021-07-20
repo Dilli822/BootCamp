@@ -1,0 +1,20 @@
+
+   # function in python
+   # function is a sytem which accepts the input , process it and give the ouptut.
+   # similar to IO system input and output.
+   # but it run outside from big program and gives output which can be used for further programming.
+   
+   
+   >>> def message():
+...    print("hello world from python shell")
+... 
+>>> message()
+hello world from python shell
+
+
+>>> # this is just a simple example of creating the function.
+>>> # Here we created the message function with def keyword.
+>>> # and it was printed with no parameters ()
+
+
+>>> # passing param to function
