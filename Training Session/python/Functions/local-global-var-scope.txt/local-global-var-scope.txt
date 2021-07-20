@@ -1,0 +1,67 @@
+
+
+  # local and global variables
+  # if we define the variable inside a specific function# then
+  # declared varaible for certain function 
+  # variable only works in that function
+  # but if we declared the var outside
+  # the block of codes that becomes global var
+  # and the environment where such var works 
+  # can be called as global and local scopes
+
+  >>> def func():
+...   val = 5
+...   print("this is inside var", val)
+... 
+this is inside var 5
+# this val is only for local scope inside func
+
+>>> val = 8
+>>> func()
+>>> print("outside funciton", val)
+outside funciton 8
+
+
+# but if you declare the global val inside the bloack of codes
+# then it becomes local to global
+>> def func():
+...  global val
+...  val = 5
+...  print("inside func becomes global val")
+... 
+>>> func()
+inside func becomes global val
+>>> val = 6
+>>> func(val)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: func() takes 0 positional arguments but 1 was given
+>>> func()
+inside func becomes global val
+>>> print("this is global", val)
+this is global 5
+>>> 
+
+# usign doc string (""") to do the multi-lines comment
+>> def func():
+
+
+...  global val
+...  val = 5
+...  print("inside func becomes global val")
+... 
+>>> func()
+inside func becomes global val
+
+# use py charm to enable mutiline doct string comments
+>>> def add(a,b):
+...  """
+...  this function returns the sum of provided inputs
+...  :param a: type integer
+...  :param b: type integer
+...  :return: sum of providede integers
+...  """
+...  return a+b
+... 
+>>> add(a,b)
+

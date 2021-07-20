@@ -3,8 +3,8 @@
    # function is a sytem which accepts the input , process it and give the ouptut.
    # similar to IO system input and output.
    # but it run outside from big program and gives output which can be used for further programming.
-   
-   
+   # logic codes gets break into functions 
+
    >>> def message():
 ...    print("hello world from python shell")
 ... 
@@ -17,4 +17,53 @@ hello world from python shell
 >>> # and it was printed with no parameters ()
 
 
->>> # passing param to function
+>>> # passing param to function and calling it 
+# here is f is f-string which is format string
+this is {txt}
+>>> def message(txt):
+...   print(f"this is {txt}")
+... 
+>>> message("python is widely used in data science")
+this is python is widely used in data science
+
+# mechanism of function
+# define the function
+ >>> def message():
+...    print("hello world from python shell")
+... 
+# call the function
+>>> message()
+
+
+#>>> def message():
+...    print("hello world")
+... 
+>>> message()
+hello world
+
+
+# if we put the call function into variable and print it then none comes too
+# this is because we only define and call the function but we didnot return the function
+>>> def message():
+...   print(f"hello")
+... 
+>>> result = message()
+hello
+>>> print(result)
+None
+
+
+# sending param and taking return in function
+>>> def add(a, b):
+...   return a + b
+... 
+>>> add(2, 5)
+7
+>>> result = add (2,8)
+>>> print(result)   # 10 is return to function
+10
+>>> add(5,6)
+11
+
+
+
