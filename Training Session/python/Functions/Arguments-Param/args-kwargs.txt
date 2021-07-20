@@ -61,6 +61,21 @@ through keyword arguments (and any number of them).
 # as kwargs produces dict 
 # so it supports iterals
 # we use .values() method to sum the data
+>>> def add(a,b,*args,**kwargs):
+...  r1 = sum(kwargs.values())
+...  r2 = sum(args)
+...  return r1+r2+a+b
+... 
+>>> r = add(1, 2, 3, 4, 5, c=6, d=7)
+>>> print(r)
+28
+# we got the total sum of kwars,args and integer
+
+# both args and kwargs takes the dynamic variables numbers
+# convert them into data types
+# args makes tuple
+# kwargs makes dict
+
 
 
 

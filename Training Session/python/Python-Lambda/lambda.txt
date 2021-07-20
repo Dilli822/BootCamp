@@ -1,0 +1,24 @@
+
+
+  Z# lamba functions
+  # this is pythonic way created to apply for small logic
+  # this is not used in large logics
+  # this is only used inline logics
+  # nameless it has no  functions
+
+>>> add = lambda a, b: a+b  
+#since lambda has no function name and it is stored on variable
+>>> r = add(2, 5)   #here 2 and 5 are positional arguments
+>>> print(r)
+7
+
+>>> mul = lambda a,b: a*b
+>>> r = mul(2,8)
+>>> print(r)
+16
+
+# for making shorter functions by addgining into any variable
+
+
+
+
