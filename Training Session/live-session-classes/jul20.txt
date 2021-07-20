@@ -1,0 +1,32 @@
+# jul 20
+functions in python
+system that process input and gives output
+# it is used to break the big logics.
+# block of code to excute the small task from big logics and programs
+# define function
+# block of code
+# call the function
+# function check and return none by default if it is not returned!
+# defin --->  return-------> call 
+
+
+# scope of variable in functions
+# global and local variables & scopes
+
+# call = parameters
+# arguments are value passed for parameters
+# parameters are declared top 
+# arguments are declared at below the function 
+
+# positional parameters or non-default (sum,total)
+# keyword parameters or default (sum, total = 45) 
+# default arguments(a, b=2)
+
+
+#Arbitrary Argument Lists
+# it is used for mulitple or larger arguments in the parameter like param(a,b,c,d,e, *args)
+# we can call numberous call backs from below by using *args on parameter
+
+
+# double **kwargs
+
