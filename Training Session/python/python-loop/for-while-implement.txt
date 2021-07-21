@@ -1,0 +1,37 @@
+
+
+  # for loop is alos implementaion of while loop
+
+>>>  # we iterators from iterables
+>>> # usign the iter method
+>>> # now mkaing while loop
+>>> #instead of for loop
+
+>>> names = ["john", "jane"]  # these are iterables objects
+>>> name_iter = iter(names)   # now converted into iterators
+
+>>> for name in names:
+...  print(name)
+... 
+dilli
+harry
+# we can simply use for loop here but 
+# here while loop is shown
+
+>>> while True:  # this supposed to be infinite loop
+...  try:        # Try a block of code, and decide what to to if it raises an error: 
+...      name = next(name_iter)  # next function in iterator objects
+...      print(name)
+...  except StopIteration:   # loop at third time stop
+...      break    # break our loop and print result
+... 
+dilli
+harry
+
+# this is mechanism of while loop 
+# this same mechanism is used in for loop
+# so we also say that for loop is while loop implementaion
+#try keywords is used in try..except bloacks
+# define a bloack os code test it it contains any errors
+
+
