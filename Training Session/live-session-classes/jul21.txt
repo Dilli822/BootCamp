@@ -1,0 +1,54 @@
+
+# july 21 live training session classes!
+# emunerate(x)
+# emunerate(x, 1)
+
+# pass is the form of skeleton for large big daTAS 
+#LOGICS
+# like class A:
+    def a(self):
+    pass
+   def b(self):
+   pass
+   
+   # here we did only pass to make logics and functions skeletons
+   # we can use it in further tasks
+   
+   
+   # infinte loops
+   # avoid it unless you really need it
+   # infinite loops eats the resources 
+      
+>>> while True:
+...  x = int(input("Enter int: "))
+...  if x>10:
+...    break
+... 
+Enter int: 4
+Enter int: 5
+Enter int: 1
+Enter int: 2
+Enter int: 5
+Enter int: 10
+Enter int: 11
+ # example of sample infinite loop type
+ # here the loop breaks only if 
+ # the input int is more than 10
+ # otherwise it will run infinitely when input 0 to 10
+ 
+ # reduce
+ #x=[1,2,3,4]
+ reduce (lambda a,b:a+b,x)
+ here lamba will add a and b = 1+2=3 and again 3+3=6 and 6+4=10
+ # lambda is a small built in function used for inline logics break and creating function
+ 
+# python tutor 
+
+# to save the memory 
+#python facilitate the auto garbage 
+#or it automate the memory saving method by itself
+# there are also modules which helps to save out memory
+#gc.get_stats() this will collect the information and memory of garbage collection.
+
+ 
+ 
