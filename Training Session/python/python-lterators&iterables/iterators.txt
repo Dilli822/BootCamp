@@ -1,0 +1,109 @@
+
+  # definition
+  # objects
+  NOTE: While objects are usually associated with 
+  object-oriented programming, in general computer science terminology, 
+  an object may refer to a single programming element, such as a variable, 
+  constant, function, or method.
+
+  #An object, in object-oriented programming (OOP), is an abstract data
+  type created by a developer. It can include multiple properties and 
+  methods and may even contain other objects. In most programming languages, 
+  objects are defined as classes.
+
+  # iterables are those objects which can call the dot(.) iter method
+  # __itr__(method)
+  # >> my_list = [1,2,3,4]
+   >>> my_list._iter_()
+   # this is an example of iterables
+   >>> my_list.append(6)
+>>> my_list
+[1, 2, 3, 4, 6]
+# list ,dict are iterables
+# we can use loop on iterables
+
+
+use of ._next_() method
+# if our objects are iterators then
+# we can use next method
+>>> l = [1,2,3,45,5]
+>>> for i in l:
+...  print(i)
+... 
+1
+2
+3
+45
+5
+>>> l.next()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'list' object has no attribute 'next'
+# here error occurred because  l is iterables
+
+#check if it supports next() .method or not
+>>> print(dir(l))
+['__add__', '__class__', '__class_getitem__', '__contains__', 
+'__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__', 
+'__format__', '__ge__', '__getattribute__', '__getitem__', 
+'__gt__', '__hash__', '__iadd__', '__imul__', '__init__',
+'__init_subclass__', '__iter__', '__le__', '__len__', 
+'__lt__', '__mul__', '__ne__', '__new__', '__reduce__', 
+'__reduce_ex__', '__repr__', '__reversed__', '__rmul__', 
+'__setattr__', '__setitem__', '__sizeof__', '__str__', 
+'__subclasshook__', 'append', 'clear', 'copy', 'count',
+'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']
+
+
+# but we have next()a nd dir() method in iterators
+
+# iterators                              #iterables objects
+next()                                   iterator methods are access _.ter_()
+# iterables itself                       can create iterator objects                  
+# can apply loop                           
+
+# making iterables
+>>my_list=[1,2,3,4,5]
+# nowe as we can make iterator from iterables
+>>> n = my_list.__iter__()
+>>> print(n)
+# this show now n is iterators with unique memory location
+<list_iterator object at 0x7f0dd34d2b50>
+>>> print(dir(n))
+['__class__', '__delattr__', '__dir__',
+ '__doc__', '__eq__', '__format__', '__ge__',
+  '__getattribute__', '__gt__', '__hash__', 
+  '__init__', '__init_subclass__', '__iter__', '__le__',
+  '__length_hint__', '__lt__', '__ne__', '__new__', 
+  '__next__', '__reduce__', '__reduce_ex__', '__repr__', 
+  '__setattr__', '__setstate__', '__sizeof__', '__str__', 
+  '__subclasshook__']
+
+  # as described above we can get _next_() in iterators 
+  # when we check it
+  # it maintain states during iterations untill it stop
+
+my_list = [1,2,3,4,5]
+print(my_list)
+[1,2,3,4,5]
+>>> n = my_list.__iter__()
+# making iterables to iterator
+>>> print(n.__next__())
+1
+>>> print(n.__next__())
+2
+>>> print(n.__next__())
+3
+>>> print(n.__next__())
+4
+>>> print(n.__next__())
+5
+>>> print(n.__next__())
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+# we can create iterator from iterables useing.__iter__() method
+
+
+
+

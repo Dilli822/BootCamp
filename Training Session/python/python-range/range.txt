@@ -1,0 +1,68 @@
+
+
+  #range in python
+  # one of the built in function in python
+  # he range() function returns a sequence
+   of numbers, starting from 0 by default, 
+   and increments by 1 (by default), and 
+   stops before a specified number.
+
+   # syntax
+   # range (start, stop, step)
+   # range (optional m required, optional)
+   # range (0, required passed, 1)
+       >>> for i in range(0, 6):
+...  print(i)
+... 
+0
+1
+2
+3
+
+# or in this way
+>>> x = range(0, 6)
+>>> for i in x:
+...  print(i)
+... 
+0
+1
+2
+3
+4
+5
+>>>
+
+class MyRange:
+    def .__init__(self, start, end):
+      self.value = start
+      self.end = end
+
+ # to become object into iterator 
+
+      def.__iter__(self):
+        return self
+
+# iter next() method change obj to iterator
+    def__next__(self):
+        if self.value >= self.end:   # conditions
+          raise StopIteration      
+          current = self.value    
+
+          self.value += 1    # return self value plus one
+          return current     # return function current value
+
+#A python return keyword is to exit a function and return a value.
+
+# or in this way
+>>> x = range(0, 6)
+>>> for i in x:
+...  print(i)
+... 
+0
+1
+2
+3
+4
+5
+# here we created our own object 
+
