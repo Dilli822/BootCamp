@@ -17,3 +17,50 @@
 ...  print("I have no name")
 ... 
 I am dilli
+# here if statement is correct or true
+# so output is if statement 
+
+# example of else statement
+>>> if my_name == "hari":
+...  print("i am dilli")
+... else:
+...  print("I am not dilli but hari")
+... 
+I am not dilli but hari
+# else statement execute if all the conditions 
+# are not true or false
+
+>>> my_age = 22
+>>> if my_age<22:
+...  print("I am less than 22 years old")
+... elif my_age > 22 and my_age != 22:
+...  print(" I am not over 22 years old")
+... else:
+...  print("I am 22 years old")
+... 
+I am 22 years old
+
+
+# if (conditional):
+print
+#if(conditional2):
+print
+#if(conditional3):
+print
+else:
+print
+#else is only depended upon its upper conditions
+# it ignores the conditons 1 and conditions 2
+
+
+# ternary if statement
+# feature that allows us to write a single inline
+#conditions on true or false 
+>>> x = 5
+>>> print("greater than 3") if x>3 else print("less than 3")
+greater than 3
+
+>>> print("I am Dilli") if name != "dilli" else print("no name")
+no name
+>>> print("I am dilli") if name == "dilli" else print("no name")
+I am dilli
