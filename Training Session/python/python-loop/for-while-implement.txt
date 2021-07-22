@@ -33,5 +33,6 @@ harry
 # so we also say that for loop is while loop implementaion
 #try keywords is used in try..except bloacks
 # define a bloack os code test it it contains any errors
-
+# try block handles the exceptions.
+# at third time stopinteration expections occurs
 

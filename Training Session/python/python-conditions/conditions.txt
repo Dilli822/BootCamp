@@ -1,0 +1,19 @@
+
+  # if 
+  #else
+  # elif
+  # loops
+  # conditions statements
+  # conditional statements allows programs to make logic decisions
+  # decisions based on boolean expression
+  # >>> # if statements in python checks the statements
+>>> # is true or not ith logical conditions
+>>> # equals (==), not equals(!=), less than < greater than >
+>>> # example
+>>> my_name = "dilli"
+>>> if my_name == "dilli":
+...  print("I am dilli")
+... else:
+...  print("I have no name")
+... 
+I am dilli
