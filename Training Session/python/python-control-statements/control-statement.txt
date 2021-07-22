@@ -1,0 +1,55 @@
+
+
+   #control statement in python
+   # used to alter the flow of code block 
+   # it changes the flow of our code when being used
+
+
+   # supported contol statements in Python are:
+   1. Break statement 
+   2. Continue statement
+   3. Pass statement
+
+   # Break statement
+   # we can terminate the loop
+   # it break the flow of code in loop and 
+   # come out of the loop
+
+   word = "PYTHON"
+   >>> word
+'PYTHON'
+>>> for c in word:
+...  if c.lower() in ["a", "e", "i", "o", "u"]:
+...          break
+...  print(c)
+... 
+P
+Y
+T
+H
+
+# here break statement broke th loop
+# by finding & taking out the required elements
+# satisfying the conditions
+
+# example in while loop
+>>> counter = 0
+>>> while True:
+...  print(counter)
+...  counter += 1
+...  if counter == 5:
+...      break
+...  print("Inside while loop")
+... 
+0
+Inside while loop
+1
+Inside while loop
+2
+Inside while loop
+3
+Inside while loop
+4
+
+# here when it meet with 5 
+# loop gets broke with break statement

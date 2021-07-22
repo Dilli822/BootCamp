@@ -1,0 +1,35 @@
+
+
+  # continue statement in python
+  >>> c = 0
+>>> while c<5:
+...  c+=1
+...  if c == 3:
+...           continue
+...  print(c)
+... 
+1
+2
+4
+5
+
+# here continue will tell the loop 
+# that when the c is equal to 3
+# skip the value and again continue or restart the loop
+# so above while satisfied the conditions
+# and if c == 3 then loop will again continue 
+# leaving/skipping the c value out of the value
+
+>>> word
+'PYTHON'
+>>> for c in word:
+...  if c.lower() in ["a", "e", "i", "o", "u"]:
+...       continue
+...  print(c)
+... 
+P
+Y
+T
+H
+N
+# here o value is skipped and loop is continued to N
