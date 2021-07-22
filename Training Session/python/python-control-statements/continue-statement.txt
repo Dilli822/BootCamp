@@ -33,3 +33,40 @@ T
 H
 N
 # here o value is skipped and loop is continued to N
+
+
+# more on control statement
+# we can also add else statement on loops
+# right after execution/exhaustion of iteration
+ of loops
+ # else statement only gets executed right after the
+ # exhaustion of loops 
+
+# example in for loop
+>>> word = 'LOVE'
+>>> for c in word:
+...  print(c)
+... else:
+...  print('First loop finished, second else')
+... 
+L
+O
+V
+E
+First loop finished, second else
+
+>>> # example in while loop
+... counter = 0
+>>> while counter  < 4:
+...  print(counter)
+...  counter += 1
+... else:
+...  print("while loop finishes first, then else statement")
+... 
+0
+1
+2
+3
+while loop finishes first, then else statement
+>>> 
+
