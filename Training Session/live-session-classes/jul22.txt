@@ -1,0 +1,92 @@
+
+  # july 22 IW-BootCamp
+  # live training session class
+
+  >>> x = [1,2,3,4]
+>>> for i in x:
+...  print(i)
+... 
+1
+2
+3
+4
+>>> y =iter(x)
+>>> type(y)
+<class 'list_iterator'>
+>>> y.next()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'list_iterator' object has no attribute 'next'
+>>> next(y)
+1
+>>> next(y)
+2
+>>> next(y)
+3
+>>> while True:
+  try:
+   print(next(y))
+  except StopIteration:
+   break
+   # without using the for loop 
+   
+     # generator in python
+     # just like normal function but doesnot have return
+     # yield statement func are generator function
+     # for efficency of huge data
+     # not efficient for small data
+     
+     >>> def numbers():
+...  yield 1
+...  yield 2
+...  yield 3
+... 
+>>> 
+>>> for i in numbers():
+...  print(i)
+... 
+1
+2
+3
+>>> y =numbers()
+>>> type(y)
+<class 'generator'>
+>>> y =numbers()
+>>> type(y)
+<class 'generator'>
+>>> next(y)
+1
+>>> next(y)
+2
+>>> # just normal iterators we can apply loop and iteration.
+ # generator are iterator but iterators are not generator
+
+# creation of generator from tuple lists
+>>> x = [i for i in range(10)]
+>>> x
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> type(x)
+<class 'list'>
+>>> x = (i for i in range(10))
+>>> x
+<generator object <genexpr> at 0x7fa535fc8890>
+
+# generators are best for using in huge data.
+
+
+# decorator
+# decorating the function
+# online compliter replit.com
+# decorating the function 
+# manipulating its input output with out touching our main function
+
+def cell_num():
+  return cell_num
+ 
+ x = cell_num("9815545454")
+ x = "+977" +x
+ print(x)
+ 
+ # decoartor preserved the main func data.
+ # import wraps for decorator
+ # 

@@ -85,3 +85,7 @@ syntax:
 2 3
 3 4
 
+for i in enumerate(x, 10)
+here count start from 10
+
+
