@@ -1,0 +1,87 @@
+
+  #built in function range() is uded to generate values
+  # it follows start stop step
+  # it is widely used with python loop as range() function
+  
+  >>> range(6)
+range(0, 6)
+>>> # here range object printed
+>>> list(range(0,6))
+[0, 1, 2, 3, 4, 5]
+>>> # here range goes to make list up to 5 elements value
+>>> list(range(0, 11, 2))
+[0, 2, 4, 6, 8, 10]
+>>> # here we also provided step 2
+>>> # this will jump th elements 2 steps
+>>> # like it jumped from 0 to 2, 2 to 4
+>>> # we can also use reversing step
+>>> list(range(0, 12, -1))
+[]
+>>> list(range(10, 0, -1))
+[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+
+range(0, 8)
+>>> tuple(range(0, 8))
+(0, 1, 2, 3, 4, 5, 6, 7)
+>>> tuple(range(0, 8, 1))
+(0, 1, 2, 3, 4, 5, 6, 7)
+
+>> dict(range(0,8))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: cannot convert dictionary update sequence element #0 to a sequence
+>>> set(range(0, 8))
+{0, 1, 2, 3, 4, 5, 6, 7}
+
+
+# use of range in for loop
+# for x in range(5)
+      print(x)
+      0
+      1
+      2
+      3
+      4
+
+>>> for x in range(5, 10):
+...  print(x**2)
+... 
+25
+36
+49
+64
+81
+
+# here x follows the seqeunce of 5,6,7,8,9 
+# then print it by doing squaring itself given power
+# stop the iteration at 9
+
+
+# to track the position/indexing of  iterate in loops
+# we use emunerate
+syntax:
+  enumerate(iterable, start = 0)
+  # iterables -> object that supports the iteration
+  # start: by default counter starts from zero
+# this enumerate() functions allows to loop over collection
+# of items while keeping the track of every item's indexing
+>>> vowels
+['a', 'e', 'i', 'o', 'u']
+>>> for indec, vowel in enumerate(vowels):
+...  print(indec, vowel)
+... 
+0 a
+1 e
+2 i
+3 o
+
+>>> lists
+[1, 2, 3, 4, 5]
+>>> for index, value in enumerate(lists):
+...  print(index, value)
+... 
+0 1
+1 2
+2 3
+3 4
+

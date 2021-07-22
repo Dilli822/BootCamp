@@ -1,0 +1,39 @@
+
+
+  #loop
+  # used for repetition of code and implentaion of programs
+  # two types of loop
+  1. for loop
+  2. while loop
+
+  #for loop in python
+  #it is used for iterating over a sequence 
+  # i.e. list, tuple, dict, set, string
+  # syntax
+   for var in sequence:
+        body of loop
+  # it breaks untill it satisfies the conditions
+  # but we can use break keyword to stop the iteration
+>>> vowels = ["a", "e", "i", "o", "u"]
+>>> for v in vowels:
+...  print(v)
+... 
+a
+e
+i
+o
+u
+
+# here we have vowels is sequence
+# and for loop print the every sequence
+# and follow the iteration
+# untill it print all the a,e,i,o,u 
+# it stop the loop and gives result
+
+for loop
+conditions
+body of loop
+iteration
+finish
+stop the loop
+

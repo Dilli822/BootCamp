@@ -1,0 +1,52 @@
+
+ # while loop
+ # unlinke for loop in python 
+ # while loop doesnot follow the iteration
+ # it check the statements
+ # either it is true or false
+ # runs untill the statement is
+
+  # start loop
+ # like one statement is true:
+ # execute
+  # start loop
+ # 2nd statement is true:
+ # execute
+ # start loop
+ #3rd statement is false:
+ #stop the loop
+>>> counter = 0
+>>> while counter < 5:
+...  counter += 1
+...  print(counter)
+... 
+1
+2
+3
+4
+# here while loop check the counter conditions
+# at first it check as if counter is less than 0 
+# then it is true and do the addition +1 
+# print result
+# then it again check with conditions
+# counter > 5 is true and again it do plus +1 
+# until it becomes 4 it satisfies conditions
+# stop the iteration and loop exist
+
+
+# infinite loop
+# it never stops and continue to do looping
+
+while True:
+  print("I am while infinite loop in python")
+
+  I am while infinite loop in python
+  I am while infinite loop in python
+  I am while infinite loop in python
+  I am while infinite loop in python
+  I am while infinite loop in python
+  I am while infinite loop in python
+  I am while infinite loop in python
+  I am while infinite loop in python
+  .........infinite loop............
+
