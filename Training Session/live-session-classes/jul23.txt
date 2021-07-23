@@ -1,0 +1,22 @@
+
+  # jul 23 
+ # # class attrbiutes
+  # init is called when obj is beign created
+   # # public and private attribute
+  # class object:
+       # inheritance
+  # single inheritance base class to derived class
+ 
+
+# mulitple inheritance 
+# multiple classes are inherited by derived class
+# class A:
+class B:
+class C(A,b):
+# first it searches attributes on itself
+# then to A and To B.
+# passed 
+
+# multilevel inheritance
+ # important inheritances in python
+

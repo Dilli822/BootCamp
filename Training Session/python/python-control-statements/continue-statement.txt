@@ -1,0 +1,72 @@
+
+
+  # continue statement in python
+  >>> c = 0
+>>> while c<5:
+...  c+=1
+...  if c == 3:
+...           continue
+...  print(c)
+... 
+1
+2
+4
+5
+
+# here continue will tell the loop 
+# that when the c is equal to 3
+# skip the value and again continue or restart the loop
+# so above while satisfied the conditions
+# and if c == 3 then loop will again continue 
+# leaving/skipping the c value out of the value
+
+>>> word
+'PYTHON'
+>>> for c in word:
+...  if c.lower() in ["a", "e", "i", "o", "u"]:
+...       continue
+...  print(c)
+... 
+P
+Y
+T
+H
+N
+# here o value is skipped and loop is continued to N
+
+
+# more on control statement
+# we can also add else statement on loops
+# right after execution/exhaustion of iteration
+ of loops
+ # else statement only gets executed right after the
+ # exhaustion of loops 
+
+# example in for loop
+>>> word = 'LOVE'
+>>> for c in word:
+...  print(c)
+... else:
+...  print('First loop finished, second else')
+... 
+L
+O
+V
+E
+First loop finished, second else
+
+>>> # example in while loop
+... counter = 0
+>>> while counter  < 4:
+...  print(counter)
+...  counter += 1
+... else:
+...  print("while loop finishes first, then else statement")
+... 
+0
+1
+2
+3
+while loop finishes first, then else statement
+>>> 
+

@@ -1,0 +1,21 @@
+
+
+  # pass statement
+  # no changes on code
+  # it executes itself with no changes
+  # in bloack of code 
+  # >>> word
+'PYTHON'
+>>> for c in word:
+...  if c.lower() in ["a", "e", "i", "o", "u"]:
+...        pass
+...  print(c)
+... 
+P
+Y
+T
+H
+O
+N
+# here condition is meet and pass statement 
+# has just passed the loops with no changes
