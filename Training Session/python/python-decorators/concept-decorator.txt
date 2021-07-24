@@ -50,3 +50,31 @@ this is ordinary function!
 >>> ordinary()
 this is decorated and inner nested function
 this is ordinary function!
+
+
+# from above expressions 
+# it seems that def ordinary is being called
+# but actually i.e. not a case
+# return inner_func is actually called in reference ordinary
+
+
+# use of @ 
+
+
+def ordinary():
+     print("ordinary!")
+  
+  ordinary = decorate_me(ordinary)
+ ordinary()
+
+ is same as below expression...
+
+  # this line is not needed      
+  ordinary = decorate_me(ordinary)
+  # if we want to use @ decorate_me
+
+   @decorate_me 
+   def ordinary():
+     print("ordinary!")
+
+  ordinary()

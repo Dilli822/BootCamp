@@ -1,0 +1,39 @@
+
+
+  # this is an example of decorator function
+  
+  # without the use of @ 
+
+   def first_func(func):
+    >>> def first_func(func):
+...  def seconf_func():
+...      print("this is decorated functionality")
+...      func()
+...  return seconf_func
+... 
+>>> def ordinary():
+...  print("ordinary function")
+... 
+>>> # storing in variables
+... ordinary = first_func(ordinary)
+>>> ordinary()
+this is decorated functionality
+ordinary function
+
+#with the use of @
+
+>>> # with the use of @ 
+... def main_func(func):
+...  def nested_func():
+...      print("this is decorated")
+...      func()
+...  return nested_func
+... 
+... 
+>>> @ordinary
+... def simple():
+...  print("simple function")
+... 
+ordinary()
+
+
