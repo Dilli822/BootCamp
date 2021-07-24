@@ -4,3 +4,43 @@
  # syntax 
  property(fget=None, fset=None, fdel=None, doc=None) -> object
  
+ class MyClass:
+     def getter(self) -> object:
+        print("accessing the attribute to get the value")
+        return 100
+
+        def setter(self, value) -> None:
+            print("accessing the attribute to set the value")
+            raise AttributeError("Cannot change the value")
+
+        attr1 = property(getter, setter)
+        
+     obj = MyClass()
+     x = obj.attr1
+     print(x)
+
+# getter   --->  setter --> binding to property is same as using @property 
+
+# use of @ property decorator 
+
+>>> class MyClass():
+...  def __init__(self, value):
+...    self._value = value      # protected member
+... 
+>>> #getting value
+... @property
+... def value(self) -> object:
+...    print('getting value....')
+...    return self.value
+... 
+>>> # setting value
+... def value(self, value) -> None:
+...    print('Setting value to ' + str(value))
+...    self._value = value
+... 
+>>> # deleting the value
+... @value.deleter
+... def value(self):
+...  print('Deleting....')
+...  del self_value
+... 
