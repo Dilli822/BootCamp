@@ -46,3 +46,82 @@
 # to make the generator expression 
 # we must yield 
 # it doesnot the yield data on memory
+
+
+# making another iterables with comprehension function
+
+# list comprehension
+>>> my_nums = (x*x for x in [1,2,3,4,5])
+>>> print(my_nums)
+<generator object <genexpr> at 0x7f9c95aa6468>
+>>> # making or changing to lists
+... print(list(my_nums))
+[1, 4, 9, 16, 25]
+
+
+# for generating odd number with comprehension
+>>> odd_numbers = (num for num in range(5) if num%2 != 0)
+>>> print(odd_numbers)
+<generator object <genexpr> at 0x7f9c99a69bf8>
+>>> print(list(odd_numbers))
+[1, 3]
+
+# if you do not want to hold the memory 
+# but want to make only iterators 
+# then generator function is best suited
+
+
+# chaining of generator function
+>>> def integers():
+...  for i in range(1, 5):
+...      yield i
+... 
+>>> def sqaured(seq):
+...  for i in seq:
+...      yield i*i
+... 
+>>> def negated(seq):
+...  for i in seq:
+...      yield -i
+... 
+>>> # now calling the generator expression
+>>> # giving range of 1...to 4 data
+
+
+... # passing the integers to another variable as sqaured(integers)
+>>> sq_chain = sqaured(integers())
+>>> print(sq_chain)
+<generator object sqaured at 0x7f9c95aa6570>
+>>> print(list(sq_chain))
+[1, 4, 9, 16]
+
+>>> def integers():
+...  for i in range(1,5):
+...       yield i
+... 
+>>> def squared(seq):
+...  for i in seq:
+...      yield i*i
+... 
+>>> def negated(seq):
+...  for i in seq:
+...      yield -i
+... 
+>>> initial = integers()
+>>> print(list(initial))
+[1, 2, 3, 4]
+
+>>> sq_chain = squared(integers())
+
+>>> print(list(sq_chain))
+[1, 4, 9, 16]
+
+>>> print(list(negated(squared(integers()))))
+[-1, -4, -9, -16]
+
+# first return the integers
+# second return the sqaure
+# last return all the negative numbers of sqaure of integers
+#this is great for memory efficiency
+# for larger loops or big data logics
+

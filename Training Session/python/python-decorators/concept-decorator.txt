@@ -1,0 +1,52 @@
+
+
+   # decorator?
+   # decorators are the function in where
+   # we made main function and 
+   # pass the same function to 
+   # another function  as a  parameter
+   # and those passed function 
+   # are called decorator.
+
+   main function
+        |
+    passed the function
+         |
+    these function are decorator
+
+   #Decorators are the functions which take our function
+   as an argument and returns another function adding
+   some extra functionality to our actual function
+    
+    >>> # making a simple function
+... def ordinary():
+...  print("this is ordinary function!")
+... 
+>>> ordinary()
+this is ordinary function!
+>>> # her simply ordinary function is called
+... # with no param and arguments
+... 
+>>> # now we make decorator with param func itself
+... def decorate_me(func):
+...  def inner_func():
+...      print("this is decorated and inner nested function")...      func()
+...      func()
+      return inner_func
+... 
+>>> decorated = decorate_me(ordinary)
+
+>>> # here main function ordinary param is taken on decorator funtion 
+... decorated()
+
+this is decorated and inner nested function
+
+this is ordinary function!
+
+# now we make variable similar to func name
+# here ordinary is not function but a variable
+# but passed param ordinary is reference function
+>>> ordinary = decorate_me(ordinary)
+>>> ordinary()
+this is decorated and inner nested function
+this is ordinary function!
