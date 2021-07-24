@@ -1,0 +1,56 @@
+
+
+  # Descriptors in python
+  # any object that supports dunder.get i.e.
+   # descr.__get__(self, obj, type=None) -> value
+ # any object that supports dunder set and delete
+ are Descriptors objects
+
+ # __set__() or ___delete__() is data Descriptor
+ # ___get__() is non-data Descriptors
+
+
+  # their calls and uses
+
+  #  descr.__get__(self, obj, type=None) -> value
+   when we need to get the information of obj
+   # to get attribute of obj
+   # it is called
+
+   # descr.__set__(self,obj, value):
+   -to set the values of an attribute -> obj.attr = "value"
+
+   # descr.__delete__(self,obj):
+   --to delete the object (del obj.attr)
+
+
+   # example of Descriptors
+   >>> class DescrAttribute:
+...  def __get__(self, obj, type=None):
+...       print("accessing the attribute to get the value")
+...       print("is called __get__ .dunder get descriptor")
+...       return 100
+... 
+>>> def __set__(self, obj, value):
+...      print("accessing the attribute to set the value")
+...      print("is called __set__ .dunder set descriptor")
+...      raise AttributeError("Cannot Change the Value")
+... 
+>>> class MyClass:
+...  attr1 = DescrAttribute()
+... 
+>>> obj = MyClass()
+>>> print(obj.attr1)
+accessing the attribute to get the value
+is called __get__ .dunder get descriptor
+100
+
+# try this
+obj.attr1 = 10
+
+# output
+accessing the attribute to set the value
+is called __set__ .dunder set descriptor
+Cannot Change the Value
+
+

@@ -37,3 +37,67 @@ ordinary function
 ordinary()
 
 
+# one thing is in the above expression
+# def ordinary() has no any real-life practices parameters as well as arguments
+# at real-world application we do have some parameters features
+
+# how to make our decorator work with param & arguments?
+# now these params are handled and rescued by *args and **kwargs
+
+>>> def decorator_function(main_function):
+...  def inner_function(*args, **kwargs):
+...      print("I am passionately learning python for web development now")
+...      return main_function(*args, **kwargs)
+...  return inner_function
+... 
+
+>>> @decorator_function
+... def display(msg):
+...  print(msg)
+... 
+>>> display("hello, I am dilli")
+I am passionately learning python for web development now
+hello, I am dilli
+
+ # solutions and reasons
+
+# *args and **kwargs can take dynamic numbers of arguments and param
+# if we try to send the display function to decorator_function
+# ther is main_function parameter which result in 
+# break of inner nested code 
+# so in order to stop such incident we put kwargs and args
+# which handle the dynamic number of arguments 
+
+# so down below
+# display(argu1)
+# display(argu2)
+# all will be handled by the args and kwargs
+# and no breakage of nested function
+
+
+# example 2
+>>> def parent_function(func):
+...  def child_function(*args, **kwargs):
+...      print("this is decorated and referenced functionality of decorated function without breaking the main or working function")
+...      return func(*args, **kwargs)
+...  return child_function
+... 
+>>> @decorator_function
+... def output(msg):
+...  print(msg)
+... 
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'decorator_function' is not defined
+>>> @parent_function
+... def output(msg):
+...  print(msg)
+... 
+>>> output("Hey, What's up?")
+this is decorated and referenced functionality of decorated function without breaking the main or working function
+Hey, What's up?
+
+
+# here functionality is added as @decorator_function 
+# and main output from main function is hey,what's up?
+
