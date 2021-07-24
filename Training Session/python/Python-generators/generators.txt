@@ -1,0 +1,48 @@
+
+  #generators
+  # iteror and next method are applicables
+
+
+  # examples 
+  >>> def square_numbers(nums):
+...  sq_list = []
+...  for i in nums:
+...      sq_list.append(i**i)
+...  return sq_list
+... 
+>>> print(square_numbers([1,2,3,4,5]))
+[1, 4, 27, 256, 3125]
+
+# this is an example of function
+# here we return the function with return sq_list
+
+# for creating generator function
+# we use yield instead of return
+
+>>> def sqaure_numbers(nums):
+...  for i in nums:
+...      yield i*i
+... 
+>>> square_numbers([1,2,3])
+[1, 4, 27]
+>>> print(square_numbers)
+<function square_numbers at 0x7f9c970f69d8>
+>>> my_nums = sqaure_numbers([1,2,3,4])
+>>> print(my_nums)
+<generator object sqaure_numbers at 0x7f9c99a69ba0>
+
+# this is an example of generator 
+
+# it can do all the tasks of iterators
+>>> print(next(my_nums))
+1
+>>> print(next(my_nums))
+4
+>>> print(next(my_nums))
+9
+
+# this is same as iters keeps the memory orf next
+
+# to make the generator expression 
+# we must yield 
+# it doesnot the yield data on memory
