@@ -1,0 +1,55 @@
+# Method OverRiding 
+# this is supported by python effectively due to inheritance
+# we can overwrite the child method class inherited from parent
+
+>>> class A:
+...  def info(self):
+...      return 'info method from class A'
+... 
+>>> def name(self):
+...    return 'name method from class A'
+... 
+>>> class B(A):
+...  def name(self):
+...      return 'name method from class B defined and overrided'
+... 
+>>> obj = B()
+>>> print(obj.info())
+info method from class A
+>>> print(obj.name())
+name method from class B defined and overrided
+>>> obj2 = A()
+>>> print(obj2.name())
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+
+  # if we hadn't override the name method in class B 
+  # then it would return the same name attribute value 
+
+
+  # now invoking the parent class attribute 
+>>> class A:
+...  def __init__(self, n):
+...     self.n = n
+... 
+>>> def info(self):
+...     return 'info method from class A'
+... 
+>>> def result(self):
+...     return self.n * self.n
+... 
+>>> class B(A):
+...  def result(self):
+...      result_from_base = A.result(self)
+...      return result_from_base
+... 
+>>> obj_a = A(2)
+>>> print(obj_a.info())
+print(obj_a.result(), '\n')
+
+obj_b = B(2)
+print(obj_b.info())
+print(obj_b.result())
+
+
+

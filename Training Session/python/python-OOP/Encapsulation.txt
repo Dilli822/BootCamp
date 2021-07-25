@@ -15,4 +15,74 @@
  # those variables which can only be changes by object's methods
  # are known as private methods
 
- 
+ # protected members
+ #those data members which can only be accessed from within itself class 
+ or its subclass
+ # unlike in other languages in python there is no hard strict in protected members
+ # all python class are public by default
+ # single underscore _ is used to make an instance variable protected
+
+
+     >>> class Vehicle:
+...  def __init__(self):
+...     self.color = "red"
+...     self._mileage = 89
+... 
+>>> def change_milegae(self):
+...      self._mileage = 0
+... 
+>>> my_vehicle = Vehicle()
+>>> print(f'Before--> Color= {my_vehicle.color}', f'Mileage= {my_vehicle._mileage}')
+Before--> Color= red Mileage= 89
+>>> print(f'After--> color= {my_vehicle.color}', f'Mileage= {my_vehicle._mileage}')
+
+>>> # here data is not changed so we modify the color and _mileage attribute
+... # protected attributes can be modified by accessin to it
+... my_vehicle.mileage = 45
+>>> my_vehicle.color = "change color blue"
+>>> print(f"After--> Color= {my_vehicle.color}', f'Mileage = {my_vehicle._mileage}')
+# OUTPUT IS 
+After--> color= blue Mileage= 45
+
+
+# Private members 
+--> double underscore __
+#we can only modify it from class
+>>> class Vehicle:
+...  def __init__(self):
+...       self.color = "red"
+...       self.__mileage = 70
+... 
+>>> def change_mileage(self):
+...      self._mileage = 0
+... 
+>>> my_vehicle = Vehicle()
+>>> print(my_vehicle.color)
+red
+>>> # here we got the color 
+... # now we try to access the private member which is denoted by .__ double dash
+... print(my_vehicle.__mileage)
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+AttributeError: 'Vehicle' object has no attribute '__mileage'
+# here error will raise as we cannot access the private attribute
+
+# if we want to know where does the mileage attribute goes then
+# we can check it by dir
+.. print(my_vehicle.__mileage)
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+AttributeError: 'Vehicle' object has no attribute '__mileage'
+>>> print(dir(my_vehicle))
+['_Vehicle__mileage', '__class__', '__delattr__', 
+'__dict__', '__dir__', '__doc__', '__eq__', '__format__', 
+'__ge__', '__getattribute__', '__gt__', '__hash__', 
+'__init__', '__init_subclass__', '__le__', '__lt__',
+ '__module__', '__ne__', '__new__', '__reduce__', 
+ '__reduce_ex__', '__repr__', '__setattr__', 
+ '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'color']
+>>> 
+# this shows that our double score mileage i.e. .__mileage attribute
+# is remained or stored as '_Vehicle__mileage' single core attribute double score
+
+# here name mangling has occurred

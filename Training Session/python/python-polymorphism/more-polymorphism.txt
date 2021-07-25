@@ -1,0 +1,58 @@
+
+
+   # More on polymorphism in python...
+   # few functions like len() works fine for multiple data types
+   # examples on different data types
+
+   >>> my_str = 'PYTHON IS AWESOME.'
+>>> len(my_str)
+18
+>>> my_dict = {"name": "dilli", "age": 22}
+>>> len(my_dict)
+2
+>>> my_tuple = ('p', 'y', 't', 'h', 'o', 'n')
+>>> len(my_tuple)
+6
+>>> my_list = [1,2,3,4,5]
+>>> len(my_list)
+5
+
+# if str is sent then str class dunder length will call it 
+
+# Method Overloading
+# python doesnot support Overloading by default
+# in Overloading more than one method shares the same name
+# in the class but having different signature
+
+#runtime compile time polymorphism
+# python doesnot support direct overloading 
+# it throw error 
+area() missing 1 required positional argument: 'b'
+... class Shape:
+...  def area(self, l):
+...      return l*l
+... 
+>>> def area(self, l,b):
+...     return l*b
+... 
+>>> square = Shape()
+>>> print(square.area(5))
+
+
+# so the solution for this is
+>>> def area(self, l, b=None):
+...     if b is not None:
+...           return l * b
+...     return l*l
+... 
+>>> square = Shape()
+>>> print(square.area(5))
+print(square.area(2, 4))
+>>>8
+
+
+# we cannot do direct overloading but
+ we can do it using other methods
+# as shown above
+
+

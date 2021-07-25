@@ -1,0 +1,54 @@
+
+
+  # polymorphism 
+  # poly -> many
+  # morphism -> forms
+
+
+  # class Vehicle:
+      def __init__(self, model):
+           self.model = model
+
+     def info(self):
+         return f'A vehicle info.'
+    
+     def max_speed(self):
+         return 140
+
+   
+
+   # here two child classes bike and car inherited from parent class
+
+>>> class Vehicle:
+...  def __init__(self, model):
+...         self.model = model
+... 
+>>> class Bike(Vehicle):
+...  def max_speed(self):
+...      return 130
+... 
+>>> class Car(Vehicle):
+...  def max_speed(self):
+...      return 120
+... 
+
+>>> bike = Bike('Honda')
+>>> bike_max_speed = bike.max_speed()
+>>> print(bike_max_speed)
+130
+>>> bike_info = bike.info()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'Bike' object has no attribute 'info'
+>>> car = Car('Tesla')
+>>> car_max_speed = car.max_speed()
+>>> print(car_max_speed)
+120
+ 
+
+ # From above result and expression we found that
+ # we only get specific object attribute 
+ # even though they are inherited from same parent
+ # while trying to access the same method max_speed() from objects 
+ of different classes we will different value from obj specific class.
+ 
