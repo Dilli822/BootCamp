@@ -1,0 +1,18 @@
+
+   # Encapsulation
+   --> foundamental concepts in OOP
+   --> explains ideas of wrapping data 
+   --> methods that work within one unit
+
+ # it provides kind of security like preventing
+ # the accidental modification of data
+ # by putting the restrictions on accessing variables
+ # and methods directly
+
+
+ # we can prevent the accidental change by object's methods
+
+ # those variables which can only be changes by object's methods
+ # are known as private methods
+
+ 

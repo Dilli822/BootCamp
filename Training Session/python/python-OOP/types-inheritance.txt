@@ -1,0 +1,50 @@
+
+
+   # hierrachical inheritance
+   # when more than two child classes are made
+   # from single parent classes
+
+   class A:
+     pass
+    
+    class B(A):
+    """
+    this class inherits class A 
+    """
+    class C(A)
+    """
+    This class also inherits class A 
+    """
+    pass
+
+    # note :
+    these all inheritance may come altogethe and also called hybrid inheritance
+         
+         Base class
+            A
+         /     \
+         B      C
+         \      /
+            D
+
+            class A:
+             pass
+            
+            Class B(A):
+               """
+               THIS CLASS inherits class A  
+               """
+               pass
+             
+             class C(A):
+             """
+             This class inherits class A 
+             """
+             pass
+
+             Class D(B,C):
+              """
+              THIS class inherits class B and C 
+              """
+              pass
+              

@@ -1,0 +1,19 @@
+
+
+  # order inheritance in which 
+  attributed are searched by inherited class
+
+  # class A:
+     pass
+     
+     class B:
+       pass
+    
+    Class C(A, B):
+    pass
+
+ # at first class C search the attribute in class C itself
+ # then if found it goes to class A and again not found
+ # it goes to Class B if not found then
+ # it goes up to higher level searching
+ 
