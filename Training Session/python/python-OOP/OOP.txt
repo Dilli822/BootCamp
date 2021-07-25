@@ -48,3 +48,87 @@ class Vehicle:
  def __init__(self, color, doors):  
      self.color = color
      self.doors = doors
+
+  
+   # using method
+   >>> class Vehicle:
+...  category = 'car'
+... 
+>>> def __init__(self, color, doors):
+... """
+... color and doors are instance attributes
+... """
+
+>>> def description(self):
+... """
+... THis method returns the description of the object
+... """
+>>> return f"This vehicle's color is {self.color} and it has {self.doors} doors."
+
+>>> rover = Vehicle('red', '4')
+
+>>> print(rover.description())
+
+
+    # we can change the attributes through methods
+
+
+class Vehicle:
+        category = 'car'
+
+        def __init__(self, color, doors):
+            """
+            color and doors are instance attributes
+            """
+            self.color = color
+            self.doors = doors
+
+        
+        def make_it_blue(self):
+            """
+            change the color attribute to blue
+            """
+            self.color = "blue"
+
+        
+        rover = Vehicle('red','4')
+        print(f"Before: {rover.color}")
+
+        rover.make_it_blue()
+        print(f"After: {rover.color}")
+
+   # here rover is object with attributes
+   # color and modified the color to blue
+   # with the help of method
+
+# class object is created
+   >>> class Vehicle:
+...  doors = 4 # this is class atributes
+...  def __init__(self, color, mileage): # object is initiated
+...        self.color = color     # instance attributes
+...        self.mileage = mileage
+... 
+# applying methods to attributes
+>>> def make_it_blue(self):    
+...        self.color = "blue"
+...  
+>>> def get_info(self):
+...  return f"{self.color} vehicle has mileage{self.mileage}"
+... 
+
+# invoking the attributes through objects variables
+>>> vehicle1 = Vehicle("red", 25)
+>>> vehicle2 = Vehicle("white", 20)
+ 
+
+ # printing the output
+ >>> print(vehicle1.color)
+red
+>>> print(vehicle1.mileage)
+25
+>>> print(f"vehicle1 doors: {vehicle2.doors}")
+vehicle1 doors: 4
+>>> print(f"vehicle2 doors: {vehicle2.doors}")
+vehicle2 doors: 4
+
+

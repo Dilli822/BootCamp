@@ -1,0 +1,85 @@
+
+  # Inheritance
+  # this is widely used in python oop
+  # it is process by which one class takes on the attributes and methods of another
+  # Newly Created are child or derived classes
+  # and classes that makes child are parent classes or base classes
+  # child contains all the attributes and details of parent
+  # we can access the child properties
+
+
+  # type of inheritance
+
+  1. single
+  2. multiple-level
+  3. multiple-
+
+
+  # Single Inheritance
+  # only single line/level one of inheritance 
+   parent
+     |
+    child
+ # class A:
+     pass
+  class B(A):
+  """
+  This class inherits class A 
+  """
+  pass
+
+  >>> class vehicle:  # parent class
+...  def __init__(self, color, doors):
+...      self.color = color  #instance attributes
+...      self.doors = doors
+... 
+>>> class Car(vehicle):  # child class 
+...  def number_of_doors(self):
+...    return f"Car has {self.doors} doors"  # inherited attributes
+... 
+>>> car1 = Car("blue", 4)
+>>> print(car1.color)
+blue
+>>> print(car1.doors)
+4
+>>> print(car1.number_of_doors())
+Car has 4 doors
+
+
+# Multiple Inheritance
+# when there are multiple base classes
+# and the child gets derived from those parent
+
+class A:
+   pass
+class B:
+  pass
+
+class C(A,B):
+ """
+ This class inherits
+ classes A and B 
+ """
+ pass
+
+ # Multi level inheritance
+ # this is also called chaining inheritance
+     base
+      |
+ intermediate
+      |
+   child 
+
+   # class A:
+      pass
+    
+     class B(A):
+     """
+     THis class inherits class attributes
+     """
+     class C(B):
+     """
+     This class inherits class B 
+     """
+     pass
+     
