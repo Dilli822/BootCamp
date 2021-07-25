@@ -1,0 +1,35 @@
+
+
+#Name Mangling 
+# method Mangling
+# we know there is name mangling on attributes
+# but method can also have name mangling
+
+>>> class Vehicle:
+...  def __init__(self):
+...      self.color = "red"
+...      self.__mileage = 85
+... 
+>>> def __make_it_blue(self):
+...  return "I am blue method and mangled!"
+... 
+>>> my_vehicle = Vehicle()
+>>> print(dir(my_vehicle))
+['_Vehicle__mileage', '__class__', '__delattr__',
+ '__dict__', '__dir__', '__doc__', '__eq__', '__format__',
+  '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', 
+  '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', 
+  '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', 
+  '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'color']
+
+  # we can see the access method from dir 
+
+  >> print(my_vehicle._Vehicle__mileage)
+85
+>> print(my_vehicle._Vehicle__make_it_blue())
+I am blue method and mangled
+
+Note: we accessed the protected and private members of obj through
+# different methods which are actually not good practices
+# they can be accessed from outside class 
+# and bit different from other languages

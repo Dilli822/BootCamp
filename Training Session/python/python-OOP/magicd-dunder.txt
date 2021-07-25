@@ -1,0 +1,71 @@
+
+#Magic method or dunder
+# the methods that are made with double underscore
+are magic or dunder method
+>>> sample_integer = 1
+>>> print(dir(sample_integer))
+['__abs__', '__add__', '__and__', '__bool__', 
+'__ceil__', '__class__', '__delattr__', '__dir__', 
+'__divmod__', '__doc__', '__eq__', '__float__', '__floor__',
+'__floordiv__', '__format__', '__ge__', '__getattribute__',  
+'__getnewargs__', '__gt__', '__hash__', '__index__', '__init__',
+'__init_subclass__', '__int__', '__invert__', '__le__', '__lshift__', 
+'__lt__', '__mod__', '__mul__', '__ne__', '__neg__', '__new__', '__or__',
+'__pos__', '__pow__', '__radd__', '__rand__', '__rdivmod__', '__reduce__',
+'__reduce_ex__', '__repr__', '__rfloordiv__', '__rlshift__', '__rmod__',
+'__rmul__', '__ror__', '__round__', '__rpow__', '__rrshift__',
+'__rshift__', '__rsub__', '__rtruediv__', '__rxor__', '__setattr__',
+'__sizeof__', '__str__', '__sub__', '__subclasshook__', '__truediv__',
+'__trunc__', '__xor__', 'bit_length', 'conjugate', 'denominator',
+'from_bytes', 'imag', 'numerator', 'real', 'to_bytes']
+
+# with dir we can see the class methods and attributes 
+# above all are magic methods having double dunder
+>>> num = 10
+>>> num+5
+15
+>>> print(num.__add__(5))
+15
+# here add dunder method is used
+
+
+# important magic methods
+# new magic method
+# whenever the obj is initiansized the init method
+# is called automatically 
+# class init method called but
+# acutally deepin new method is called before
+# the init method
+
+>>> class A:
+...  def __new__(cls):
+...      print("I'm inside new method")
+...      print("Creating a instance")
+...      return super().__new__(cls)
+... 
+>>> def __init__(self):
+...    print("init is called")
+... 
+>>> A()
+I'm inside new method
+Creating a instance
+<__main__.A object at 0x7f3b3fa58630>
+# new method first
+# then init method
+
+# __str__() method 
+# it gives string representation 
+# usually overridden o return a printable string representation
+
+# for example
+>>> class car:
+...  def __init__(self, color, mileage):
+...      self.color = color
+...      self.mileage = mileage
+... 
+>>> def__str__(self):
+ return f'a {self.color} car'
+ >>> my_car =car("red", 12)
+>>> print(my_car)
+# output
+a red car
