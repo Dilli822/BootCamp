@@ -1,0 +1,50 @@
+
+
+   # OOP -> Object oriented Programming
+   --> programming paradigm that provides states and methods/ properties and behaviours bundled into individual Object
+
+
+    # classes in python
+     --> blueprint for the Object
+     # creating the python classes
+     --> we create python class with class keyword
+     --> keyword class is followed by object name
+     --> CapWords convention or CamelCase notation
+     -->we can create several objects with class keyword
+     and each objects has several attributes and methods 
+     which is defined
+
+     # creating class
+     class Vehicle:
+         passs
+        # this creates a class named Vehicle.
+     
+     # creating object  initiating object
+     obj = Vehicle()
+     # here obj is an object of Vehicle
+
+
+     # attributes
+     --> it is a characteristics of classes 
+     # attributes are two types instance and class attributes
+     # creating class with object vehicles
+
+... class Vehicle: # whereas this is class attributes
+
+...  def __inti__(self, color, doors):   # these init are instance attributes
+...      self.color = color
+...      self.doors = doors
+
+# just above the init method we can find the class attributes
+
+# The method used to call the object or init is called initializer
+--> i.e. __init__(): or class init method 
+# it is automatically called when we initiate the class
+
+# class attribute are unique to each class
+class Vehicle:
+  category = 'car'  # here category is also class attributes
+
+ def __init__(self, color, doors):  
+     self.color = color
+     self.doors = doors
