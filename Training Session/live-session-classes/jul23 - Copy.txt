@@ -1,0 +1,8 @@
+
+# jul 26
+
+
+# setter getter deleter
+@property --> VVI
+
+# first param getter and then setter

@@ -1,0 +1,13 @@
+
+# jul 26
+
+
+# setter getter deleter
+@property --> VVI
+
+# first param getter and then setter
+
+# there almost no encapsulation inpython
+# only notation for private and protected members
+
+# properties and descriptors
