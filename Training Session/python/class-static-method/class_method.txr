@@ -1,0 +1,79 @@
+
+
+    # Class method
+    # is a method that is bound to a class 
+    #rather than its object, it i shared amon all objects
+
+
+    # we build the class method on class using @decorator
+    example
+    >>> class Sample:
+...  @classmethod
+...  def func(cls, arg1, arg2):
+... 
+# for normal we put self but in class method we put cls as param
+
+class Vehicle:
+    catgeory = "car"
+
+    @classmethod
+    def printCategory(cls):
+       print(f'Vehicle category= {cls.category}')
+
+        
+    
+    Vehicle.printCategory()
+
+    my_vehicle = Vehicle()
+
+
+    # it is used to create factory methods
+
+# factory method
+
+    >>> from datetime import date
+>>> class Person:
+...     def __init__(self, name, age):
+...         self.name = name
+...         self.age = age
+... 
+>>> @classmethod
+... def fromBirthYear(cls, name, year):
+...     return cls(name, date.today().year - year)
+... 
+>>> def display(self):
+...  print(f'{self.name} is {self.age} years old')
+
+# when we call the person object the init initiansized and object is called
+# but here we can call the object through fromBirthYear
+
+>>> from datetime import date
+>>> class Person:
+...  def__init__(self, name, age):
+  File "<stdin>", line 2
+    def__init__(self, name, age):
+                                ^
+SyntaxError: invalid syntax
+>>> class Person:
+...     def __init__(self, name, age):
+...         self.name = name
+...         self.age = age
+... 
+>>> @classmethod
+... def fromBirthYear(cls, name, year):
+...     return cls(name, date.today().year - year)
+... 
+>>> def display(self):
+...  print(f'{self.name} is {self.age} years old')
+... 
+>>> john = Person('John', 21)
+>>> john.display()
+
+john is 21 years old.
+alex = Person.fromBirthYear('Alex', 1999)
+alex.display()
+
+# Alex is 22 years old
+# this is being called on @classmethod
+
+

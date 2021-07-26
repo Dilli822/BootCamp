@@ -1,0 +1,30 @@
+
+
+# we make static method using @staticmethod decorator
+# it doesnot care the obj state 
+>> class Sample:
+...  @staticmethod
+... def func(arg1, arg2):
+  File "<stdin>", line 3
+# it doesnot care the cls method
+class Vehicle:
+
+    @staticmethod
+    def is_good_mileage(mileage):
+
+        if mileage < 25:
+            return "NO"
+            return "Yes"
+
+            print(Vehicle.is_good_mileage(25))
+            print(Vehicle.is_good_mileage(15))
+            
+    # Class method        vs            Static method
+     takes cls as                       needs no specific 
+     first param                        parameters
+     can access                         cannot access or 
+     modify class state                 modify
+     class method must have             it know nothing about      
+     cls as param                       class method
+                                        they are just utility that takes
+                                        some param and work on that
