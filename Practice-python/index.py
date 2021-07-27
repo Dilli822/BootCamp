@@ -1,63 +1,72 @@
 
 
 
-my_lists = ["apple","linux","samsung","acer"]
-my_lists.pop()
+def add(a,b):
+     return a+b
+add(5, 50) 
+
+
+# iterator sin python
+# iterables 
+my_lists = ["monitor", "motherboard", "cpu"]
 print(my_lists)
 
-n = my_lists.__iter__()
-print(n)
+my_iterator = my_lists.__iter__()
+print(my_iterator)
+print(set(my_iterator))
+print(tuple(my_iterator))
 
-print(n.__next__())
+# classes in python
+# class objec
+# here we created class object vehicle and
+# pass it with pass statement 
+# and make an obj with v
+# ariable ibj
 
-print(n.__next__())
+# class vehicle:
+#      pass
 
-print(n.__next__())
+# def __init__(self, color, doors):
+#      self.color = color
+#      self.doors = doors
 
-# now error will occur
-# stopIteration
+# vehicle("red", 5)
+# print(vehicle)
 
-for i in n:
-    print(i)
+class MyClass:
+     x = 5
+p1 = MyClass()
+print(p1.x)
+
+class MyName:
+     name = "dilli"
+
+myname = MyName()
+print(myname.name)
+
+# creating class
+class Object:
+     def __init__(self, name, age):
+          self.name = name
+          self.age = age
+
+Object("john", 25)
+print(Object)
+var = Object("hari", 45)
+print(var.name)
+print(var.age)
 
 
-def func():
-    val = 8
-    print("this is local variable running from local environment", val)
-
-func()
-
-val = 48
-func()
-print("this is global variables running on global environment", val)
-
-# now making the func body local var to global var by overwriting the valriables
-
-def func():
-     val = 40
-     print("this is overwrite global val", val)
-
-func()
+class Gender:
+     def hari(name, age):
+          name = "hari"
+          age = 45
+     
+Gender()
+p2 = Gender()
 
 
-# iterators
-this_is_iterables = ["yes","i","am", "iterables"]
-print(this_is_iterables)
-type(this_is_iterables)
 
-# now we find it is iterables or not
-print(dir(this_is_iterables))
 
-# now making it to iterators
-
-making_it_iterators = this_is_iterables.__iter__()
-print(making_it_iterators)
-
-# as we know iterator supports next
-print(making_it_iterators.__next__())
-
-# applying loop
-for i in making_it_iterators:
-    print(i)
 
 
