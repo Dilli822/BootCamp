@@ -1,0 +1,21 @@
+
+ # jul 27📔️
+# front end 
+# how browser renders a web page
+
+--> starting parsing HTML
+---> obtaining external resources CSS, JS
+        JS attributes for rendering site 
+       |            |
+       Defer      async
+---> Parsing CSS and Generating CSSOM
+----> 
+1.CSS block rendering and has its own dom called CSSOM.
+2.Javascript can stop the parsing of both html and css.
+
+
+HTML-->DOM
+  JS----|   ---RENDER TREE ---> LAYOUT---->PAINT
+CSS--->CSSOM
+         fig.How browser render the web page?
+
