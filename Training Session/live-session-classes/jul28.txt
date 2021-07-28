@@ -1,0 +1,7 @@
+# jul 28
+# static method is like a straight forward function.
+# it is almost same as normal function
+# it is doesnot require cls param
+
+# class method is used for calling the class attributes and objects
+
