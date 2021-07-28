@@ -16,7 +16,7 @@
 
      # creating class
      class Vehicle:
-         passs
+         pass
         # this creates a class named Vehicle.
      
      # creating object  initiating object
@@ -27,11 +27,12 @@
      # attributes
      --> it is a characteristics of classes 
      # attributes are two types instance and class attributes
+
      # creating class with object vehicles
 
 ... class Vehicle: # whereas this is class attributes
 
-...  def __inti__(self, color, doors):   # these init are instance attributes
+...  def __intit__(self, color, doors):   # these init are instance attributes
 ...      self.color = color
 ...      self.doors = doors
 
@@ -52,7 +53,7 @@ class Vehicle:
   
    # using method
    >>> class Vehicle:
-...  category = 'car'
+...     category = 'car'
 ... 
 >>> def __init__(self, color, doors):
 ... """
@@ -131,4 +132,39 @@ vehicle1 doors: 4
 >>> print(f"vehicle2 doors: {vehicle2.doors}")
 vehicle2 doors: 4
 
+
+# examples
+
+
+class MyClass:
+     x = 5
+p1 = MyClass()
+print(p1.x)
+
+class MyName:
+     name = "dilli"
+
+myname = MyName()
+print(myname.name)
+
+# creating class
+class Object:
+     def __init__(self, name, age):
+          self.name = name
+          self.age = age
+
+Object("john", 25)
+print(Object)
+var = Object("hari", 45)
+print(var.name)
+print(var.age)
+
+
+class Gender:
+     def hari(name, age):
+          name = "hari"
+          age = 45
+     
+Gender()
+p2 = Gender()
 

@@ -4,6 +4,10 @@
     # is a method that is bound to a class 
     #rather than its object, it i shared amon all objects
 
+    # we can access the class through instance or class attributes
+    # or through class method @classmethod
+how to create?
+#we put @classmethod decorator on the head of class
 
     # we build the class method on class using @decorator
     example
@@ -75,5 +79,15 @@ alex.display()
 
 # Alex is 22 years old
 # this is being called on @classmethod
+
+
+# factory method
+# we can create the class object in two ways
+by using __ini__ method
+
+# we can call the class from class method directly
+class Hari:
+
+person = Hari.name('name', int)
 
 

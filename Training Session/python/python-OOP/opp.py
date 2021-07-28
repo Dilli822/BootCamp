@@ -30,24 +30,43 @@
    
 
 
-print("hello world")
 
-class A:
-    def __init__(self, n):
-        self.n = n
 
-        def info(self):
-            return 'info method from class A'
+# class A:
+#     def __init__(self, n):
+#         self.n = n
 
-            def result(self):
-                return self.n * self.n
+#         def info(self):
+#             return 'info method from class A'
+
+#             def result(self):
+#                 return self.n * self.n
         
-class B(A):
-    def result(self):
-        #calling base class method
-        result_from_base = A.result(self)
-        # modifying on super class's behaviour
-        return -result_from_base
+# class B(A):
+#     def result(self):
+#         #calling base class method
+#         result_from_base = A.result(self)
+#         # modifying on super class's behaviour
+#         return -result_from_base
 
-        obj_a = A(2)
-        print(obj_a.info())
+#         obj_a = A(2)
+#         print(obj_a.info())
+
+
+
+
+def add(a, b):
+ return a+b
+
+add(5,4)
+
+# for loop in python
+
+for i in range(0, 5):
+    print(i)
+
+
+def msg():
+    return "hello world "
+
+msg()

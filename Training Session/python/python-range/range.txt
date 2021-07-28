@@ -2,7 +2,7 @@
 
   #range in python
   # one of the built in function in python
-  # he range() function returns a sequence
+  # the range() function returns a sequence
    of numbers, starting from 0 by default, 
    and increments by 1 (by default), and 
    stops before a specified number.
@@ -42,7 +42,7 @@ class MyRange:
       def.__iter__(self):
         return self
 
-# iter next() method change obj to iterator
+# iter next() method change obj iteration steps.
     def__next__(self):
         if self.value >= self.end:   # conditions
           raise StopIteration      

@@ -58,7 +58,7 @@ AttributeError: 'list' object has no attribute 'next'
 # but we have next()a nd dir() method in iterators
 
 # iterators                              #iterables objects
-next()                                   iterator methods are access _.ter_()
+next()                                   iterator methods are access _.iter_()
 # iterables itself                       can create iterator objects                  
 # can apply loop                           
 
