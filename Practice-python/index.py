@@ -68,5 +68,25 @@ p2 = Gender()
 
 
 
+# this is our class object
+class Books():
+     pass
+
+Books()
+
+#now it has no param or arguments 
+# attributes are characteristics of objects
+
+#for example
+
+class Books:
+     category = 'college' #these are class attributes
+     # these are instance attributes
+     def __init__(self, colors, size):
+          self.colors = colors
+          self.size = size
+
+
+
 
 
