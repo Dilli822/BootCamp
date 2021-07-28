@@ -28,3 +28,30 @@ class Vehicle:
      cls as param                       class method
                                         they are just utility that takes
                                         some param and work on that
+
+# iimporting datetime
+from datetime import date
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+     
+
+    @classmethod
+    def fromBirthYear(cls, name, year):
+        return cls(name, date.today().year - year)
+
+# without using static method
+    @staticmethod
+    def isAdult(age):
+        return age < 18
+
+person1 = Person("dilli", 22)
+person2 = Person.fromBirthYear("hang", 1999)
+
+print(person1)
+print(person2.age)
+# THIS IS RETURN TRUEprint(Person.isAdult(17))
+#this will return false
+print(Person.isAdult(22))
+

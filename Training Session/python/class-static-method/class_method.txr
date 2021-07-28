@@ -2,6 +2,8 @@
 
     # Class method
     # is a method that is bound to a class 
+# ACCESSING THROUGH CLASS OR OBJECT
+
     #rather than its object, it i shared amon all objects
 
     # we can access the class through instance or class attributes
