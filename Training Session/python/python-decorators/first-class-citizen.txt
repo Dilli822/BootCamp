@@ -7,7 +7,7 @@
  a) we can store the function in a variable name and we can execute or 
  # call the function with varible name from anywhere in the program
 
- b) we ca also send python function to another function by passing
+ b) we can also send python function to another function by passing
  # parameter to anothe function as an argument
 
  c) function can also itself return the function
