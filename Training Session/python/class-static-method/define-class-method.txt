@@ -1,0 +1,13 @@
+Classmethod example
+To turn a method into a classmethod, add @classmethod before the method definition. As parameter the method always takes the class.
+
+The example below defines a class method. The class method can then be used by the class itself. In this example the class method uses the class property name.
+
+class Fruit:
+    name = 'Fruitas'
+
+    @classmethod
+    def printName(cls):
+        print('The name is:', cls.name)
+
+Fruit.printName()
