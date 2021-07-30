@@ -72,3 +72,27 @@ ELse clause executed!
 
 # this shows if error araises then else block won't run
 # if finds no error then else runs 
+
+# try-finally clause
+--> it will gets execute at last before the
+-->try statement completes
+---> it implements some sort of action to
+-->clean up after executing our code
+
+# we also read else with try and more than one exceptions
+... # we also read try-finally block which will finally gets run 
+... # even after exceptions block conditions results in True or False..
+... # it get s executed in any case
+>>> try:
+...  name = input('Enter your name: ')
+... except TypeError as error:
+...     print(error)
+... else:
+...     print('else clause executed! ')
+... finally:
+...     print('Finally clause executed at last.')
+... 
+Enter your name: 
+else clause executed! 
+Finally clause executed at last.
+
