@@ -96,3 +96,18 @@ Enter your name:
 else clause executed! 
 Finally clause executed at last.
 
+    --------try----------
+                  {run the code}
+    
+    ------except-----------
+                {if exception match,
+                 execute this code  }
+    
+    -------else---------------
+                {No any exception match?
+                 run this code     }
+    
+    -------finally--------------
+                 {always run this part  of 
+                 code must run in any cases }
+

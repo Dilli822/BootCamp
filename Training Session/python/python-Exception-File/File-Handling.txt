@@ -1,0 +1,88 @@
+
+  # Flies Handling in Python
+  --> we store, create, read, write every bit of information
+  ---> on certain format of file like .html, .docx, .txt, .csv
+  # In python two common types of files are there
+     1. Text files (.html, .js, .py, .txt, .csv, .cfg)
+     2. Binary files (.pdf,.png, .mp3, .mdb, .zip, .exe)
+
+
+ # opening file in python
+  --> we use built in function ope() to open a file
+  -->syntax:
+  file_object = open(file_name, mode)
+  # open() has single required argument and return single file file_object
+  # mode tells in which the mode file is opened for default it is 'r'-->read text
+  >>> file = open('sample.txt')
+
+
+# closing file in python
+ -->we use close() func to close file
+ >>> file = open('open.txt')
+>>> file.close()
+
+ ---> file must be closed properly inorder to avoid the resource leaks risks
+ # some ways to ensure that a file is closed properly are:
+   1. try-finally block
+   >>> file = open('open.txt')
+>>> try:
+...   file.read()
+... finally:
+...   file.close()
+... 
+'hello world\n\n'
+# so we put finally block code as it always execute
+
+# with statement
+# it makes code cleaner and handles the unexpected errors easily 
+# automatically takes care of closing the file.
+>>> with open('open.txt') as file:
+...  file.read()
+... 
+'hello world\n\n'
+#opened file
+
+# opening file modes
+'r','w','x','a','b','t','+'
+
+# Binary and Text mode
+--> distinguishes between binary and text I/O 
+--> text mode, return strings when reading it.
+---> binary mode returns bytes objects without any encoding
+--> this mode is used to deal with non-text files like 
+--> images or executable files
+
+
+#Reading files in python>>> file = open('open.txt')
+>>> file.read(5)
+'\nfile'
+>>> file.read()
+" handling in python.\nmethod to open,close file.\n# with inbuilt func open() close()\n# and modes are 'r','w',\n# by default it is read.\n\n"
+
+
+#reading methods for single line
+>>> file = open('open.txt')
+>>> file.readline()
+'\n'
+
+# reading methods for multiple lines
+>>> file = open('open.txt')
+>>> file.readlines()
+['\n', 'file handling in python.\n', 'method to open,close file.\n', '# with inbuilt func open() close()\n', "# and modes are 'r','w',\n", '# by default it is read.\n', '\n']
+
+# writing files in python
+-->.write(string)
+-->.writelines(seq)
+
+>>> file = open('open.txt', 'w')
+>>> file.write('This line written by pythonic method.')
+37
+>>> file.close()
+
+# creating file and writing on it
+>>> with open('new.txt', 'w') as file:
+...      file.writelines(['first', 'second'])
+... 
+
+
+        
