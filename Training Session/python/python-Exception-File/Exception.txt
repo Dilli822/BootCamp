@@ -1,0 +1,68 @@
+
+# Exceptions and Error Handlings
+# exception
+--> error that happens during the execution of a program
+---> when it occurs python interperter stops the current process
+--> untill it is handled otherwirse the program will crash
+-->python provides a way to handle the exception so that the other part of the 
+-->code can be executed without any disruption
+
+-->avoid the code writing that raises Exceptions
+
+....# syntax error and Exceptions
+
+...SyntaxError Example
+# occurs when the parser detects an incorrect syntax or statement
+>>> x = 5 if x > 45: print("dalse")
+  File "<stdin>", line 1
+    x = 5 if x > 45: print("dalse")
+                   ^
+SyntaxError: invalid syntax
+
+
+# Exceptions
+--> occurs whenever a syntactically correct python code results in an error
+--> some standard exception errors are indexError, importError, IOError, TypeError
+#example of exception
+>>> 'string' + 3
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: must be str, not int
+
+
+#Raising an Exceptions
+--> we use raise to throw an exception if a condition occurs
+-->This is custom exception created to show the exception
+error actually whenever we see the Traceback error that 
+means python packages has itself raised an exception and
+ has shown error
+
+ >>> distance = 2
+>>> if distance < 3:
+...    raise Exception("Distance must be maintained and must be greater than 2m")
+... 
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+Exception: Distance must be maintained and must be greater than 2m
+   |
+# This exception is custom expection that we have raised by ourselves
+
+
+# Assertions
+--> we can use it to raise an exception
+---> assert carry out the Assertions 
+-->assert statement is a debugging aid that tests a condition
+--> check the condition either true or false and if false throws an assertionError exception
+>>> def validate_distance(distance):
+...     assert(distance > 3), 'Distance must be greater than 2 or 3m'
+... 
+>>> print(validate_distance(2))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 2, in validate_distance
+AssertionError: Distance must be greater than 2 or 3m
+  |
+#this is AssertionError
+
+
+

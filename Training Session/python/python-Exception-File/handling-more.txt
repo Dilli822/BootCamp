@@ -1,0 +1,74 @@
+
+# Handling Exceptions
+---> we use try and except keywords to catch and handle
+ Exceptions
+# we place possible error code in try block
+# and in case if error occurs then we keep the code 
+# in a except block to handle it
+    
+         ------------syntax of try except block------------
+         try:
+           perform operations:
+           ........................
+         except Exception1:
+            if Exception1. than execute this bloack.
+
+
+
+         ------------How try and except works?--------------
+            1. First, the try clause is executed
+
+            2. if no exception occurs, the except clause
+               is skipped and execution of the try statement is finished.
+            
+            3. if an exception occurs during execution of the try clause
+               the rest of the clause is skipped.
+
+# Example of try and except clause
+
+>>> try:
+...  distance = int(input('Enter a required distance to prevent Covid-19: '))
+... except ValueError:
+...  print('Value Error! Entered number is not valid. ')
+... 
+Enter a required distance to prevent Covid-19: STRING
+Value Error! Entered number is not valid.
+# value error is printed after conditons is falsed as it requires int not string
+
+
+# Use of else block/clause 
+---> if we have more than one except clause with try statements
+--->to specify handling for different exceptions 
+---> if all the exceptions conditions are not met
+--> in the absence of exceptions, the else statement is used to 
+--> instruct a program to execute a certain block of code
+
+           --------syntax of try except1 except2 else clause---------
+           try: 
+            perform operations:
+            ..........................
+           except Exception1:
+             If Exception1, then execute this block.
+             ...............................
+           except Exception2:
+             If Exception2, then execute this block.
+             ................................
+           except Exception3:
+             If Exception3, then execute this block.
+            ...................................
+            else:
+              if no exception then execute this block.
+
+# example
+>>> try: 
+...  distance = input('Enter a distance in m: ')
+... except TypeError as error:
+...     print(error)
+... else:
+...    print('ELse clause executed!')
+... 
+Enter a distance in m: 
+ELse clause executed!
+
+# this shows if error araises then else block won't run
+# if finds no error then else runs 
