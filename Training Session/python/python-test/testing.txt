@@ -1,0 +1,22 @@
+
+
+  # Why Testing?
+  --> find the bugs before users do
+  ---> to ensure the quality of the product
+  --> to verfiy the efficency and software does what it meant to do
+  --> after we write code for apps and deliver to users 
+  --> our code may become faulty and includes bugs 
+  --> so we do Testing as it is one of the most important part in programming and software development.
+  
+
+
+  # Testing can be done in 
+    -----Mannual Testing--------
+      # this Mannual Testing is done mannually together
+      # with a group of team find the bug, solution and fix it
+
+    ------Automated Testing-------
+    # this is automated type and we write script for testing 
+    # if our code gets passed through test case
+    
+    
