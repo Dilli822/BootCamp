@@ -1,0 +1,48 @@
+
+
+# jul 30
+# catching the unknown error by global except()
+try:
+  0/0
+except Exception as e:
+    print(e)
+# catching the error globally
+# for locally catching exception error
+ except localError as e:
+     print(e)
+#localError only catches local block of code.
+
+# mulitple catch error valueError
+try:
+  pass
+except valueError as e:
+  print(e)
+except valueError as e:
+  print(e)
+else:
+ pass
+finally:
+ pass
+
+# we use exception forr......
+# flow of program smoothly
+# avoiding the uncertain end of program 
+# to catch the exception errors of program intentionally.
+
+# raising own exception
+ if age< 15:
+    raise Exception("this is exception reason.")
+
+# finally() block will clean up the operations at last
+#even though there are no exceptions
+# like in the server some files data may be running so finally will
+#make sure all the cleaning of program.
+
+# class inside class
+class A:
+def __init__(self, full_name):
+    self.full_name = name.title()
+
+
+
+
