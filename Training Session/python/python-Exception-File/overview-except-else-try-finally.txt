@@ -1,0 +1,24 @@
+>>> try:
+...  0/0
+... except ZeroDivisionError as e:
+...  print(e)
+... else:
+...  print("if no exception found else statement will execute.")
+... finally:
+...  print("final words")
+... 
+division by zero
+final words
+>>> try:
+...  10 / 5
+... except anyerror as e:
+...  print(e)
+... else:
+...  print("exception error not found")
+... finally:
+...  print("final")
+... 
+2.0
+exception error not found
+final
+
