@@ -1,0 +1,27 @@
+   
+                    Methods
+
+The test runs teardown blocks registered during a test method's execution 
+after that test method ends, before the tearDown instance method is called.
+
+When a setUp() method is defined, the test runner will run that method 
+prior to each test. Likewise, if a tearDown() method is defined,
+the test runner will invoke that method after each test.
+
+setup                                    teardown
+-->called at topmost                   -->after all the test cases
+-->before all the testcases             -->called at last
+
+
+>>> class Demo:
+...  cls_var1 = "delta"
+...  cls_var2 = "force"
+...  cls_var3 = 2.4
+... 
+>>> @staticmethod
+... def two():
+...     return 2
+... 
+>>> def __str__(self):
+...     return "test"
+... 

@@ -1,5 +1,9 @@
 
 
+UnitTesting is the first level of software 
+testing where the smallest testable parts of
+ a software are tested.
+  
   # Why Testing?
   --> find the bugs before users do
   ---> to ensure the quality of the product
@@ -7,7 +11,7 @@
   --> after we write code for apps and deliver to users 
   --> our code may become faulty and includes bugs 
   --> so we do Testing as it is one of the most important part in programming and software development.
-  
+
 
 
   # Testing can be done in 
@@ -18,5 +22,75 @@
     ------Automated Testing-------
     # this is automated type and we write script for testing 
     # if our code gets passed through test case
-    
-    
+
+    # In python we have uniitest built in function for testing purpose
+
+   # __init__ is the constructor for a class. 
+   # self is.........
+   ---> self represents the instance of the class. 
+    By using the “self”
+    keyword we can access the attributes and methods of the class in python. 
+    It binds the attributes with the given arguments.
+    The reason you need to use self. is because Python does not use 
+    the @ syntax to refer to instance attributes.
+    Self is always pointing to Current Object.
+    Self is the first argument to be passed in Constructor and Instance Method.
+
+#test case:
+-->A test case is a set of conditions which
+ is used to determine whether a system under 
+ test works correctly.
+
+
+#our main function to be tested
+
+def add(x,y):
+    return x+y
+
+#creating a Testadd named class
+class TestAdd(unittest.TestCase):
+
+    # adding two methods inside it to check the main function
+    def test_positive(self):
+        #test 2+6 = 8 which is true 
+        self.assertEqual(add(2,6,), 8)
+
+    def test_negative(self):
+        #test 2+6 is 7 which is not true
+        self.assertNotEqual(add(2,6), 7)
+
+# this means run this file to execute above block of code
+if __name__ == '__main__':
+    unittest.main()
+
+#up above the method must start with test_
+
+
+#runs add test in TestAdd class
+    $ python -m unittest test.TestAdd
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
+
+#Above two dots 
+..
+#This shows that it is passed after 2 tests 
+# if it has failed it will show ..f 
+
+#For specific on which test runs
+python -m test.TestAdd.test_positive
+
+
+#Remember we have assertEqual and assertNotEqual methods
+# we do have many assert methods which checks the conditions
+
+
+    def test_positive(self):
+        #test 2+6 = 8 which is true 
+        self.assertEqual(add(2,6,), 8)
+
+...assertEqual(arg1, arg2, msg = None)
+...Test that arg1 and arg2 are equal. If the 
+values do not compare equal, the test will fail.

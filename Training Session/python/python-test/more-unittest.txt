@@ -1,0 +1,35 @@
+#Assertmethod in python uniitest
+#Python testing framework uses Python's 
+built-in assert() function which tests a 
+particular condition. If the assertion fails, 
+an AssertionError will be raised. The testing 
+framework will then identify the test as Failure.
+Other exceptions are treated as Error.
+
+>>> assert sum([1,2,4,5]) == 5
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AssertionError
+
+# for correct value
+>>> assert sum([1,1]) == 2
+>>> 
+
+def test_sum():
+    assert sum([1, 2, 3]) == 6, "Should be 6"
+
+if __name__ == "__main__":
+    test_sum()
+    print("Everything passed")
+
+>>> # here we are using simple uniitest in python testing
+... # we are importing the packages unittest
+... # here we want to run the test on main function
+... # for that we created class with first param unittest and second testcase
+... # testcase check whether the system under test works correctly or not
+... # we have added assert method to tests a certain conditions and if
+... # conditions fails assertionerror will araises
+... # why we use self ? to access the attributes and method in the class
+... # at last we pass if __name__ == '__main__': 
+... #                    unittest.main()
+... # this is simply testing the file of uniitest block code
