@@ -1,0 +1,95 @@
+
+
+# request-response-objects
+# what type of request and what can we do further?
+# to these (["GET", "POST"]) parameters
+# we will study about it further
+
+#HttpRequest objects
+---we have numeours attributes that return the requests 
+
+--Attributes--
+# HttpRequest.path => full path but not including scheme and domain
+# HttpRequest.GET =>dict like obj containing all HTTP GET parameters
+....many more others....like HttpRequest.COOKIES...
+
+What is method in Python with example?
+In Python, a method is a function that is
+available for a given object because of 
+the object's type. For example, if you create
+my_list = [1, 2, 3] , the append method can be
+applied to my_list because it's a Python list: 
+my_list.
+
+# we have also HttpRequest method 
+Contd....
+ # methods
+    ->HttpRequest.get_host()
+    eg: give back the hosting address like
+     127.0.0.1.:5050
+     -->.get_full_path()
+      eg: /profile/?username=dilli
+    -->is_secure() [return True if req was made with HTTPS]
+    -->HttpRequest/is_ajax()
+# these methods are useful and we do these methods to check the http req.
+
+# HttpResponse objects
+from django.http import HttpResponse
+response = HttpResponse("Here's the text of our webpage and applied one of the HttpResponse Objects method.")
+response = HttpResponse("DJano helper content type accept only text", content_type="text/plain")
+response = HttpResponse(b'Byteststrings are also accepted.')
+
+# These are some methods to response back to the client side
+# using HttpResponse objects
+# for incremental or to add the content incrementally in the middle somewhere
+# for example if our client needs something to check frequently then we
+-----use write helper or method to send the required content wrapped in html
+----- and again response and write to clients------
+----after certain requirements fulfilled we wrap up the response and return it to client as return HttpRequest()
+
+#examples
+response = HttpResponse()
+response.write("<p>Here is additional response.</p>")
+# do some calculations here
+response.write("<p>Here's another field for you.")
+
+# As similar to HttpResponse we do have popular way of responding 
+..........i.e...JsonResponse objects..........
+
+
+# JsonResponse objects
+from django.http import JsonResponse
+response = JsonResponse({"name": "dilli"})
+response.content
+b'{"name": "dilli"}'
+response = JsonResponse([1,2,3,4,5], safe=False)
+
+# here we imported JsonResponse
+# then we passed key value pair in dict
+# then send the content in json format
+
+#SOMETIMES what we do is serialize the non-dict objects
+# we put the keywords safe=False which will then send
+# the non-dict objects as JsonResponse to client side
+
+response = JsonResponse([1,2,3,4,5], safe=False)
+
+#capturing value from urls
+#url.py 
+urlpatterns = [
+    path('home/<str: name>/', home),
+]
+
+#view.Py
+def home(request,name):
+  pass
+
+
+#checking the http url method
+def home(request):
+   if request.method == 'GET':
+       print("something")
+    elif request.method == 'POST':
+        print("this is post method.")
+
+

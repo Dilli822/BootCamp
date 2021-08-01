@@ -35,7 +35,7 @@ def my_view(request):
 --> it helps to show message status through simple 3 code likes 201
 ---> it standard our url status 
 
-# Allow HTTP methods view func
+# Allow HTTP methods view func:
 --> sometimes we need to make the url to accept only get or post req methods
 --> for that we import require_http_methods function
 --> use decorators and pass param (["GET", "POST"])
