@@ -1,0 +1,23 @@
+
+# Creating a project
+django-admin startproject helloworld
+# it should create a folder name helloworld
+
+# where we can get several files and folders
+
+# manage.py 
+--> automatically created with new project
+---> command line untility for managing django
+-->creating, managing updating the our django applies
+
+--> runinng the manage.py
+-->python manage.py 
+
+-->runserver
+# it will run the local server
+python manage.py runserver
+
+-->startapp
+----> python manag.py startapp world
+ # will create a new app named world
+
