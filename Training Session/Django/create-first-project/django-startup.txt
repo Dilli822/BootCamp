@@ -51,7 +51,8 @@ def home(request):
 
     return HttpResponse(html_content)
 
-# after we have registere the views to url
+# after we have register the views to url
+----------url.py------------
 from django.urls import path
 from myapp.views import home
 

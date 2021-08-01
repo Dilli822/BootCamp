@@ -1,0 +1,69 @@
+
+   #A simple view example
+from django.http import HttpResponse
+import datetime
+
+def current_datetime(request):
+    now = datetime.datetime()
+    html = "<html><body>It is now %s. </body></html>" % now
+    return HttpResponse(html)
+
+  # Returning Error 404?
+  --> when users request the page that is not in our system or apps
+  -- or any internal server error 
+
+from django.http import HttpResponse, HttpResponseNotFound
+def my_view(request):
+    
+    if foo:
+        return HttpResponseNotFound('<h1>Page Not Found!</h1>')
+    else:
+        return HttpResponse('<h1> Page was found!</h1>')
+
+
+# we have many https status code 
+# we donot have all status code class in django
+# so we need to make custom status code for special cases
+
+from django.http import HttpResponse
+
+def my_view(request):
+    # Return a "created" (201) response code.
+    return HttpResponse(status=201)
+
+# Why status code is important?
+--> it helps to show message status through simple 3 code likes 201
+---> it standard our url status 
+
+# Allow HTTP methods view func
+--> sometimes we need to make the url to accept only get or post req methods
+--> for that we import require_http_methods function
+--> use decorators and pass param (["GET", "POST"])
+---> and pass the function in url layer
+
+from django.views.decorators.http import require_http_methods
+@require_http_methods(["GET"])
+def my_view(request):
+    pass
+
+
+from django.views.decorators.http import require_http_methods
+@require_http_methods(["POST"])
+def my_view(request):
+    pass
+
+
+from django.views.decorators.http import require_http_methods
+@require_http_methods(["GET", "POST])
+def my_view(request):
+    pass
+
+#django will check the request method and apply the action
+#depending upon the require http methods for post only post and for get only get
+
+# is it important?
+--> no , we can do this type of logics in view layers
+---> or simply pass page error 404 if we donot want to allow the users
+
+
+
