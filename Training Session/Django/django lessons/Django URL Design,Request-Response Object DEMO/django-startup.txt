@@ -1,0 +1,93 @@
+
+
+# url designing and creating simple views
+
+
+
+# importing views from world app folder and importiing home function
+
+
+#now we need to import profile too
+#from profile.views import phome, profile
+# capturing values from urls
+# we have include path ('') s default main path
+# imported world.views and function home and profile
+# path('profile/dilli/', profile),
+# must return value/logics written in views.py
+# when it is hit in https:127.0.0.1:8000/profile/dilli
+# 
+
+
+#views.py
+from django.http import HttpResponse
+
+#creating hom function with always fst parameter request
+
+
+def home(request):
+    return HttpResponse("hello world")
+
+def profile(request):
+    return HttpResponse("This is a profile section")
+
+
+#returning HttpResponse as string value.
+
+#created profile function and now assigining the functon to urls.py
+
+
+#url.py
+from django.urls import path
+
+from world.views import home, profile
+
+urlpatterns = [
+        path('profile/dilli/', profile),
+        # path('world/', home),
+        path('', home),
+
+]
+
+
+# we have added other names of user in profile 
+# this is an example of static url patterns
+# which is very bad practice to do 
+# think if we need 100 names then working statically is not a good practice
+
+#urlpatterns = [
+        path('profile/dilli/', profile),
+        path('profile/hang/', profile),
+        path('profile/peter/', profile),
+        # path('world/', home),
+        path('', home),
+
+]
+
+# so we make the url patterns dynmaic with path converters line <str> or<int>
+
+#urlpatterns = [
+        path('profile/<str: name>/', profile),
+        path('', home),
+
+]
+# profile is static whereas its name is dynamic.
+
+# now if you hit the url= http://127.0.0.1:8000/profile/shyam/
+TypeError at /profile/shyam/
+profile() got an unexpected keyword argument 'name'
+# error will raise this is because at<str: name/> path will try to find the name arguments
+#which is not given by us
+# so we go to views.py 
+# and pass second parameter as name
+def profile(request, name):
+     print("name is", name)
+     return HttpResponse("This is a profile section!")
+
+# after this checking the terminal along with hitting request and getting response
+[02/Aug/2021 15:33:52] "GET /profile/shyam/ HTTP/1.1" 200 35
+name is shyam
+[02/Aug/2021 15:33:54] "GET /profile/shyam/ HTTP/1.1" 200 35
+# dynamically shyam is generated try for other names too.
+name is paul
+[02/Aug/2021 15:35:05] "GET /profile/paul/ HTTP/1.1" 200 35
+
