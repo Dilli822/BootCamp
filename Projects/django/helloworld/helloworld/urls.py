@@ -26,6 +26,6 @@ urlpatterns = [
 # from django.urls import path
 # from world.views import home
 
-# urlpaterns = [ 
-#     path('world', home),
+# urlpatterns = [ 
+#     path('world/', home),
 # ]
