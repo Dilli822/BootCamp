@@ -1,0 +1,137 @@
+
+from django.http import HttpResponse, HttpResponseNotFound
+
+def profile(request, name):
+    data = {
+        'peter': 'Peter Pan',
+        'roberto': 'roberto robert',
+        'hari':  'hari parsad',
+    }
+
+    full_name = data.get(name)
+
+#Handling the cases where request has came asking the user which is not in database
+
+    # applying conditions with status code as second arguments
+
+    if not full_name:
+        return HttpResponseNotFound("This username does not exits!", status=404)
+
+    string_data = f"Your Full Name is: {full_name}"
+    return HttpResponse(string_data)
+
+# when client wants us to send the json response or in json format
+
+# making new func and r = request
+def profile_json(r, name):
+    data = {
+        'peter': 'Peter Pan',
+        'roberto': 'roberto robert',
+        'hari':  'hari parsad',
+    }
+
+    full_name = data.get(name)
+
+    if not full_name:
+        return HttpResponseNotFound("This username does not exits!", status=404)
+
+    #string_data = f"Your Full Name is: {full_name}" 
+    # we need to create dictinoary object here so we 
+    dict_data = {
+          'full_name': full_name
+          }
+     return HttpResponse(dict_data)
+
+# Now we design new url for json data response
+# we must update the function profile_json in urls.py
+from world.views import home, profile, profile_json
+# url.py
+urlpatterns = [
+      path('profile-json/<str: name/', profile_json),
+
+       ]
+
+# On Browser
+#http://127.0.0.1:8000/profile-json/peter/
+full_name
+
+# when we inspect and see in the network dev tools 
+# we found the response is not in json form but in plain html text only
+
+Request URL: http://127.0.0.1:8000/profile-json/peter/
+Request Method: GET
+Status Code: 200 OK
+Remote Address: 127.0.0.1:8000
+Referrer Policy: same-origin
+Content-Length: 9
+Content-Type: text/html; charset=utf-8
+Date: Mon, 02 Aug 2021 16:29:06 GMT
+Referrer-Policy: same-origin
+Server: WSGIServer/0.2 CPython/3.6.9
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+
+# now we want json response for that
+# first we update the jsonresponse along with httpresponse 
+from django.http import HttpResponse, HttpResponseNotFound
+# and we return the JsonResponse
+ return JsonResponse(dict_data)
+
+# on browser
+http://127.0.0.1:8000/profile-json/peter/
+{"full_name": "Peter Pan"}
+Request URL: http://127.0.0.1:8000/profile-json/peter/
+Request Method: GET
+Status Code: 200 OK
+Remote Address: 127.0.0.1:8000
+Referrer Policy: same-origin
+Content-Length: 26
+Content-Type: application/json
+Date: Mon, 02 Aug 2021 16:33:27 GMT
+Referrer-Policy: same-origin
+Server: WSGIServer/0.2 CPython/3.6.9
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+
+# as JSON is independent file which is machine and human easily readable.
+# and client may demand on json format for UI designing or other purposes.
+# look the signature of json response in django go to response.py
+# django has done pre required helper class for rapid application development.
+# docs is available for responseJson in django.
+
+# we created
+----dynamically url,  json response, 
+# path converters captured the url data
+# best practices for debug
+# print(parameter)
+# print(type(result))
+# def home(r, name):
+    print(name)
+    print(type(name))
+# on terminal server of django-admin
+Quit the server with CONTROL-C.
+{'full_name': 'Peter Pan'}
+<class 'dict'>
+[02/Aug/2021 16:42:51] "GET /profile-json/peter/ HTTP/1.1" 200 26
+
+
+# path converter from string to integer
+# views.py
+def int_converter_view(r, *args, **kwargs):
+      return HtppResponse("okay path converter for str to int is made.")
+
+# urls.py
+#import function
+from world.views import int_converter_view,
+# make path int instead of str
+# path('path/<int:int_data>/', int_converter_view),
+
+# on broser working fine with integer
+http://127.0.0.1:8000/path/1/
+okay path converter for str to int and int is ready
+# what with string now?
+http://127.0.0.1:8000/path/ajdkjfkdjfkdfd
+Not Found: /path/ajdkjfkdjfkdfd
+[02/Aug/2021 16:52:16] "GET /path/ajdkjfkdjfkdfd HTTP/1.1" 404 2513
+
+
