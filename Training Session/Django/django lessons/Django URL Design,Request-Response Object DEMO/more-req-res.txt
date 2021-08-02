@@ -133,5 +133,35 @@ okay path converter for str to int and int is ready
 http://127.0.0.1:8000/path/ajdkjfkdjfkdfd
 Not Found: /path/ajdkjfkdjfkdfd
 [02/Aug/2021 16:52:16] "GET /path/ajdkjfkdjfkdfd HTTP/1.1" 404 2513
+# for solving we change the parameter and path and print 
+def int_converter_view(r, int_data):
+     print("int data is": int_data)
+     print(type(int_data))
+  
+  return HttpResponse("okay path converter for str to int is made.")
 
+#on browser
+http://127.0.0.1:8000/path/nownotintergerbutstring/
+okay path converter for str to int and int is ready
+# terminal server
+int data is: nownotintergerbutstring
+<class 'str'>
+[02/Aug/2021 17:01:31] "GET /path/nownotintergerbutstring/ HTTP/1.1" 200 51
 
+# further we want only integer so we use try and exception
+# for checking application logic although pathcoverter had done this work for us!
+  # def int_converter_view(r, *args, **kwargs):
+def int_converter_view(r, int_data):
+    print("int data is:", int_data)
+    print(type(int_data))
+    try:
+        # converted_int_data = int(int_data)
+        # since converted_int_data is not use we can pass _ underscore
+        _ = int(int_data)
+    except ValueError:
+        return  HttpResponse("Something went wrong", status=404)
+
+    return HttpResponse("okay path converter for str to int and int is ready")
+# His block of code will show exception error if string is found in path
+http://127.0.0.1:8000/path/nownotintergerbutstring/
+Something went wrong
