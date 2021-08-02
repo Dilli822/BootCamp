@@ -90,4 +90,22 @@ name is shyam
 # dynamically shyam is generated try for other names too.
 name is paul
 [02/Aug/2021 15:35:05] "GET /profile/paul/ HTTP/1.1" 200 35
+#A congrats we build the dynmaic url patterns
+
+
+def profile(request, name):
+    print("name is", name)
+    string_data = "Your name in profile is : {}".format(name)
+    return HttpResponse(string_data)
+
+# on server terminal
+# name is paul
+[02/Aug/2021 15:39:28] "GET /profile/paul/ HTTP/1.1" 200 30
+name is harry
+[02/Aug/2021 15:39:37] "GET /profile/harry/ HTTP/1.1" 200 31
+# on browser dynamically generated string
+Your name in profile is : harry
+Your name in profile is : paul
+
+
 

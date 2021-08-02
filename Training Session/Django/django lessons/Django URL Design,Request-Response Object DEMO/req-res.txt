@@ -1,0 +1,61 @@
+
+
+# more on design url req,res 
+
+def profile(request, name):
+    print("name is", name)
+    string_data = "Your name in profile is : {}".format(name)
+    return HttpResponse(string_data)
+
+# more logics can be created and write it up there managing user data profiles
+
+# now we create a small database for example here
+
+def profile(request, name):
+    data = {
+        'peter': 'Peter Pan',
+        'roberto': 'roberto robert',
+        'hari':  'hari parsad',
+    }
+    full_name = data[name]
+
+    print("name is", name)
+    string_data = f"Your Full Name is: {full_name}"
+    return HttpResponse(string_data)
+
+# terminal server
+name is peter
+[02/Aug/2021 15:46:22] "GET /profile/peter/ HTTP/1.1" 200 28
+
+# on browser
+http://127.0.0.1:8000/profile/peter/
+Your Full Name is: Peter Pan
+
+# requesting the user not in data
+# we must update or add  HttpResponseNotFound 
+
+from django.http import HttpResponse, HttpResponseNotFound
+http://127.0.0.1:8000/profile/sita/
+KeyError at /profile/sita/
+
+def profile(request, name):
+    data = {
+        'peter': 'Peter Pan',
+        'roberto': 'roberto robert',
+        'hari':  'hari parsad',
+    }
+
+    #full_name = data[name]
+    full_name = data.get(name)
+
+    # Handling the cases where request has came asking the user which is not in our database
+    # applying conditions
+    if not full_name:
+        return HttpResponseNotFound("This username does not exits!")
+
+    string_data = f"Your Full Name is: {full_name}"
+    return HttpResponse(string_data)
+
+# on browser side
+http://127.0.0.1:8000/profile/sita/
+This username does not exits!
