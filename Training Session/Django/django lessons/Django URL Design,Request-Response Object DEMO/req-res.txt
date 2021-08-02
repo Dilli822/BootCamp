@@ -59,3 +59,24 @@ def profile(request, name):
 # on browser side
 http://127.0.0.1:8000/profile/sita/
 This username does not exits!
+
+def profile(request, name):
+    data = {
+        'peter': 'Peter Pan',
+        'roberto': 'roberto robert',
+        'hari':  'hari parsad',
+    }
+    full_name = data.get(name)
+
+    # applying conditions and passing second arguments as status code 404 not found!
+    if not full_name:
+        return HttpResponseNotFound("This username does not exits!", status=404)
+
+    string_data = f"Your Full Name is: {full_name}"
+    return HttpResponse(string_data)
+# see HttpResponseNotFound what happens when there is status code 404 and others.
+# we can create our mannual status code like this
+ return HttpResponseNotFound("This username does not exits!", status=404)
+
+
+
