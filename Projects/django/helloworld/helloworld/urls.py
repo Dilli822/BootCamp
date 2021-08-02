@@ -13,19 +13,47 @@
 #     1. Import the include() function: from django.urls import include, path
 #     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 # """
-from django.urls import path
-#this will tell the django where is our landing url
-from world.views import home
-
-urlpatterns = [
-        path('world/', home),
-]
+# from django.urls import path
+# #this will tell the django where is our landing url
+# from world.views import home
+#
+# urlpatterns = [
+#         path('world/', home),
+# ]
 
 # registering new url for view in urls.py
 
 # from django.urls import path
 # from world.views import home
 
-# urlpatterns = [ 
+# urlpatterns = [
 #     path('world/', home),
 # ]
+
+
+from django.urls import path
+from django.contrib import admin
+
+# importing views from world app folder and importiing home function
+
+from world.views import home, profile, profile_json, int_converter_view
+
+
+#now we need to import profile too
+#from profile.views import phome, profile
+
+# capturing values from urls
+urlpatterns = [
+        # path('profile/dilli/', profile),
+        # path('profile/hang/', profile),
+        # path('profile/peter/', profile),
+        # path('profile/sam/', profile),
+        # path('world/', home),
+        path('profile/<str:name>/', profile),
+        # crating new url for profileJSON with parameter profile_json
+        path('profile-json/<str:name>/', profile_json),
+        #making new url for str to int or path converter
+        # path('path/<int:int_data>/', int_converter_view),
+        path('path/<str:int_data>/', int_converter_view),
+        path('', home),
+]
