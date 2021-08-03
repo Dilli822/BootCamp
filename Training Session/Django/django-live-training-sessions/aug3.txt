@@ -1,0 +1,51 @@
+
+
+ # Aug 3
+# simple views.py
+---templates folder---
+# HttpResponse 
+# and URLs desigining
+
+---> 
+url designing is alsso one of the most important part in web application
+----> duid /users/6dfdf45454-45fgdfg/, slugs /user/dilli/, hashids /users/451vhj are recommended to use.
+----> query strings or param--> ?(used as query) --/user/?page=454/
+
+---> use of slug 
+/profile/ram-bahadur/followers/
+--->hashids
+/profile/451541df/followers/
+---> Duid
+/profile/4f5fgf-sdsv4-fdfdf/followers
+
+# Sample URLConf
+# dynmaic url
+
+# request methods
+GET                                               POST
+-- normal response we get from server            request and response from
+-->after requesting to server                    server along with client
+-> by default we GET request                     sending data  method                                                              
+
+-----------------status code 500, 404 ------------------------------------
+
+# Req/Res Object
+# every obj has attributes and methods
+def home(request):
+    print("Request Method is:", request.method)
+    print("Request Headers info:", request.headers)
+    return HttpResponse("Hi I am django server")
+
+# here request is object which has severa; attributes and methods
+# we can check its attributes and methods
+
+# we use it in second arguments of objects.
+
+# responding in the json format
+# serializing the non -dict 
+# and safe = false,
+
+
+
+
+
