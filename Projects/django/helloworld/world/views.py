@@ -153,3 +153,11 @@ def debug_request(request):
 def my_view(request):
     context = {'foo': 'bar'}
     return HttpResponse(request, 'world/world.html', context)
+
+{% if athelete_list %}
+     Number of athletes: {{athlete_list|length}}
+{%elif athlete_in_locker_room_list%}
+     Atheletes should be out of the locker room soon!
+{%else%}
+     No athletes.
+{% endif %}
