@@ -31,7 +31,7 @@
 # ]
 
 
-from django.urls import path
+from django.urls import path, register_converter, include
 from django.contrib import admin
 
 # importing views from world app folder and importiing home function
@@ -58,5 +58,6 @@ urlpatterns = [
         # new path for test or debug
         # without capturing url value ie.with <str:int_data>
         path('test-path/', debug_request),
+        path('template/', include('templating.urls')),
         path('', home),
 ]

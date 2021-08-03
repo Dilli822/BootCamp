@@ -44,20 +44,23 @@ from django.template import loader
 def home(request):
     html_content = """
     <html>
+    <title> Welcome </title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
-       h1,h2,p,img.w3-animate-fading{
-       text-align: center;
+       div.w3-container{
        # color: green;
+       max-width:100%; 
+       text-align: center;
        }
     </style>
     <body>
-        <h1>hello and welcome! this is main section page!</h1>
+   
     <div class="w3-container">
+         <h1>hello and welcome! this is main section page!</h1>
      <h2>Animate Fade In and Out</h2>
     <p>The w3-animate-fading class fades in and out elements every 10 seconds (continuously).</p>
     <figure>
-          <img style="max-width:100%; display: flex; justify-content: center; class="w3-animate-fading" src="https://unsplash.it/400">
+          <img  class="w3-animate-fading" src="https://unsplash.it/400" style="height: 100%; width=100%;">
      </figure>
      </div>
     </body>
@@ -153,11 +156,3 @@ def debug_request(request):
 def my_view(request):
     context = {'foo': 'bar'}
     return HttpResponse(request, 'world/world.html', context)
-
-{% if athelete_list %}
-     Number of athletes: {{athlete_list|length}}
-{%elif athlete_in_locker_room_list%}
-     Atheletes should be out of the locker room soon!
-{%else%}
-     No athletes.
-{% endif %}
