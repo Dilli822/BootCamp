@@ -1,0 +1,28 @@
+
+# tags in template
+# if tag is same as in normal python but we are using it inside the tag only.
+# {% if %} tag evaluates a variable just like if/else in python
+
+
+{% if athelete_list %}
+     Number of athletes: {{athlete_list|length}}
+{%elif athlete_in_locker_room_list%}
+     Atheletes should be out of the locker room soon!
+{%else%}
+     No athletes.
+{% endif %}
+
+# we can use if else in templates using more complex logics.
+
+# For tag in template
+# same as python all the process is same but unlike in if tag we have ending tag {% endfor %}
+<ul>
+   {% for athlete in athlete_list %}
+      <li>{{athlete.name }}</li>
+   {% empty %}
+       <li>Sorry, no athletes in this list.</li>
+   {% endfor %}
+</ul>
+# in this loop if list is empty then there will be no iteration and  
+# {% empty %} is printed out which is a feature given by django.
+
