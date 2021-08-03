@@ -1,0 +1,46 @@
+
+
+# How do I grab context in templates?
+ ---> we used the context to send data to template.Now how to pick the data in content
+
+---Use variables
+        -outputs value from context
+        -{{   }}
+
+eg: 
+My first name is {{first_name}}.My last name is {{sur_name}}
+
+//with a context of {'first_name': 'Dilli', 'sur_name': 'Rai'},
+//this template renders to:
+
+My first name is Dilli. My surname is Rai.
+-----we can change now first name and lastname----------
+
+---USE TAGS
+--provide arbitary logic in rendering process
+---- surrounded by {% %}
+eg:
+  {% csrf_token %}
+# some tage may require ending tags
+# {%if user.is_authenticated %}Hello,{user.username}}.{%endif%}
+
+# during form submission tokens of hidden values from attackers.
+ 
+
+-->USE FILTERS
+--->transforms the values of variables and tag arguments
+--same as using variables but we filter the variables .
+
+eg:
+{{name|title}}
+# with a context of {name: 'dilli hang'}, this template renders to:
+       Dilli Hang
+# what we got is Captialized letter of every first letter from lowercase.
+# CHeck more filters in documentation.
+
+# comments 
+# {# #}
+like
+{# I am comment #}
+This will be ignored by our content langauge.
+

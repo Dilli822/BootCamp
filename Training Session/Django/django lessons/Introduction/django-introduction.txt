@@ -1,0 +1,49 @@
+
+
+ # Introduction
+ -->High Level Python Web Framework
+ ---> used for rapid-application development
+ ---> it is free and open source 
+     --> https://github.com/django/django
+ 
+ --> Security ---> common attacks 
+ --> Scalable
+     -> from small to big application with traffic
+
+
+  # Installation
+    # install django with pip
+    ~pip install django
+
+  #COnfirm Installation from pip
+   pip list
+
+   #django Installation will make django-admin utility command available
+   ~ django-admin
+   # to manage django later for creating projects
+
+   #django admin command line to create,manage project and other works.
+
+
+# supporting python version with django
+https://docs.djangoproject.com/en/3.0/faq/install/#faq-python-version-supporting
+
+   # Verify 
+   --> to Verify that django can be seen by python interpreter
+   # inside python shell
+   import django 
+   print(django.get_version())
+   3.0
+
+
+  # Some sites using django
+  --> instagram
+  --> Mozilla
+  --> Pinterest
+  ---> Disqus
+  ---> National Geographic and many more.............
+
+  
+
+
+

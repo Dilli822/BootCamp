@@ -1,0 +1,69 @@
+
+
+# installing django
+# then creating django project
+-->django-admin startproject firstproject 
+   ---it should create a folder name firstproject-----
+--> check by running python3 manage.python3
+---> hit ttp://127.0.0.1:8000/ to check the installations
+----create django app inside the project-------
+python3 manage.py startapp myapp
+
+--> now registered the django app in setting.py
+--> just adding the app name in installed_apps = [ 'myapp',]
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'myapp',
+]
+--> after this django knew that this is your app
+
+-#creating view page for landing url
+--> in myapp folder of views.py
+from django.http import HttpResponse
+
+def home(request):
+    html_content = """
+    <html>
+    <style>
+    h1{
+        color:red;
+        text-align: center;
+    }
+    p{
+        color: green;
+        text-align: center;
+    }
+    </style>
+    <body>
+       <h1>heading</h1>
+       <p>this is my first django web app</p>
+    
+    </body>
+    </html>
+    """
+
+    return HttpResponse(html_content)
+
+# after we have register the views to url
+----------url.py------------
+from django.urls import path
+from myapp.views import home
+
+urlpatterns = [
+    path('myapp/', home),
+]
+
+
+# now start the localhost server
+# runnign server and app
+-->python3 manage.py runserver
+
+
+

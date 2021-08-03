@@ -1,0 +1,70 @@
+
+# Django Templating
+
+---> we need to have template in our application for UI
+---> so templating in django means generating HTML templates dynamically.
+---> template in django contains dynamic content as well as static HTML.
+----> django have its own templating language framework called Django template language.
+--> DTL built in for backends. and alternateive is jinja 2.
+
+
+#DTL
+---template engine----
+
+# settings.py
+# By default templates in django
+# This is list containing sets within itself.
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+
+                       #some options here.........
+            ],
+        },
+    },
+]
+
+# DIRS defined the path of templates.
+# passing dynamic we do pass the view to settings as context. 
+# context is dict of key:value 
+# we can keep all the templates in settings TEMPLATES DIRS: []
+# APP_DIRS , templates finder will search templates in app
+# we do keep templates dir in dirs options for additional purposes.
+
+# Loading template and returuning it to the client
+#view.py
+from django.http import HttpResponse
+from django.template import loader
+
+# here we load the templates from app folder having world.html
+# since it is dynamic so we add context
+# .render method with first param context and second request
+# now responding the template 
+
+def my_view(request):
+     #any logics here
+     template = loader.get_template('app/world.html')
+     context = {'msg: 'Hello World'}
+     template_data = template.render(context, request)
+     return HttpResponse(template_data)
+
+# instead all of this long code
+# we can use shortcut method like this
+# for that we import .shotcuts functions
+from django.shortcuts import render
+def my_view(request):
+    context = {'foo': 'bar'}
+    return HttpResponse(request, 'world/world.html', context)
+
+
+# above func our first param is request second is template dir and third is context.
+

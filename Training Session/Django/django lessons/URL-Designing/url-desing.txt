@@ -1,0 +1,62 @@
+
+  # URL's Designing
+
+  ----Ways to do better url Designing------
+  # Here are some good practices of url's desigining
+
+  --> We should always design the url in a such way
+  --> url is consistent as much as possible
+  eg:
+   [/home/self-user/address]
+ -->separate words with hyphen
+ [/home/profile-address]
+
+# Contd..........
+--> we must avoid database PK in URLs 
+---> Don't ['/user/1] [/user/5]
+-->instead use slug which are SEO friendly hashids or UUID
+-->[/users/dilli-hang/]
+--> [/users/45ghj5gvb4]
+-->[/users/6fgfg4714fgfg-7897fgfvd74-784fgfv4-4544fgfsdx?topic=?]
+
+# Pagination Best practices
+ --> suppose we need to see the users list of 1akh in pages and log details
+ --> Do's
+ [/users/?page=1]
+ -->Don't 
+ [/users/page-1/]
+ # some offset limit pagenations can also be used [/users/?limit=708&offset=07]
+
+
+# other common approach
+--> suppose we are approaching the user named dilli hang then 
+-->we can design url for specific user
+--> /profile/dilli-hang/followers/
+--> /accounts/change-password/
+
+# Sample URLconf
+
+from djano.url import path
+from . import views
+
+#setting dynamic url patterns of int
+urlpatterns = [
+    path('articles/2003/'. views.special_case_2003),
+    path('articles/<int: year>/>/', views.month_archive),
+    path('articles/<int: year>/<int: month>/', views.month_archive),
+    path('articles/<int: year>/<int: month>/<slug: slug>/', views.article_detail),
+]
+
+
+# at first line of url we created statically url
+# it may be good or applicable for only specific conditions
+# but it is not applicable and logical at all conditions
+
+# so we made dynamic url from line 2 url path
+# then we create logic in view as per requirement
+
+# here we created dynamic url with pathfinder
+like path ...articles...int year... which only accepts integer
+    url //https://127.0.0.1/articles/2021/08/01
+# if user enter string instead of int then error 404 is suppose to occur
+

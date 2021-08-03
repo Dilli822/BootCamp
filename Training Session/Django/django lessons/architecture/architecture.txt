@@ -1,0 +1,58 @@
+
+  django architecture
+
+  ---------------------MVC-----------------------
+  # Three major component
+  1. Model
+       -->Mediator between website interface and database
+       --> implements logic for application's data domain
+
+        website inteface -----> Model <-------database
+
+        information to server 
+        ---information --->controller-----> Model(apply business logic)
+        ------>stores it to the database
+    
+ 
+   2. View
+        --> UI Of web-application
+        --> contains parts like HTML, CSS, JS...
+        --->first visualize part of web-app like templates
+    
+   3. Controller 
+             --> Main control component
+             --> Handles User interaction selects view accordingly and
+             apply the Model component
+             --> it make sure that user will see the required template and UI of web applies
+
+
+             -->user--->link--->controller process request-->
+             --> applies necessary data from Model Component-->
+             ---> Sends to View
+                           
+                 -------client's request--------
+                 -------process request by controller-------
+                 ---------applies data from Model--------
+                 ---------sends to View(UI)---------
+                            
+
+  # Pattern of Django 
+       #It follow the MVT Pattern (Model-View-Template)
+       --> it is an MVT Framework
+       --> view--controller
+       --->template--views
+       -->same as MVC
+       Model     View     Controller
+         |         |         |
+       Model      Template     View
+
+
+    ---------MVT Pattern------------
+                                  Models
+user ------>  url  -----> views / 
+     <------       <-----       \
+                                  Templates
+    
+
+
+
