@@ -1,0 +1,71 @@
+
+
+# now we look the attributes of request
+#urls.py
+from world.views import home, profile, profile_json, int_converter_view, debug_request
+   # new path for test or debug
+       # without capturing url value ie.with <str:int_data>
+urlpatterns = [
+        path('test-path/', debug_request),
+]
+# Request attributes
+#views.py
+def debug_request(request):
+    pass
+
+#on browser
+#http://127.0.0.1:8000/test-path/
+ValueError at /test-path/
+The view world.views.debug_request didn't return an HttpResponse object. It returned None instead.
+# THis error has shown because we have not returned the httpresponse object.
+# we just have pass the function which is returning null value!
+
+def debug_request(request):
+     
+    print("Request method:", request.method)
+    
+    return HttpResponse("Ok from debug request")
+
+#on terminal server
+------on browser---------
+# ok from debug request 
+Request method used is: GET
+[03/Aug/2021 03:55:57] "GET /test-path/ HTTP/1.1" 200 21
+# IN this way we see the attributes of request using request.method
+# there are lots of other attributes like scheme, headers, cookies, get parameters , GET
+#
+def debug_request(request):
+    print("Request method used is:", request.method)
+    print("Scheme", request.scheme)
+    print("Headers",request.headers)
+    print("GET METHOD IS",request.GET )
+    return HttpResponse("ok from debug request")
+# HERE ALSO TRIED TO LOOK THE METHOD GET 
+
+Request method used is: GET
+Scheme http
+Headers {'Content-Length': '', 'Content-Type': 'text/plain', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=0', 'Sec-Ch-Ua': '"Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"', 'Sec-Ch-Ua-Mobile': '?0', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'none', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9'}
+GET METHOD IS <QueryDict: {}>
+[03/Aug/2021 03:59:50] "GET /test-path/ HTTP/1.1" 200 21
+
+# Above many headers method request all details is shown.
+# GET METHOD IS <QueryDict: {}>
+
+# on browser 
+http://127.0.0.1:8000/test-path/?name%20=%20peter
+# ok from debug request
+# This happens because urlconf doesnot look upon the parameters like name it just look path and take us to func in view
+#on terminal server
+GET METHOD IS <QueryDict: {'name ': [' peter']}>
+[03/Aug/2021 04:02:22] "GET /test-path/?name%20=%20peter HTTP/1.1" 200 21
+# we can pick the request value like we got request in dictinoary data types.
+
+# THere are so many attributes in request we can check it on django documentation.
+https://docs.djangorequestresponseobject.com
+# HUge data are found in request which will help us to build more powerful application.
+# every details is found in request.
+# another example:
+http://127.0.0.1:8000/test-path/?name=hari
+# GET METHOD IS <QueryDict: {'name': ['hari']}>
+[03/Aug/2021 04:07:32] "GET /test-path/?name=hari HTTP/1.1" 200 21
+
