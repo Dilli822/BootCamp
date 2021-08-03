@@ -35,8 +35,8 @@ from django.urls import path
 from django.contrib import admin
 
 # importing views from world app folder and importiing home function
-
-from world.views import home, profile, profile_json, int_converter_view
+# importing debu_request function
+from world.views import home, profile, profile_json, int_converter_view, debug_request
 
 
 #now we need to import profile too
@@ -55,5 +55,8 @@ urlpatterns = [
         #making new url for str to int or path converter
         # path('path/<int:int_data>/', int_converter_view),
         path('path/<str:int_data>/', int_converter_view),
+        # new path for test or debug
+        # without capturing url value ie.with <str:int_data>
+        path('test-path/', debug_request),
         path('', home),
 ]

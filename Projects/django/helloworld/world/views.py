@@ -38,14 +38,22 @@ from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 def home(request):
     html_content = """
     <html>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
-       h1{
+       h1,h2,p,img.w3-animate-fading{
        text-align: center;
-       color: green;
+       # color: green;
        }
     </style>
     <body>
         <h1>hello and welcome! this is main section page!</h1>
+    <div class="w3-container">
+     <h2>Animate Fade In and Out</h2>
+    <p>The w3-animate-fading class fades in and out elements every 10 seconds (continuously).</p>
+    <figure>
+          <img style="max-width:100%; display: flex; justify-content: center; class="w3-animate-fading" src="https://unsplash.it/400">
+     </figure>
+     </div>
     </body>
     </html>
     """
@@ -113,3 +121,12 @@ def int_converter_view(r, int_data):
 
     return HttpResponse("okay path converter for str to int and int is ready")
 # His block of code will show exception error if string is found in path
+
+
+# Request attributes
+def debug_request(request):
+    print("Request method used is:", request.method)
+    print("Scheme", request.scheme)
+    print("Headers",request.headers)
+    print("GET METHOD IS",request.GET )
+    return HttpResponse("ok from debug request")
