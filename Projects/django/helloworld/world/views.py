@@ -32,6 +32,12 @@
 # here we must add http response not found error handling
 from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 
+from django.shortcuts import render
+
+
+from django.template import loader
+
+# importing loader
 #creating hom function with always fst parameter request
 
 
@@ -130,3 +136,20 @@ def debug_request(request):
     print("Headers",request.headers)
     print("GET METHOD IS",request.GET )
     return HttpResponse("ok from debug request")
+
+
+# loading a template and returning it to client
+# if we want to render the dynmaic
+# def my_view(request):
+#     #any logics can be written here
+#     template = loader.get_template('world/world.html')
+#     context = {'msg': 'Hello World'}
+#     template_data = template.render(context, request)
+#     return HttpResponse(template_data)
+
+# instead all of this long code
+# we can use shortcut method like this
+# for that we import .shotcuts functions
+def my_view(request):
+    context = {'foo': 'bar'}
+    return HttpResponse(request, 'world/world.html', context)
