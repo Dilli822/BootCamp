@@ -189,6 +189,8 @@ Hello from my first template.
 I am from hello_render page, My name is: Dilli Hang rai
 # extends help us very much for extending our skeleton & base html
 
-# Now we want to make footer part in html
+# Now we want to make footer part in html and generate it dynamically on other templates
+.
+
 
 
