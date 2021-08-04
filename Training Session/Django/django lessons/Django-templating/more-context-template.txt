@@ -1,0 +1,142 @@
+
+# world/views.py main root app folder
+
+from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
+
+from django.shortcuts import render
+
+def my_view(request):
+    context = {'foo': 'bar'}
+    return HttpResponse(request, 'world/world.html', context)
+
+#templatig/views.py
+
+def hello_templates(request):
+    template = loader.get_template('hello.html')
+    context = {}
+    template_data = template.render(context, request)
+    return HttpResponse(template_data)
+# urls.py in templating app folder
+
+from django.urls import path
+
+from .views import hello_templates
+
+urlpatterns = [
+
+    # here url will be /templates/hello/
+    # because root url conf is ready joined with it
+    path('hello/', hello_templates)
+]
+
+
+#templating/template/hello.html folder containing our html file
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello world</title>
+</head>
+<body>
+<h1> Hello from my first  template.</h1>
+
+<!--lets create a variable dynamic  -->
+My name is: {{ name }}
+</body>
+</html>
+
+# now we need to add the context to make dynmaic content in html page.
+# on browser :
+http://127.0.0.1:8000/template/hello/
+Hello from my first template.
+My name is:
+
+# to make it dynamic we have to update the context code block as dict.
+
+def hello_templates(request):
+    template = loader.get_template('hello.html')
+    context = {
+        'name': 'dilli hang'
+    }
+    template_data = template.render(context, request)
+    return HttpResponse(template_data)
+
+# shortcut for this above code having loader render django has provided features
+from django.http import HttpResponse
+from django.template import loader
+from django.shortcuts import render
+
+def hello_render(request):
+    context = {
+        'name': 'Dilli Hang rai'
+    }
+    return render(request, "hello.html", context)
+
+# we have return render because render is also doing
+# all the required necessary things 
+# def render(request, template_name, context=None, content_type=None, status=None, using=None)
+           # content = loader.render_to_string(template_name, context, request, using=using)
+           # return HttpResponse(content, content_type, status)
+# def redirect(to, *args, permanent=False, **kwargs):
+        #redner(first param is request, second is .html file, third param is context)
+# helper render.
+# now registring in urls.py of templating
+from django.urls import path
+
+from .views import hello_templates , hello_render
+
+urlpatterns = [
+
+    # here url will be /templates/hello/
+    # because root url conf is ready joined with it
+    path('hello/', hello_templates),
+    path('hello-render/', hello_render),
+]
+
+# check this on browser 
+http://127.0.0.1:8000/template/hello-render/
+Hello from my first template.
+My name is: Dilli Hang rai
+# from shortcut method.
+
+# 
+def hello_render(request):
+    context = {
+        'name': 'Dilli Hang rai'
+    }
+    return render(request, "hello_render.html", context)
+
+# hello_render.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> Hello from my first  template.</h1>
+<!--lets create a variable dynamic  -->
+I am from hello_render, My name is: {{ name }}
+</body>
+</html>
+# from above there are  hello.html and hello_render.html which
+# have similar templates and only slightly different content
+# likewise we make our logics and code re-useablity 
+# we can also make our template reusable by making base template in templating app folder
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello world base</title>
+</head>
+<body>
+<h1> Hello from my first  template.</h1>
+<!--herer we can create a block -->
+{%   block main_content %} {% endblock %}
+</body>
+</html>
+
+# This is our base.html so if hello.html wants to have similar content then it 
+# import all the content except 
+
