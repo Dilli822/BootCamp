@@ -1,0 +1,24 @@
+
+
+  # Testing in python
+---why?
+---> time saving---
+---> handles bugs and errors -----
+----> make sure every line code work
+
+----------most basic, important and fundamental testing unittest for smaller
+---------------block of codes or small logics-----------
+  # Automated testing and Mannual testing
+
+----Automated testing----------
+-----deep error checking----
+-----make sure every function is working------
+
+# coverage testing
+---how much our test will touch the code while testing------
+# positive and negative testing depends upon the size of logics.
+# load testing ------
+   ---giving load and threshold value for testing -----
+--------and manage our server according to load (like users is 100)----
+
+
