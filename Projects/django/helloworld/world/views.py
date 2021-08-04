@@ -49,7 +49,8 @@ def home(request):
     <style>
        div.w3-container{
        # color: green;
-       max-width:100%; 
+       width:100%;
+       height: 100%; 
        text-align: center;
        }
     </style>
@@ -60,7 +61,7 @@ def home(request):
      <h2>Animate Fade In and Out</h2>
     <p>The w3-animate-fading class fades in and out elements every 10 seconds (continuously).</p>
     <figure>
-          <img  class="w3-animate-fading" src="https://unsplash.it/400" style="height: 100%; width=100%;">
+          <img  class="w3-animate-fading" src="https://unsplash.it/400">
      </figure>
      </div>
     </body>
