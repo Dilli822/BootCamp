@@ -138,5 +138,53 @@ I am from hello_render, My name is: {{ name }}
 </html>
 
 # This is our base.html so if hello.html wants to have similar content then it 
-# import all the content except 
+# import all the content from base.html and insert  new code on {% %} bloack code.
+
+# hello.html
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Hello world</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1> Hello from my first  template.</h1>-->
+
+<!--&lt;!&ndash;lets create a variable dynamic  &ndash;&gt;-->
+<!--My name is: {{ name }}-->
+<!--</body>-->
+<!--</html>-->
+# use extends to pull the base.html code
+{% extends 'base.html' %}
+<!--which part do you wanna mainuplate -->
+<!--we want to manipulate the block content-->
+{% block main_content %}
+`I am from hello, My name is: {{ name }}
+
+{% endblock %}
+
+# what we have done is we made skeleton in base.html and import it for our hello.html along with block {% block main_content %} for writing our own content 
+and generate it dynamically.
+
+# in hello_render.html
+
+{% extends 'base.html' %}
+
+{% block main_content %}
+  I am from hello_render page, My name is: {{ name }}
+
+{% endblock %}
+# this will make our html files more reuseable using base.html
+
+# on browser
+http://127.0.0.1:8000/template/hello/
+Hello from my first template.
+I am from hello, My name is: dilli hang
+
+# from hello_render.html
+# dynamically generated html. content 
+
+http://127.0.0.1:8000/template/hello-render/
+Hello from my first template.
+I am from hello_render page, My name is: Dilli Hang rai
 
