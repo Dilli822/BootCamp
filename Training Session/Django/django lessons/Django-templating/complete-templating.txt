@@ -1,0 +1,94 @@
+
+
+# create djangoproject
+# create an app inside it with python3 manage.py startapp app.
+# create an app for templates inside it with python3 manage.py startapp templating(anyname)
+
+# register both apps on settings.py in djangoproject.
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'app',
+    'templating',
+]
+
+
+ROOT_URLCONF = 'practicedjango.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+# create a folder name templates inside the templating and create a index.html file.
+# at dir templating/views.py
+
+from django.http import HttpResponse
+
+from django.template import loader
+
+def welcome_template(request):
+    template = loader.get_template('welcome.html')
+    context = {}
+    template_output = template.render(context, request)
+    return HttpResponse(template_output)
+
+# mannually add a new urls.py in templating folder.
+# at dir  projectdjango/templating/urls.py
+
+from django.urls import path,include
+from .views import welcome_template
+
+urlpatterns = [
+
+    path('welcome_template/', welcome_template),
+
+
+# at root url path
+# in projectdjango urls.py
+from django.contrib import admin
+from django.urls import path, include
+from app.views import home
+urlpatterns = [
+
+    path('admin/', admin.site.urls),
+    path('', home),
+    path('templates/', include('newtemplating.urls'))
+
+]
+
+# at app dir of djangoproject/app/views.py
+
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("This is home page!")
+
+# hit cmd 
+# python3 manage.py runserver
+
+
+]
+
+# NOte : donot use same name for templating or templates purposes .
+# it won't be able to find th module and error will come.
+# make different named folder for different project.
+# like for one project it will be templating while for other it will be newtemplating
+
