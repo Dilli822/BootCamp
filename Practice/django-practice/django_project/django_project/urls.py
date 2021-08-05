@@ -18,9 +18,18 @@ from django.urls import path
 
 from django.contrib import admin
 from django.urls import path
-from app.views import home
+from app.views import home, blog
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
+    # path('', home),
+    # path('profile/', profile),
+    # path('control/', control_center),
+    # path('user/', user),
+    # now we create a dynamic path with the help of path converter
+    # now we format the string and use path converter to make url dynamic
+    # path('profile/<str:name>/', profile),
+    # path('control/<str:culprit>/', control_center),
+    path('/', home),
+    path('blog/<str:name>/', blog)
 ]
