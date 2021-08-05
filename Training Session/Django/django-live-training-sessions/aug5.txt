@@ -1,0 +1,46 @@
+
+# aug 5 django live training session class
+# templating.
+# templating folder in  app folder.
+we did verfiy of dirs and app_dirs templates in during templating.
+#'DIRS' = [templates]
+
+# render shortcut function in python.
+
+def index(request):
+      context = {
+         'message': "hello everyone"
+             }
+    return render(request, 'myapp/index.html', context=context)
+
+#in index.html
+{{ message }}
+
+# here we send the context statically although index.html is generating context as content dynamically.
+# for that we use data or database sending the variables.
+
+def index(r):
+    user_context = {
+       #single obj
+            {
+              'name': 'name',
+               'age': 000,
+               'address': 'address'
+             },
+        # single anothe obj
+         { 
+            'name': 'name2',
+               'age': 0001,
+               'address': 'address2'
+             },
+return render(request, '', context={'data: user_content'})
+# how to access it in html?
+# use of tags in html.
+# using loop for in html with tags will pass this user_context.
+# {% for user_context %}
+# tags have endtags.
+# filter
+# comments {# #}
+# for empty...
+
+
