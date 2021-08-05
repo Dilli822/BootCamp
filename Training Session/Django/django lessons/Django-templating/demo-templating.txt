@@ -22,7 +22,7 @@ TEMPLATES = [
 
 # then update the views.py
 
-#firs we import http
+#first we import http
 # then we import load function from django template.
 # creating func
 # loading the template with .get method
