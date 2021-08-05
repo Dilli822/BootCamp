@@ -1,3 +1,9 @@
+#Positional Formatting
+#We define a string and insert two placeholders. We pass two strings to the method, #which will be passed to get the following output:
+
+print("Machine learning provides {} the ability to learn {}".format("systems", "automatically"))
+Machine learning provides systems the ability to learn automatically
+
 
   # String Format Method
   # it is handled by calling .format() on a string object

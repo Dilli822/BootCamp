@@ -1,4 +1,11 @@
-  
+  Python String format()
+String formatting is also known as String interpolation.
+It is the process of inserting a custom string or variable in predefined text.
+
+>>>custom_string = "String formatting"
+>>>print(f"{custom_string} is a powerful technique")
+>>>String formatting is a powerful technique
+
   # python string formatters
   # ways to format a string 
   1. % formating = interpolation operator
