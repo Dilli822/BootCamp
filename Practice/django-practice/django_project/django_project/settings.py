@@ -52,8 +52,11 @@ MIDDLEWARE = [
 
 
 ]
+#
+# ROOT_URLCONF = 'django_project.urls'
 
 ROOT_URLCONF = 'django_project.urls'
+
 
 TEMPLATES = [
     {
