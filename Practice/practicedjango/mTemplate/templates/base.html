@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Base Template</title>
+</head>
+<style>
+    *{
+        text-align: center;
+    }
+</style>
+<body>
+
+{% include 'header.html' %}
+<h3>Welcome to base template.</h3>
+<!--main block of tag code here--->
+{%  block main_content %} {%  endblock %}
+{% include 'services.html' %}
+{% include 'footer.html' %}
+</body>
+</html>
