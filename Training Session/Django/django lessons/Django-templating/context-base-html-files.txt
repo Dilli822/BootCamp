@@ -166,7 +166,7 @@ I am from hello_render, My name is: {{ name }}
 # what we have done is we made skeleton in base.html and import it for our hello.html along with block {% block main_content %} for writing our own content 
 and generate it dynamically.
 
-# in hello_render.html
+# ------------in hello_render.html-------------------
 
 {% extends 'base.html' %}
 
@@ -190,14 +190,14 @@ I am from hello_render page, My name is: Dilli Hang rai
 # extends help us very much for extending our skeleton & base html
 
 # now we want to add the footer in our base.html and other child html files#
-# on footer.html
+# ----------on footer.html-----------------
 <footer>
     <duv>
     I am from footer, this is footer part.
     </duv>
 </footer>
 
-# on base.html
+# ----------------on base.html----------------
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -213,7 +213,7 @@ I am from hello_render page, My name is: Dilli Hang rai
 </footer>
 </body>
 </html>
-# on browser 
+# -------------------on browser------------------ 
 http://127.0.0.1:8000/template/hello/
 Hello from my first template.
 I am from hello, My name is: dilli hang

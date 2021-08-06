@@ -1,0 +1,179 @@
+
+# templating/views.py
+
+from django.http import HttpResponse
+
+from django.template import loader
+
+from django.shortcuts import  render
+
+def blog_template(request):
+    template = loader.get_template('blog.html')
+    context = {
+        'name': 'hangko',
+        'age': 15
+    }
+    template_data = template.render(context, request)
+    return HttpResponse(template_data)
+
+
+# now we use shortcut method for it
+
+def contact_template(request):
+    context = {
+        'name': 'dilli hang rai',
+        'age': 22
+    }
+    return render(request, "contact.html", context)
+
+# here we have similar so we make new
+# base.html which will be dynamic templates
+# that serves as main skeleton templates
+# for other child templates
+
+# mTemplate/urls.py
+from django.urls import path
+from .views import blog_template, contact_template
+
+urlpatterns = [
+    path('blog/', blog_template),
+    path('contact/', contact_template),
+
+]
+
+# practicedjango/urls.py
+from django.urls import path, include
+from app.views import home
+from django.contrib import admin
+
+urlpatterns = [
+
+    path('admin/', admin.site.urls),
+    path('', home),
+    path('template/', include('mTemplate.urls')),
+
+]
+
+-------------Try this--------------------
+http://127.0.0.1:8000/template/blog/
+http://127.0.0.1:8000/template/contact/
+--------------------------------------
+
+----------Templating with main/skeleton/base template------
+----------- base.html------------
+# dir of djangoproject/templating/templates/base.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Base Template</title>
+</head>
+<style>
+    *{
+        text-align: center;
+    }
+</style>
+<body>
+
+{% include 'header.html' %}
+<h3>Welcome to base template.</h3>
+<!--main block of tag code here--->
+{%  block main_content %} {%  endblock %}
+{% include 'services.html' %}
+{% include 'footer.html' %}
+</body>
+</html>
+-----------------------------------------------------------------------
+# dir of templating/views.py
+
+from django.http import HttpResponse
+
+from django.template import loader
+
+from django.shortcuts import  render
+
+def blog_template(request):
+    template = loader.get_template('blog.html')
+    context = {
+        'name': 'hangko',
+        'age': 15
+    }
+    template_data = template.render(context, request)
+    return HttpResponse(template_data)
+
+
+# now we use shortcut method for it
+
+def contact_template(request):
+    context = {
+        'name': 'dilli hang rai',
+        'age': 22
+    }
+    return render(request, "contact.html", context)
+
+# here we have similar so we make new
+# base.html which will be dynamic templates
+# that serves as main skeleton templates
+# for other child templates
+
+def services_template(request):
+    context = {
+        'name': 'services',
+        'type': 'blog',
+        'version': 1.0,
+    }
+    return render(request, "services.html", context)
+-------------------------------------------------------------------------
+
+# dir of templating/urls.py
+
+from django.urls import path
+from .views import blog_template, contact_template, services_template
+
+urlpatterns = [
+    path('blog/', blog_template),
+    path('contact/', contact_template),
+    path('services/', services_template),
+
+]
+
+----------------------------------------------------------------------------
+# Main root urls.py in projectdjango main project root folder
+
+from django.urls import path, include
+from app.views import home
+from django.contrib import admin
+
+urlpatterns = [
+
+    path('admin/', admin.site.urls),
+    path('', home),
+    path('template/', include('mTemplate.urls')),
+
+]
+-------------------------------------------------------------------------
+
+# footer.html at templating/templates/footer.html
+<footer>
+
+<h3>Footer Part</h3>
+</footer>
+
+----------------------------------------------------------
+# header.html at templating/templates/header.html
+<header>
+    <h2>HEADER PART</h2>
+</header>
+
+-----------------------------------------------------------
+# services.html at templating/templates/services.html
+<div>
+    <h4>This is {{ name }} page.</h4>
+</div>
+----------------------------------------------------------
+# contact.html at templating/templates/contact.html
+<h1>welcome to contact section!</h1>
+<p>My name is: {{ name }}</p>
+<p>I am {{ age }} years old.</p>
+
