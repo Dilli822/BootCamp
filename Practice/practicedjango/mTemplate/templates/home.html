@@ -5,3 +5,14 @@
 </h2>
 <i class="fa fa-facebook">facebook</i>
 
+<h3>My name is {{ name| title }}</h3>
+<h4>I am {{ age }}</h4>
+<h4> My gender is {{ gender|upper }}.</h4>
+{##}
+{#{%  if  %}#}
+{#Number of athelets: {{ athelet_list|length }}#}
+{#{% elif athelet_in_locker_room_list %}#}
+{#Atheletes shoud be out of the locker rooom soon!#}
+{#{% else %}#}
+{#No athletes.#}
+{#{% endif %}#}

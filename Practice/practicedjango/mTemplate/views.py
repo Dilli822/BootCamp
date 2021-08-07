@@ -39,7 +39,12 @@ def services_template(request):
 
 def home_template(request):
     template = loader.get_template('home.html')
-    context = {}
+    context = {
+        "name": "dilli hang",
+        "age": 22,
+        "gender": "male"
+
+    }
     home_template = template.render(context, request)
     return HttpResponse(home_template)
 
