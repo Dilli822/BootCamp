@@ -1,8 +1,338 @@
 
-
  # Startup
  # create new app called modelextra 
  # with cmd python3 manage.py startapp modelextra
  # register app as usual at the project settings.py
 
 -----------------------------------------
+
+--------------Models---------------
+1. Model
+       -->Mediator between website interface and database
+       --> implements logic for application's data domain
+
+        website inteface -----> Model <-------database
+
+        information to server 
+        ---information --->controller-----> Model(apply business logic)
+        ------>stores it to the database
+    
+----------------Admin---------------
+-----------Model Validation---------
+-----------Query Set----------------
+----------Field LookUp--------------
+
+----Django Admin------
+# automatic admin interface,powerful parts of Django
+# it provides CRUD for our models
+# admin is enabled by default startproject
+# By default, logging into the admin requires that the
+# user has the is_superuser or is_staff attributes set to True .
+
+
+# Registering models to Admin site
+# as django gives us CRUD For our models.
+# what we do is we go to any apps folder and find the admin.py
+# we need to let know the django that make CRUD for our model.
+----registering models to admin.py
+
+# admin.py 
+>>> from django.contrib import admin
+>>> from .models import ContactNumber
+>>> admin.site.register(ContactNumber)
+
+# we pass model in admin.site.register function.
+# at present we have ContactNumber named model.
+# this is the configuration of registering models to admin.py
+
+------------Creating a User-----------
+
+# django by default comes with a user authenication system which handles user accounts, groups, permissions and cookie-based user sessions
+# we need user to login in django-admin
+# creating a superuser
+ -----python manage.py createsuper----------
+
+# these types of feature makes our work faster and helps in rapid application development.
+
+# most powerful superuser
+-------now we can login in Djano admin----------
+
+# registered models is found in django administration.
+
+
+-------Model Field Validation-------------
+# application level validation
+# in our model we need to validate the fields
+# for that we can pass validator list in the fields
+# and we can create and write,pass functions
+# we can pass n number of functions in the fields
+
+
+
+# Here name should start with Nepal to make condition  applied.
+# If condition not meet we raise exceptionError for that we import the .core.exception and ValidateError from django
+# now we catch the error if error is found from try catch block.
+
+# eg:
+from django.db import models
+from django.core.exceptions import ValidationError
+
+def validate_name(name):
+    print('name', name)
+    if "Nepal" not in name:
+        raise ValidateError("name should start with Nepal.")
+
+class ContactNumber(models.Model):
+      name = models.Charfield(max_length=250, validators=[validate_name])
+      lat = models.Charfield(max_length=250)
+      long = models.Charfield(max_length=250)
+
+# sometimes we return the username doesnot match which is an application of model field validation.
+
+
+--------------full clean method---------------
+# Validators never runs automatically as it is application level validators
+# to make it run we apply full clean method to run the field validation and we can write validators and it also run other filed validations.
+
+# example
+# here we made an object num and put many data inside it 
+# with obj.save() we can save it in database.
+-----------but we have to validate the obj data first---------
+# but with try catch block we can catch error and with full clean method 
+# we validate the field
+# if we find error we can put logics and debug
+# then if not found error we save it.
+
+num = ContactNumber()
+num.name = 'Ram'
+num.lat = '27.00'
+num.long = '85.52'
+
+try:
+   num.full_clean)_
+except ValidateError as e:
+   # some erros
+   pass
+else:
+    num.save()
+
+
+
+------------Built in Validators---------------------
+# In the above we built small validators but there are numerous built-in-validators
+--Regex,Email,URL,MinValue,MaxValue
+
+
+# if we need minimum value requirement for that we can apply like this built-in validators or use own functions for that.
+# value has min value is 10 and user cannot put less than 10 value interger
+# if user doesnot put 10 value integer then exception error will raise
+# and we will know that there is Validationerrors and user
+# may be notified about the requirements of min10 value as validationerror
+
+# Eg:
+from django.db import models
+from django.core.validators import MinValidator
+
+class MyModel(models.Model):
+      name = models.CharField(max_length=250)
+      value = models.IntegerField(validators=[MinValueValidator(10)])
+
+
+
+--------------Validation model as a whole----------------------
+---Model.clean()
+# if we need to compare, or validate the whole model
+# for particular field we do validations in list.
+# but for whole model we have .clean() method built by django
+# we check conditions in clean method.
+# in this method we check two fields at a time using clean as whole field
+
+from django.db import models
+from django.core.exceptions import ValidationError
+
+class MyModel(models.Model):
+    name = models.CharField(max_length=250)
+    value = models.IntegerField()
+    threshold = models.IntegerField(null=True, blank=True)
+   
+    def clean(self):
+        # check, if value is greater than 100 then threshold must be assigned
+        if self.value > 100
+           if not self.threshold
+               raise ValidationError("Threshold is required when value is greater than 100")
+
+--------------------------------------------------------------
+
+-----How Django knows to UPDATE Or INSERT?---------------------
+# Django uses same save() method for creating or updating objects.
+# PK = primary key of an object
+# if pk value is not set or None or empty string then updated is executed.
+# if obj's Pk value is inserted mannually and that doesnot exists in DB, then INSERT is executed.
+
+# example:
+obj1 = MyModel(name="Ram", value=50)
+obj1.id()
+obj1.save() # a new object is saved, let say PK=1
+
+obj1.name = "Ram Bahadur"
+obj1.save() # since obj1 Pk=1, so its a UPDATE
+
+# change the obj1 Pk i.e. ID to None
+obj1.id = None
+obj1.save() # since obj1 pk is None so its a INSERT
+            # so a new object is created
+
+
+------------------MOdel Manager---------------
+
+# A managaer is the interface through with database query operations are provided to Django Models
+
+# By default, Django adds a Manager with name objects
+
+# Django provides automatically model manager so we are able to use
+objects
+#eg: MyModel.objects.all()
+
+
+# BUT
+# if we want to use objects as field name or use name other than objects for the Manager, we can rename it on per-model basis.
+
+from django.db import models
+
+class Person(models.Model):
+    #...........
+    people = models.Manager()
+    # now we can access our manager with people but not with objects
+    # Person.people.all()l work butPerson.objects.all() will raise error.
+
+
+--------------QuerySet(A collection of objects)-----------------------
+# queryset is lazy until it needs to be called and put inside the databases
+# that means actually it will not get inside the databases 
+
+# filter() method
+# filter returns a new QuerySet containing objects that match the given lookup parameters
+# Multiple parameters are joined via AND
+
+# until it is called
+ Eg: Post.objects.filter(name='New Post', country="Nepal")
+
+# we filter the name and country having required value
+
+# exclude() method in queryset
+# returns a new QuerySet containing objects that donot match the given lookup parameters
+# multiple parameters are joined vis AND in underlying SQL statement
+
+Eg: Post.objects.exclude(country='Nepal')
+# Here if we want every post of excluding Nepal.
+
+#---order_by() method
+# by default, results are returned by QuerySet are ordered by the ordering tuple given by the ordering option in models Meta
+
+# we can pass the ordering options in models meta.
+# by default ordering is as it is depending on how we passed it
+# but we can change order on per-QuerySet basis by using order_by method.
+# we can override on per-QuerySet
+
+# Eg:
+class ContactNumber(models.Model):
+      name = models.CharField(max_length=250)
+      lat = models.CharField(max_length=250)
+      long= models.CharField(max_length=250)
+   
+   class Meta:
+          db_table = 'contact_numbers'
+          ordering = ['name'] # asc order, use - for desc ordering
+
+
+ Eg: Post.objects.filter(country="Nepal").order_by('-name')
+
+# up here we filtered the post from Nepal and ordered the posts by descending way with name
+
+# our queryset is chainable ie. i can also add other methods
+ Eg: Post.objects.filter(country="Nepal").order_by('-name').exclude(country="Iceland")
+
+#---all() method
+# the simplest way to retrieve objects from a table is to get all of them
+ Eg: Post.objects.all()
+
+# if we need all the posts from databases we use all() method.
+
+
+----------Methods that Doesn't Return QuerySet----------------
+1. get()
+2. create()
+3. first()
+4. last()
+5. delete()
+6. count()
+....these all methods only return a object but they don't return QuerySet.....
+
+7. count()
+  # returns interger representing num of objects in database.
+ E.g: Post.objects.filter(country='Nepal').count()
+ 
+ # it goes to databases and returns the number of any users or intergers having objects Nepal for eg: if my database has 10 person from Nepal then it returns interger 10 by using the count() method
+
+-------------------Field Lookups---------------------------
+# Field lookups are how you specify the meaning of an SQL WHERE clause
+
+# they are specified as keyword arguments to the QuerySet methods 
+filter(), exclude(), get()
+
+# By default django has made the field lookups for us.
+
+# field lookups the form:
+   -field_lookuptype=value (NOTE THE DOUBLE UNDERSCORE)
+
+# exact(default lookup)
+# an exact match
+# eg: Post.objects.filter(country__exact="Nepal")
+# would generated SQL:select....where name = 'Nepal';
+# -----------exact Nepal-----------------------
+
+Note: If you do not provide lookup type, the lookup type is assumed to be exact .
+
+#---iexact
+# a case insensitive match 
+# Eg: Post.objects.filter(country__iexact="nepal")
+# it doesnot care the capital or small letters on objects
+
+#--contains
+   # case sensitive containment test
+
+# icontains
+   # case insensitive version of contains
+
+# other many lookup types
+---in
+-gt(greater then)
+-gte(greater then equal)
+--lt (less then)
+--lte (less than equal)
+---startswith
+---isstartswith
+---isnull (Post.objects.filter(country__isnull=True))
+
+--------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+   
+
+
+
+
+
+
