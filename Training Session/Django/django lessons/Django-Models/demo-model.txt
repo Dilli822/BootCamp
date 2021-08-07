@@ -1,0 +1,94 @@
+
+------Django Admin,Model Validation, Query Set, Field Lookup Demo--------
+
+
+# in apps folder first we make models
+# --> models.Model that means Model is being inherited.
+# models.py 
+
+from django.db import models
+
+class UserBio(models.Model):
+      name = models.CharField(max_length=100)
+      email = models.EmailField()
+      age = models.IntegerField()
+      
+      bio = models.CharField(max_length=200)
+
+
+----------clearing our databases-----------
+# python3 manage.py makemigrations
+>>> (venv) dilli@acer-g41:/media/dilli/SSD 1/IW-BootCamp/Projects/django/>>>helloworld$ python3 manage.py makemigrations
+>>>Migrations for 'modelextra':
+  modelextra/migrations/0001_initial.py
+    - Create model UserBio
+
+#-----after the completion of migration we do migrate----------
+
+(venv) dilli@acer-g41:/media/dilli/SSD 1/IW-BootCamp/Projects/django/helloworld$ python3 manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, modelextra, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying modelextra.0001_initial... OK
+  Applying sessions.0001_initial... OK
+
+--------------------------------------------------------------------------
+
+-----------------registering models to admin.py------------------
+# Now we import the models in our admin.py which is our app folder.
+# admin.py in app folder
+from django.contrib import admin
+from modelextra.models import UserBio
+
+admin.site.register(UserBio)
+-----------------------------------------------------------------
+------------root urls.py------------------
+# By default we have if not then we can mannually code it.
+from django.contrib import admin
+urlpatterns = [
+  path('admin/', admine.site.urls),
+   ]
+
+--------now run the server------------
+>>>python3 manage.py runserver
+
+----hit link--http://127.0.0.1:8000/admin/-----
+# admin login UI will appear in the browser.
+# we donot know or have the user name and password to login
+
+-------Create up user to login django admin------------
+# for that we have cmd and db-table where we can find auth_user automatically
+# because django made it for us.
+
+
+--#Now to enter the django admin we need to create a user 
+# for that we have cmd 
+dilli@acer-g41:/media/dilli/SSD 1/IW-BootCamp/Projects/django/helloworld$ python3 manage.py createsuperuser
+Username (leave blank to use 'dilli'): 
+Email address: admin@gmail.com
+Password: 
+Password (again): 
+Superuser created successfully. 
+----------------------------------------------------
+http://127.0.0.1:8000/admin/
+# enter the username and password then the UI of django admin is displayed.
+
+
+
