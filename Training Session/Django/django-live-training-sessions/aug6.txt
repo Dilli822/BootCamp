@@ -1,0 +1,43 @@
+
+
+# Aug 6
+# Migration
+# HIstroy of migration.
+# Databases
+# .get, .create, .delete methods
+# tables ,rows in databases.
+# every one object is one row
+# errors in .get method.
+# .get method only takes unique query.
+# 
+# filter
+# doesnot break our code logics and 
+# returned empty list if there is no specific data in our databases.
+# for mulitple data having similar names or ages or datas
+# like for user hari and shyam have same age 
+# filter will show both objects data in the list.
+# where as get method will not show both but throw error.
+
+>>> Person.objects.filter(id=3).update(age=25)
+>>> updating the age for user if mistakenly entered false age.
+>>> 1 true and 0 false.
+# Filter returned the queryset.
+# .save(), .delete()
+# learn override and overloading.
+
+# delete case.
+>>> person.objects.get(id=2)
+>>p.delete()
+
+# def clean(self):
+# it allows to add additional query.
+
+
+# settings.py
+DATABASES = [
+
+# HERE DATABASES NAME EDITABLE
+  ]
+
+
+
