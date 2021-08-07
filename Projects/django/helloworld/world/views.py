@@ -30,11 +30,10 @@
 #
 # from django.http import HttpResponse
 # here we must add http response not found error handling
-from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 
+from django.http import HttpResponse
+from django.http import HttpResponseNotFound, JsonResponse
 from django.shortcuts import render
-
-
 from django.template import loader
 
 # importing loader

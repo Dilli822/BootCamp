@@ -49,6 +49,7 @@ urlpatterns = [
         # path('profile/peter/', profile),
         # path('profile/sam/', profile),
         # path('world/', home),
+        path('admin/', admin.site.urls),
         path('profile/<str:name>/', profile),
         # crating new url for profileJSON with parameter profile_json
         path('profile-json/<str:name>/', profile_json),
