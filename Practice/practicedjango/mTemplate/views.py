@@ -37,3 +37,11 @@ def services_template(request):
     }
     return render(request, "services.html", context)
 
+def home_template(request):
+    template = loader.get_template('home.html')
+    context = {}
+    home_template = template.render(context, request)
+    return HttpResponse(home_template)
+
+def int_converter(request):
+    return HttpResponse("hllo")
