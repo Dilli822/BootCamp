@@ -70,6 +70,7 @@ urlpatterns = [
  ---all request methods will land on the same view function---
  ---we write logics in view layers(for sepcific like in helloworld view layer)
  ---- for handling types of request--
+# urlconf always directly look for the pathname without getting distracted by any domain name,queries.
  
 
 

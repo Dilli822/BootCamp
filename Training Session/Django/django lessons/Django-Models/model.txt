@@ -1,0 +1,8 @@
+
+
+ # Startup
+ # create new app called modelextra 
+ # with cmd python3 manage.py startapp modelextra
+ # register app as usual at the project settings.py
+
+-----------------------------------------
