@@ -1,0 +1,205 @@
+
+ # Startup
+ # create new app called modelextra 
+ # with cmd python3 manage.py startapp modelextra
+ # register app as usual at the project settings.py
+
+-----------------------------------------
+
+--------------Models---------------
+1. Model
+       -->Mediator between website interface and database
+       --> implements logic for application's data domain
+
+        website inteface -----> Model <-------database
+
+        information to server 
+        ---information --->controller-----> Model(apply business logic)
+        ------>stores it to the database
+    
+----------------Admin---------------
+-----------Model Validation---------
+-----------Query Set----------------
+----------Field LookUp--------------
+
+----Django Admin------
+# automatic admin interface,powerful parts of Django
+# it provides CRUD for our models
+# admin is enabled by default startproject
+# By default, logging into the admin requires that the
+# user has the is_superuser or is_staff attributes set to True .
+
+
+# Registering models to Admin site
+# as django gives us CRUD For our models.
+# what we do is we go to any apps folder and find the admin.py
+# we need to let know the django that make CRUD for our model.
+----registering models to admin.py
+
+# admin.py 
+>>> from django.contrib import admin
+>>> from .models import ContactNumber
+>>> admin.site.register(ContactNumber)
+
+# we pass model in admin.site.register function.
+# at present we have ContactNumber named model.
+# this is the configuration of registering models to admin.py
+
+------------Creating a User-----------
+
+# django by default comes with a user authenication system which handles user accounts, groups, permissions and cookie-based user sessions
+# we need user to login in django-admin
+# creating a superuser
+ -----python manage.py createsuper----------
+
+# these types of feature makes our work faster and helps in rapid application development.
+
+# most powerful superuser
+-------now we can login in Djano admin----------
+
+# registered models is found in django administration.
+
+
+-------Model Field Validation-------------
+# application level validation
+# in our model we need to validate the fields
+# for that we can pass validator list in the fields
+# and we can create and write,pass functions
+# we can pass n number of functions in the fields
+
+
+
+# Here name should start with Nepal to make condition  applied.
+# If condition not meet we raise exceptionError for that we import the .core.exception and ValidateError from django
+# now we catch the error if error is found from try catch block.
+
+# eg:
+from django.db import models
+from django.core.exceptions import ValidationError
+
+def validate_name(name):
+    print('name', name)
+    if "Nepal" not in name:
+        raise ValidateError("name should start with Nepal.")
+
+class ContactNumber(models.Model):
+      name = models.Charfield(max_length=250, validators=[validate_name])
+      lat = models.Charfield(max_length=250)
+      long = models.Charfield(max_length=250)
+
+# sometimes we return the username doesnot match which is an application of model field validation.
+
+
+--------------full clean method---------------
+# Validators never runs automatically as it is application level validators
+# to make it run we apply full clean method to run the field validation and we can write validators and it also run other filed validations.
+
+# example
+# here we made an object num and put many data inside it 
+# with obj.save() we can save it in database.
+-----------but we have to validate the obj data first---------
+# but with try catch block we can catch error and with full clean method 
+# we validate the field
+# if we find error we can put logics and debug
+# then if not found error we save it.
+
+num = ContactNumber()
+num.name = 'Ram'
+num.lat = '27.00'
+num.long = '85.52'
+
+try:
+   num.full_clean)_
+except ValidateError as e:
+   # some erros
+   pass
+else:
+    num.save()
+
+
+
+------------Built in Validators---------------------
+# In the above we built small validators but there are numerous built-in-validators
+--Regex,Email,URL,MinValue,MaxValue
+
+
+# if we need minimum value requirement for that we can apply like this built-in validators or use own functions for that.
+# value has min value is 10 and user cannot put less than 10 value interger
+# if user doesnot put 10 value integer then exception error will raise
+# and we will know that there is Validationerrors and user
+# may be notified about the requirements of min10 value as validationerror
+
+# Eg:
+from django.db import models
+from django.core.validators import MinValidator
+
+class MyModel(models.Model):
+      name = models.CharField(max_length=250)
+      value = models.IntegerField(validators=[MinValueValidator(10)])
+
+
+
+--------------Validation model as a whole----------------------
+---Model.clean()
+# if we need to compare, or validate the whole model
+# for particular field we do validations in list.
+# but for whole model we have .clean() method built by django
+# we check conditions in clean method.
+# in this method we check two fields at a time using clean as whole field
+
+from django.db import models
+from django.core.exceptions import ValidationError
+
+class MyModel(models.Model):
+    name = models.CharField(max_length=250)
+    value = models.IntegerField()
+    threshold = models.IntegerField(null=True, blank=True)
+   
+    def clean(self):
+        # check, if value is greater than 100 then threshold must be assigned
+        if self.value > 100
+           if not self.threshold
+               raise ValidationError("Threshold is required when value is greater than 100")
+
+--------------------------------------------------------------
+
+-----How Django knows to UPDATE Or INSERT?---------------------
+# Django uses same save() method for creating or updating objects.
+# PK = primary key of an object
+# if pk value is not set or None or empty string then updated is executed.
+# if obj's Pk value is inserted mannually and that doesnot exists in DB, then INSERT is executed.
+
+# example:
+obj1 = MyModel(name="Ram", value=50)
+obj1.id()
+obj1.save() # a new object is saved, let say PK=1
+
+obj1.name = "Ram Bahadur"
+obj1.save() # since obj1 Pk=1, so its a UPDATE
+
+# change the obj1 Pk i.e. ID to None
+obj1.id = None
+obj1.save() # since obj1 pk is None so its a INSERT
+            # so a new object is created
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+   
+
+
+
+
+
+

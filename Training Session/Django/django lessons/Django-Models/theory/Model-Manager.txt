@@ -1,0 +1,134 @@
+
+------------------MOdel Manager---------------
+
+# A managaer is the interface through with database query operations are provided to Django Models
+
+# By default, Django adds a Manager with name objects
+
+# Django provides automatically model manager so we are able to use
+objects
+#eg: MyModel.objects.all()
+
+
+# BUT
+# if we want to use objects as field name or use name other than objects for the Manager, we can rename it on per-model basis.
+
+from django.db import models
+
+class Person(models.Model):
+    #...........
+    people = models.Manager()
+    # now we can access our manager with people but not with objects
+    # Person.people.all()l work butPerson.objects.all() will raise error.
+
+
+--------------QuerySet(A collection of objects)-----------------------
+# queryset is lazy until it needs to be called and put inside the databases
+# that means actually it will not get inside the databases 
+
+# filter() method
+# filter returns a new QuerySet containing objects that match the given lookup parameters
+# Multiple parameters are joined via AND
+
+# until it is called
+ Eg: Post.objects.filter(name='New Post', country="Nepal")
+
+# we filter the name and country having required value
+
+# exclude() method in queryset
+# returns a new QuerySet containing objects that donot match the given lookup parameters
+# multiple parameters are joined vis AND in underlying SQL statement
+
+Eg: Post.objects.exclude(country='Nepal')
+# Here if we want every post of excluding Nepal.
+
+#---order_by() method
+# by default, results are returned by QuerySet are ordered by the ordering tuple given by the ordering option in models Meta
+
+# we can pass the ordering options in models meta.
+# by default ordering is as it is depending on how we passed it
+# but we can change order on per-QuerySet basis by using order_by method.
+# we can override on per-QuerySet
+
+# Eg:
+class ContactNumber(models.Model):
+      name = models.CharField(max_length=250)
+      lat = models.CharField(max_length=250)
+      long= models.CharField(max_length=250)
+   
+   class Meta:
+          db_table = 'contact_numbers'
+          ordering = ['name'] # asc order, use - for desc ordering
+
+
+ Eg: Post.objects.filter(country="Nepal").order_by('-name')
+
+# up here we filtered the post from Nepal and ordered the posts by descending way with name
+
+# our queryset is chainable ie. i can also add other methods
+ Eg: Post.objects.filter(country="Nepal").order_by('-name').exclude(country="Iceland")
+
+#---all() method
+# the simplest way to retrieve objects from a table is to get all of them
+ Eg: Post.objects.all()
+
+# if we need all the posts from databases we use all() method.
+
+
+----------Methods that Doesn't Return QuerySet----------------
+1. get()
+2. create()
+3. first()
+4. last()
+5. delete()
+6. count()
+....these all methods only return a object but they don't return QuerySet.....
+
+7. count()
+  # returns interger representing num of objects in database.
+ E.g: Post.objects.filter(country='Nepal').count()
+ 
+ # it goes to databases and returns the number of any users or intergers having objects Nepal for eg: if my database has 10 person from Nepal then it returns interger 10 by using the count() method
+
+-------------------Field Lookups---------------------------
+# Field lookups are how you specify the meaning of an SQL WHERE clause
+
+# they are specified as keyword arguments to the QuerySet methods 
+filter(), exclude(), get()
+
+# By default django has made the field lookups for us.
+
+# field lookups the form:
+   -field_lookuptype=value (NOTE THE DOUBLE UNDERSCORE)
+
+# exact(default lookup)
+# an exact match
+# eg: Post.objects.filter(country__exact="Nepal")
+# would generated SQL:select....where name = 'Nepal';
+# -----------exact Nepal-----------------------
+
+Note: If you do not provide lookup type, the lookup type is assumed to be exact .
+
+#---iexact
+# a case insensitive match 
+# Eg: Post.objects.filter(country__iexact="nepal")
+# it doesnot care the capital or small letters on objects
+
+#--contains
+   # case sensitive containment test
+
+# icontains
+   # case insensitive version of contains
+
+# other many lookup types
+---in
+-gt(greater then)
+-gte(greater then equal)
+--lt (less then)
+--lte (less than equal)
+---startswith
+---isstartswith
+---isnull (Post.objects.filter(country__isnull=True))
+
+--------------------------------------------------------------------
+
