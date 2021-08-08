@@ -1,0 +1,220 @@
+
+------Django Admin,Model Validation, Query Set, Field Lookup Demo--------
+
+
+# in apps folder first we make models
+# --> models.Model that means Model is being inherited.
+# models.py 
+
+from django.db import models
+
+class UserBio(models.Model):
+      name = models.CharField(max_length=100)
+      email = models.EmailField()
+      age = models.IntegerField()
+      
+      bio = models.CharField(max_length=200)
+
+
+----------clearing our databases-----------
+# python3 manage.py makemigrations
+>>> (venv) dilli@acer-g41:/media/dilli/SSD 1/IW-BootCamp/Projects/django/>>>helloworld$ python3 manage.py makemigrations
+>>>Migrations for 'modelextra':
+  modelextra/migrations/0001_initial.py
+    - Create model UserBio
+
+#-----after the completion of migration we do migrate----------
+
+(venv) dilli@acer-g41:/media/dilli/SSD 1/IW-BootCamp/Projects/django/helloworld$ python3 manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, modelextra, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying modelextra.0001_initial... OK
+  Applying sessions.0001_initial... OK
+
+--------------------------------------------------------------------------
+
+-----------------registering models to admin.py------------------
+# Now we import the models in our admin.py which is our app folder.
+# admin.py in app folder
+from django.contrib import admin
+from modelextra.models import UserBio
+
+admin.site.register(UserBio)
+-----------------------------------------------------------------
+------------root urls.py------------------
+# By default we have if not then we can mannually code it.
+from django.contrib import admin
+urlpatterns = [
+  path('admin/', admine.site.urls),
+   ]
+
+--------now run the server------------
+>>>python3 manage.py runserver
+
+----hit link--http://127.0.0.1:8000/admin/-----
+# admin login UI will appear in the browser.
+# we donot know or have the user name and password to login
+
+-------Create up user to login django admin------------
+# for that we have cmd and db-table where we can find auth_user automatically
+# because django made it for us.
+
+
+--#Now to enter the django admin we need to create a user 
+# for that we have cmd 
+dilli@acer-g41:/media/dilli/SSD 1/IW-BootCamp/Projects/django/helloworld$ python3 manage.py createsuperuser
+Username (leave blank to use 'dilli'): 
+Email address: admin@gmail.com
+Password: 
+Password (again): 
+Superuser created successfully. 
+----------------------------------------------------
+http://127.0.0.1:8000/admin/
+# enter the username and password then the UI of django admin is displayed.
+--------add a user in userbios and we must make blank true 
+----- bio = models.CharField(max_length=200, blank=True)
+---- to let the field blank if not done django will not allow to leave it blank
+
+-----Userobject(1)--------
+# customizing it with readabel format
+# overriding the .__str__ method
+def __str__(self):
+     return self.name
+
+# ---Now lets create manually users in our UserBio database.
+# we added more 4 persons with age and gmail id.
+# go to database extramodel and click on showtable
+# SQLite table will be like this.
+id	name	email	                age	bio
+1	Ram	eraeren715@gmail.com	19	
+2	Peter	peter@gmail.com	        18	
+3	hari	hari@gmail.com	        20	
+4	sita	sitar@gmail.com	        22	
+5	albert	albert@gmail.com	15	
+
+----NOw lets add model validation in the fields-----
+# Conditions and cases
+# creating a custom validators.
+
+# here first we import try exception functions for raising exceptions error
+
+# then we create our custom validators by creating function first
+
+# then we put the age as argument which is coming from class UserBio's age
+
+# then if condition is not meet then we raise an exception validationerror
+
+# then we put the validators inside the age filed with passing iterables ie.list inside it.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+from django.db import models
+from django.core.exceptions import ValidationError
+
+def validate_my_age(age):
+     if age < 20:
+          raise ValidationError("Your age should be more than or equals to 20.")
+
+
+class UserBio(models.Model):
+      name = models.CharField(max_length=100)
+      email = models.EmailField()
+      age = models.IntegerField(validators=[validate_my_age])
+      
+      bio = models.CharField(max_length=200, blank=True)
+
+---After that we migrate the models to databases although django itself make ready the models migrations 
+----- but django doesnot push the migrations that it made ready for us.
+---- so we push it to database with cmd python3 manage.py makemigrations
+-----------------python3 manage.py migrate------------
+
+>>> now open shell 
+>>> python3 manage.py shell
+>>>> from modelextra.models import UserBio
+# now lets create an object
+>>> obj = UserBio()
+>>> obj.name = "John"
+>>> obj.email = "john@gmail.com"
+>>> obj.age = 2
+>>> obj.save()
+# here no error will raise bcoz we are directly hitting ORM and saving an object to the database. with obj.save() from shell.
+# so the my_age_validators will not run on this case.
+
+--------------------------------------------------------------
+In [7]: obj.full_clean()
+---------------------------------------------------------------------------
+ValidationError                           Traceback (most recent call last)
+<ipython-input-7-50c190f51633> in <module>
+----> 1 obj.full_clean()
+
+~/.local/lib/python3.6/site-packages/django/db/models/base.py in full_clean(self, exclude, validate_unique)
+   1236 
+   1237         if errors:
+-> 1238             raise ValidationError(errors)
+   1239 
+   1240     def clean_fields(self, exclude=None):
+
+ValidationError: {'age': ['Your age should be 20 or equals to 20!']}
+-----------------and we get ValidationError----------------
+# when we try to fo the .full_clean() method
+# we check the error if error doesnot error in this condition or other cases then we can obj.save() save the obj in the databases.
+
+-------------------------------Whole Model Validaiton--------------------
+# When we need to validate only some lines then we can use just like above small validators my_age_validators but for whole model 
+. # for conditions if age is more than 40 then bio is compulsory.
+# for these type of conditions django has provided clean() method :
+ >>> def clean(self):
+         if self.age > 40: 
+               if not self.bio:  # (this means bio also added )
+                     raise ValidationError("Bio is required because your age is more than 40 or equals to 40.")
+
+>>>>>lets add another data in UserBio database.
+    
+Add user bio
+Please correct the error below.
+Name: erick
+Email:erick@gmail.com
+>>> error raised itself in form Your age should be 20 or equals to 20!
+Age: 2
+---------------------------------------------------
+# As we have already passed the conditions for age less than 20
+# so django automatically made the form validate using models validator.
+------------------------------------------------
+Please correct the error below.
+Bio is required when your age is more than or equals to 40
+Name:erick
+Email:erick@gmail.com
+Age:42
+Bio:
+# here django automatically detect the validationerror and found conditions is not meet as clean method is used above.
+# only error came in bio field other name,email field hasnot came.
+---------------------------------------------------------------
+
+# from this what we knew is ----
+ .clean() method                     .full_clean() method
+# when we use shell                  # django automatically always call it
+                                      # for whole model validation   
+# we use/call full_clean to 
+# make sure obj will be 
+# save in database without error.
+
+-----check the def full_clean()----method----------------
+
+
+

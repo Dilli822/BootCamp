@@ -1,0 +1,196 @@
+-------------MOre on Shell-------------------------
+# at the above what we have is add, update and save the data on UserBio table 
+# By using shell.
+# we just used .all() method for calling all the table data
+>>> python3 manage.py shell
+>>> from UserBio.models import UserBio
+>>> 
+>>> UserBio.objects.all()
+>>>Out[9]: <QuerySet [<UserBio: Ram>, <UserBio: Helen>, <UserBio: hari>, <UserBio: sita>, <UserBio: Jack>, <UserBio: erick>]>
+
+------storing obj in qs variable and printing its type
+>>>In [10]: qs = UserBio.objects.all()
+>>> In [11]: type(qs)
+>>> Out[11]: django.db.models.query.QuerySet
+
+>>> qs = UserBio.Objects.filter(name="Rams")
+>>> qs
+>>> <QuerySet []>
+----returned empty list because no such named Rams is available in our table database.
+
+>>> qs = UserBio.objects.filter(name="Ram")
+>>> qs
+>>> <QuerySet [<UserBio: Ram>]>
+-----returned Ram within a single list data type as Ram is in our database.
+
+# example of chaining the queryset adding methods to methods.
+---first we add anothe user data in table like we have Ram we add another rams
+
+>>> qs = UserBio.objects.all()
+
+>>>  qs
+>>>  <QuerySet [<UserBio: Ram>, <UserBio: Helen>, <UserBio: hari>, <UserBio: sita>, <UserBio: Jack>, <UserBio: erick>, <UserBio: rams>]>
+
+# printing in list data type
+
+>>> list(qs)
+>>>
+[<UserBio: Ram>,
+ <UserBio: Helen>,
+ <UserBio: hari>,
+ <UserBio: sita>,
+ <UserBio: Jack>,
+ <UserBio: erick>,
+ <UserBio: rams>]
+
+# now what I can do is put for loop in the objects?
+
+>>> for obj in qs: print(obj.name)
+Ram
+Helen
+hari
+sita
+Jack
+erick
+rams
+
+-------------using exclude() method---------------------
+>>> qs = UserBio.objects.exclude(name="Ram")
+>>> qs
+>>> <QuerySet [<UserBio: Helen>, <UserBio: hari>, <UserBio: sita>, <UserBio: Jack>, <UserBio: erick>, <UserBio: rams>]>
+---note: rams is still there but Ram is not so we can say exact lookups is happening at background------------
+
+----order_by()method--------
+# maintining order and alphabetical with chaining method if required.
+# qs = UserBio.objects.exclude(name='Rams'.order_by('-name')
+In [14]: qs = UserBio.objects.exclude(name='Rams').order_by('-name')
+
+In [15]: qs
+Out[15]: <QuerySet [<UserBio: sita>, <UserBio: rams>, <UserBio: hari>, <UserBio: erick>, <UserBio: Ram>, <UserBio: Jack>, <UserBio: Helen>]>
+# this will give just in reverse order or reverse alphabetical
+----now if we want to make it in ascending order---------
+----------------------
+In [16]: qs = UserBio.objects.exclude(name='Rams').order_by('name')
+
+In [17]: qs
+Out[17]: <QuerySet [<UserBio: Helen>, <UserBio: Jack>, <UserBio: Ram>, <UserBio: erick>, <UserBio: hari>, <UserBio: rams>, <UserBio: sita>]>
+
+>>>>Now it is randomness if we want random in result>>>>>>>
+In [19]: qs = UserBio.objects.order_by('?')
+
+In [20]: qs
+Out[20]: <QuerySet [<UserBio: sita>, <UserBio: hari>, <UserBio: Helen>, <UserBio: Ram>, <UserBio: rams>, <UserBio: erick>, <UserBio: Jack>]>
+
+-----But what about ordering done by Django?-------------
+---does django does ordering by itself?---------
+----for that to happen we create a meta class-------
+-------and django will know and order the data as mentioned---
+-------- given in meta class block code----------
+
+
+->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+qs.query
+Out[23]: <django.db.models.sql.query.Query at 0x7f0380324390>
+
+qs.query.__str__()
+Out[25]: 'SELECT "modelextra_userbio"."id", "modelextra_userbio"."name", "modelextra_userbio"."email", "modelextra_userbio"."age", "modelextra_userbio"."bio" FROM "modelextra_userbio"'
+# SQL  query will be sub select in string.
+
+-----------------------------------------------------------------
+ qs = UserBio.objects.filter(name="rams").query.__str__()
+ qs
+Out[27]: 'SELECT "modelextra_userbio"."id", "modelextra_userbio"."name", "modelextra_userbio"."email", "modelextra_userbio"."age", "modelextra_userbio"."bio" FROM "modelextra_userbio" WHERE "modelextra_userbio"."name" = rams'
+>>>>>This type of query will generate>>>>>>>>>>
+
+-----------------------------------------------------------------------------
+In [28]: qs = UserBio.objects.filter(name='rams',age=10).query.__str__()
+
+In [29]: qs
+Out[29]: 'SELECT "modelextra_userbio"."id", "modelextra_userbio"."name", "modelextra_userbio"."email", "modelextra_userbio"."age", "modelextra_userbio"."bio" FROM "modelextra_userbio" WHERE ("modelextra_userbio"."age" = 10 AND "modelextra_userbio"."name" = rams)'
+
+# Here our multiple arguments is separated by AND as we gave arguments (name, age)
+--------------------------------------------------------------------------------
+
+
+-----------Methods Doesnot Return QuerySet---------------------------
+1..get()
+ qs = UserBio.objects.get(id=1)
+
+In [31]: qs
+Out[31]: <UserBio: Ram>
+
+In [32]: type(qs)
+Out[32]: modelextra.models.UserBio
+In [33]: qs.name
+Out[33]: 'Ram'
+
+In [34]: qs.age
+Out[34]: 15
+
+In [35]: qs.id
+
+-----query doesnot exist not existing id---
+In [36]: qs = UserBio.objects.get(id=80020)
+---------------------------------------------------------------------------
+DoesNotExist                              Traceback (most recent call last)
+<ipython-input-36-14396e15c84a> in <module>
+----> 1 qs = UserBio.objects.get(id=80020)
+
+~/.local/lib/python3.6/site-packages/django/db/models/manager.py in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+~/.local/lib/python3.6/site-packages/django/db/models/query.py in get(self, *args, **kwargs)
+    435             raise self.model.DoesNotExist(
+    436                 "%s matching query does not exist." %
+--> 437                 self.model._meta.object_name
+    438             )
+    439         raise self.model.MultipleObjectsReturned(
+
+DoesNotExist: UserBio matching query does not exist.
+-----------------------------------------------------------------
+In [37]: qs = UserBio.objects.filter(id=50000)
+
+In [38]: qs
+Out[38]: <QuerySet []>
+------------------------------------------------------------------
+In [39]: qs = UserBio.objects.all()
+
+In [40]: qs
+Out[40]: <QuerySet [<UserBio: Ram>, <UserBio: Helen>, <UserBio: hari>, <UserBio: sita>, <UserBio: Jack>, <UserBio: erick>, <UserBio: rams>]>
+
+In [41]: qs.first()
+Out[41]: <UserBio: Ram>
+# returns not a query set but an objects.---------
+# or we can got qs.first().name
+# or we can get last name with qs.last().name or just qs.last()
+# ----then we get rams-----
+
+# we have qs.count() returns the number of rows in table database.
+
+# qs.delete() delete the objects of rows in the table database.
+
+--------objects having same name with different case sensitive------
+# for eg: two rams and Ram are in our table database.
+
+# by default it will be .exact() method ie. it will return Ram
+
+In [45]: qs = UserBio.objects.filter(name__exact='Ram')
+
+In [46]: qs
+Out[46]: <QuerySet [<UserBio: Ram>]>
+
+----what if we need with case-sensitive --?---
+# for that we have .__iexact() method
+
+In [48]: qs = UserBio.objects.filter(name__iexact="rams")
+
+In [49]: qs
+Out[49]: <QuerySet [<UserBio: rams>]>
+# in this way we can filter insensitive case and senstive case.
+
+
+

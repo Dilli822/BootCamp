@@ -1,0 +1,58 @@
+----------------------------Concept of lookups--------------
+# Suppose i need such users from database whose age are more than 25
+# for that we we bring all the objects at one place.
+# then we put loop in python and filter it.
+
+In [52]: qs = UserBio.objects.all()
+
+In [53]: qs
+Out[53]: <QuerySet [<UserBio: Ram>, <UserBio: Helen>, <UserBio: hari>, <UserBio: sita>, <UserBio: Jack>, <UserBio: erick>, <UserBio: rams>]>
+
+In [54]: for i in qs:
+    ...:     if i.age > 25: print(i.name)
+    ...: 
+erick
+
+# Here all() method will return all the rows value and we only put loop in python
+# and which is good logic but not good way to get a user which is more than 25 years old.
+# BUT THAT IS NOT A CORRECT WAY 
+# what we want is --that we want not from python but from  database itself filter the user whose age is more than 25 so what we do is we use lookups for that.
+
+---------------------------------------------------------
+>> qs = UserBio.objects.filter(Age__gt=25)
+>>> qs
+>>> QuerySet [<UserBio: hari>]>
+# __gt(), __lt()
+n [59]: qs = UserBio.objects.filter(age__gt=25)
+
+In [60]: qs
+Out[60]: <QuerySet [<UserBio: erick>]>
+
+In [61]: qs = UserBio.objects.filter(age__lt=25)
+
+In [62]: qs
+Out[62]: <QuerySet [<UserBio: Ram>, <UserBio: Helen>, <UserBio: sita>, <UserBio: Jack>, <UserBio: rams>]>
+--------------------------------------------------------------------
+
+# Supose we want to filter the person between 20 and 40 age?-----
+# for that we may think this will work
+>>> qs = UserBio.objects.filter(age=20,age=40)
+xxxxxxxxxxxxxxxxxTHIS IS WRONG BCOZ THIS WILL BE AND OPERATIONSXXXXXXXXXXXXXX
+
+# so to filter the person having age between 20 and 40
+# we use --in() method
+>>> qs = UserBio.objects.filter(age__in[20,40])
+>>> qs
+>>> <QuerySet [<UserBio: sita>]>
+---------------------------------------------------------------------------
+
+----In this way there are startswith and many lookups------------
+
+-----What if we donot use lookups method?----------------
+------ by default it will __exact() lookups method----------
+
+
+
+
+
+
