@@ -89,6 +89,68 @@ Superuser created successfully.
 ----------------------------------------------------
 http://127.0.0.1:8000/admin/
 # enter the username and password then the UI of django admin is displayed.
+--------add a user in userbios and we must make blank true 
+----- bio = models.CharField(max_length=200, blank=True)
+---- to let the field blank if not done django will not allow to leave it blank
+
+-----Userobject(1)--------
+# customizing it with readabel format
+# overriding the .__str__ method
+def __str__(self):
+     return self.name
+
+# ---Now lets create manually users in our UserBio database.
+# we added more 4 persons with age and gmail id.
+# go to database extramodel and click on showtable
+# SQLite table will be like this.
+id	name	email	                age	bio
+1	Ram	eraeren715@gmail.com	19	
+2	Peter	peter@gmail.com	        18	
+3	hari	hari@gmail.com	        20	
+4	sita	sitar@gmail.com	        22	
+5	albert	albert@gmail.com	15	
+
+----NOw lets add model validation in the fields-----
+# Conditions and cases
+# creating a custom validators.
+
+# here first we import try exception functions for raising exceptions error
+
+# then we create our custom validators by creating function first
+
+# then we put the age as argument which is coming from class UserBio's age
+
+# then if condition is not meet then we raise an exception validationerror
+
+# then we put the validators inside the age filed with passing iterables ie.list inside it.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+from django.db import models
+from django.case import exceptions
+
+def validate_my_age(age):
+     if age < 20:
+          raise ValidationError("Your age should be more than or equals to 20.")
+
+
+class UserBio(models.Model):
+      name = models.CharField(max_length=100)
+      email = models.EmailField()
+      age = models.IntegerField(validators=[validate_my_age])
+      
+      bio = models.CharField(max_length=200, blank=True)
+
+---After that we migrate the models to databases although django itself make ready the models migrations 
+----- but django doesnot push the migrations that it made ready for us.
+---- so we push it to database with cmd python3 manage.py makemigrations
+-----------------python3 manage.py migrate------------
+
+>>> now open shell 
+>>> python3 manage.py shell
+>>>> from modelextra.models import UserBio
+>>> obj = UserBio()
+>>> obj.name = "John"
+>>> obj.email = "john@gmail.com"
+>>> obj.age = 22
 
 
 
