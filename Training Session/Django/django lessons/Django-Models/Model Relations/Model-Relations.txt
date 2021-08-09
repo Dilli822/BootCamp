@@ -1,0 +1,228 @@
+
+
+--------------------Django Model Relations-------------------
+
+# Django Model Creation
+
+-Types of relationships in RD Design
+1. one-to-one
+2. one-to-many(or many-to-one)
+3. many-to-many
+
+----One to One Relation----------
+
+# A row in table A can have only one matching row in table B.
+# All data stored on table B could have been stored in table A.
+# We could have done that in single table but there will be case where we have to continously pass the user information and that will be in main table A which will be easy to access
+# then low accessing table may be kept separately and made one to one relations.
+
+
+------One-to-many-------------
+# Most common, a row in table A can have many matching row in table B, but a row in table B can have only one matching row in table A.
+-----A row in table A have many matching in row in table B.
+----but a row in table B has only one or unique matching in table A.
+
+
+------Many-to-Many--------------
+# Row in table A can have many matching rows in table B and vice versa.
+# A one-to-many relationship linked by an intermediate table
+
+User -----> user_address------->address.
+
+# users may have multiple address and multiple address may have many users.
+# for eg: 
+  A ---> Itahari and Dharan are multiple address for A users which are permanent and temporary.
+ Similarly Itahari and Dharan address may be matching address for User B.
+------------------------------------------------------
+
+----On the basis of requirement we design the model relations in the django model--------------
+
+
+-----------------------Django Relationship Field-------------------------
+# Models.ForeignKey
+# Models.OneToOneField
+# Models.ManyToManyField
+
+
+
+----------------OneToOneField-----------------------
+
+from django.db import models
+
+class UserDetail(models.Model):
+      first_name = models.CharField(max_length=250)
+      last_name = models.CharField(max_length=250)
+      address = models.CharField(max_length=250)
+
+class User(models.Model):
+      email = models.EmailField()
+      password = models.CharField(max_length=250)
+      user_detail = model.OneToOneField(UserDetail, on_delete=models.CASCADE)
+
+
+# Here user_detail has relation with class User as models.OneToOneField relation
+# when we delete the user_detail the user model will also get delete.
+
+
+---------------Arguments: on_delete-------------------------------
+
+# When an object refrenced by ForeignKey is deleted, Django will emulate the behaviour of SQL constraint specified by the on_delete argument.
+
+# Possible values:
+ 1. models.CASCADE
+ 2. models.PROTECT
+ 3. models.SET_NULL and .......
+
+----referenced value will be protected and make null with models.PROTECT and 
+models.SET_NULL.
+
+--Example of using models.SET_NULL 
+--> we have a nullable field, and we want to set it to null when the referenced object is deleted.
+  
+   user = models.ForeignKey(
+       User,
+       models.SET_NULL,
+       blank=True,
+       null=True,
+    )
+
+----------------------------Foreign Key---------------------------
+
+from django.db import models
+
+class Address(models.Model):
+    name = models.CharField(max_length=250)
+    lat = models.CharField(max_length=250)
+    long = models.CharField(max_length=250)
+
+class User(models.Model):
+     email = models.EmailField()
+     password = models.CharField(max_length=200)
+     address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True)
+
+
+# we made a table named Address and User named models.
+# now we have relation between them Address and User.
+# then we passed address foreignkey.
+
+
+-----------------------ManyToManyField---------------------------------
+
+from django.db import models
+
+class Address(models.Model):
+    name = models.CharField(max_length=250)
+    lat = models.CharField(max_length=250)
+    long = models.CharField(max_length=250)
+
+class User(models.Model):
+     email = models.EmailField()
+     password = models.CharField(max_length=200)
+     address = models.ManyToManyField(Address)
+
+# We have many to many field with address in User Models.
+
+--Table A------Table intermediate ------Table B
+# we need this type of structure table for ManyToManyField 
+# but no need to worry django will make intermediate table for us.
+
+
+
+----------Arguments: related_name------------------------
+# specifies the name of the reverse relation
+# defaults to [in lower case]:
+  - [name of class]_set for ForeignKey
+  - [name_of_class] for OneToOneField
+
+
+
+class B(models.Model):
+      name = models.CharField(max_length=250)
+
+class C(models.Model):
+      name = models.CharField(max_length=250)
+
+class A(models.Model):
+      bb = models.ForeignKey(B, on_delete=models.SET_NULL, null=True)
+      cc = models.OneToOneField(C, on_delete=models.SET_NULL, null=True)
+
+
+# Here C models is onetoonefield with class A models.
+# we can easily go from class A to class B and C models.
+
+# but how can we go from class B to class A for that we need reverse way or related_name.
+
+---------------------Models-Meta-----------------------
+
+# db_table
+# ordering
+# abstract
+---many more...............
+
+----with class models meta we can make overriding and ordering,
+
+# by default django will make table in SQL myapp_modelname
+# to override that we do new name as db_table.
+# we can also do ordering
+ # Eg:
+  
+
+# here we have name lat long fields
+# we made meta class and passed options like db_table and ordering.
+# now db_table assigend name table will be used instead of default myapp.
+
+
+  class ContactNumber(models.Model):
+          name = models.CharField(max_length=250)
+          lat = models.CharField(max_length=250)
+          long = models.CharField(max_length=250)
+         
+          class Meta:
+                 db_table = 'Contact_numbers'
+                 ordering = ['name'] # asc order by default , use -name for descending order and for randomness '?name'
+
+
+-------------Abstract Model-(abstract=True)---------------------
+
+--when to use?
+# Useful when we want to put some common information into several other models.
+
+
+# this model will not create any db table, instead when it is used as a base class for other models, its field will be added to those of the child class(simple python inheritance)
+
+# but if we inherit it in other models then all the fields will be copied and it acts as parent base models.
+ 
+
+# for eg:
+
+# here we created a CommonInfo class model and made its meta class where abstract = True
+# as abstract is true no db table will be made if we did abstract = False db table will be definetly made
+
+# Now we inherit CommonInfo class to class Student then it inherited all the name age field
+# then we do migrations and django will make a db table having fields of name age of class Student table and id by default.
+
+ 
+from django.db import models
+
+class CommonInfo(models.Model):
+    name = models.CharField)max_length=100)
+    age = models.PositiveIntegerField()
+    
+    class Meta:
+         abstract = True
+
+ class Student(CommonInfo):
+     home_group = models.CharField(max_length=5)
+
+-------When to use abstract class?--------
+---for making base for not class but for models----like inherting common fields from base to child----------
+
+-------------------------------------------------------------------------
+
+
+
+
+
+
+
+
