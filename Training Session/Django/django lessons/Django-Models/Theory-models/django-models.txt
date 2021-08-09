@@ -94,7 +94,7 @@ Notes:
 
 
 ------By default SQLite comes with django-------------
-
+-----SQlite DB connection---------
 # Settings,py
 # Here django is using default sqlite3 as db.backends ENGINE 
 # name is where our database gets stored or its path.
@@ -122,7 +122,74 @@ DATABASES = {
 
 --- showmigrations which lists a project's migrations and their status.
 
+# any changes to our models are transferred and took to db by migrations and migrate will push it to db.
+# it works same as git history.
+# showmigrations shows all the project's history migration and status of how many migrated and how many not!
 
+------------------------------ModelFields----------------------
+1. models.CharField
+2. models.BooleanField
+3. models.DateField
+4. models.DateTimeField
+5. models.EmailField
+6. models.FileField
+7. models.ImageField
+8. models.IntegerField and many more.............
+-models.DateField will generate date input field.
+-----------------------------------------------------------------
+
+--------------A simple model------------------------
+from django.db import models
+
+class Musicians(models.Model):
+      first_name = models.CharField(max_length=50)
+      last_name = models.CharField(max_length=50)
+      instrument = models.CharField(max_length=100)
+
+-----------------------------------------------------
+----transfering models to database---
+[will create migrations file]
+# python manage.py makemigrations -  
+
+
+[will apply migrations changes to the database]
+# python manage.py migrate  
+
+--------------------------------------------------------
+
+--------------FieldOptions----------------------------
+1. null (default=False)
+2. blank (default=False)
+3. db_column 
+4. default (can be a value or a callable object)
+5. unique
+6. validators
+7. help_text(extra help text to be displayed with form widget)
+   and many more........................
+
+---blank only for form validation -----------------
+----if we insert fieldoptions (db_f) then in the db it will be f column name---
+---- unique field value should be unique-----
+----- form widget along with help_text---------
+
+-eg:
+def my_default_value():
+   return "Nepal"
+
+county = models.CharField(default=my_default_value,.........)
+
+# we can also add other options on it(default=my_default_value,blank=True) like this.........
+----------------------------------------------------------------
+
+-------------models created------------✅
+-------------validated models----------✅
+-------made migrations and migrate to db-----------✅
+--------But How do we handle data,fetch the data and manage it?---
+--------so for that we have ORM----------------
+
+
+
+--------------ORM(Object Relational Mapper)----------------------
 
 
  
