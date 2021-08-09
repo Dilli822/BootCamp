@@ -1,0 +1,22 @@
+
+
+------------------------Demo-Model-Relations------------------------
+
+# creating app named modelrelation.
+# register the app 
+
+# models.py
+from django.db import models
+
+class User(models.Model):
+    name =models.CharField(max_length=100)
+
+class UserDetail(models.Model):
+    age = models.IntegerField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+# make migrations and make to db.
+# check in the db there must a folder called extramodels_userinfo.
+
+---data polluting by hitting ORM inside the shell-----
+
