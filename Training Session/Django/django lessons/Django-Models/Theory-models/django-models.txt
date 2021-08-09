@@ -1,0 +1,131 @@
+
+ -------------------------Django Models------------------
+
+# It is a single, definitive source of information about our data.
+# It contains the essential fields and behaviours of the data we are storing.
+# we have to create class based models in django.
+
+# every models class should be subclass of django.db.models.Model
+# and our each attributes of the model represents a database field
+# django gives us an automatically generated database access API that lets us create, retrieve , update and delete objects.
+
+# we use SQLite database in the django for connecting our models and storing datas.
+# django allows /gives us power(ORM) to do such mentioned above things which we called ORM.
+
+
+----------------------------------------------------------------------
+# This example model defines a Person, which has a first_name and last_name
+# Each field is specified as class attributes, and each attributes maps to a database column.
+
+# we must include models.Model as param in class in models.py
+# which inherit models from django.db
+
+# Here first_name and last_name are special attributes
+# bcoz we are assigning models from CharField and creating obj charfield through models.
+
+-----we also use models.integer() for int.----------
+
+# Eg:
+# models.py
+from django.db import models
+
+class Person(models.Model):
+      first_name = models.CharField(max_length=30)
+      last_name = models.CharField(max_length=30)
+
+
+-----------options we can use in field-------------
+---------read the documentation--------------------
+
+-------Generation of SQL from Person models--------
+-------which would create database table like this-----
+# we made Person models which would generate sql database like this
+
+>>> CREATE TABLE myapp_person(
+        "id" serial NOT NULL PRIMARY KEY,
+        "first_name" varchar(30) NOT NULL,
+        "last_name" varchar(30) NOT NULL
+    );
+---here by default django use (appname_model)----
+--for this case myapp_person (myapp is our app name and Person is our model name)
+
+# NOT NULL means not accepting the empty value
+# if we want null value to be accepted we can make NULL = True
+# "first_name" varchar(30) NOT NULL means our first_name attributes accepts variable characters of 30 length.
+
+
+-------Special code statement is generated in our table------
+
+>> "id" serial NOT NULL PRIMARY KEY,
+# we have not passed any such attributes like id 
+# so where did come from?
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# By default django generates automatically id for each and every models
+# which will  be a primary key.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Notes:
+1. The id field is added automatically by default, but can be customized or this behaviour can be overridden.
+----this means we can change id to id_id or use any another field as primary key
+
+2. The table name is automatically derived from model metadata which can be overridden.
+-----for overrriding it we can modify the meta class in the model.
+
+
+---------------------DataBases------------------------------
+
+# Where are databases?
+--> we created models and SQL but where is our database.
+
+# Django officially supports
+ 1. PostgreSQL
+         -version 9.5 and higher and psycopg2 2.5.4 or higher
+ 2. MariaDB
+          -added in django 3.0, supports 10.1
+ 3. MySQL
+      - django supports MySQL 5.6 and higher and requires mysqlclient 1.3.13
+ 4. Oracle
+       - Supports Oracle Database Server versions 12.2 and higher 
+        - version 6.0 or higher of the cd oracle python driver is required
+ 5. SQlite
+       - Django Supports SQLite 3.8.3 and later.
+       - for small application development as it is file system db.
+
+
+------By default SQLite comes with django-------------
+
+# Settings,py
+# Here django is using default sqlite3 as db.backends ENGINE 
+# name is where our database gets stored or its path.
+
+DATABASES = {
+     'default': {
+           'ENGINE': 'django'db.backends.sqlite3',
+           'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+         }
+       }
+ # in case we want to use PostgreSQL we have to modfiy settings according to PostgreSQL database requirement.
+
+---------------------------------------------------------------
+
+---------------------------Migrations--------------------------
+
+# Migrations are Django's way of propagating changes we make to our models into our database schema
+
+# Available Commands
+--- migrate, which is responsible for applying and unapplying migrations
+
+--- makemigrations which is responsible for creating new migrations base on the changes we have made to our models.
+
+--- sqlmigrate which displays the SQL statement for a migration.
+
+--- showmigrations which lists a project's migrations and their status.
+
+
+
+
+ 
+
+
+
