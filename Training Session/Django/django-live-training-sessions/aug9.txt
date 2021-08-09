@@ -1,0 +1,25 @@
+
+
+  -----------Aug 9----
+# we cannot put dot opertor in queryset
+# but can use indexing to access its attributes.
+# like name,age.
+
+# only objects attributes can be accessed using .dot opertor
+# obj.name()
+
+
+-----------Relations of Models----------------
+#one to one 
+#foreignkey
+
+# raw sql
+# when django ORM didnot meet the requirements in the project for aggression then raw sql is required.
+
+# multiple database
+# django always first look to the default databases
+# but in case of multiple databases we connect our models to specific databases or we can use the routing.
+
+# Related_name
+
+
