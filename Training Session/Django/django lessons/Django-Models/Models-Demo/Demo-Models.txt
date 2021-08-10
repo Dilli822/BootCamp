@@ -207,6 +207,50 @@ the name and email should not be left empty.
 # but some level of validation is done by django itself like if we try to send string into the age integerfield we get error called 
 >>> y = UserInfo.objects.create(age="string")
 #ValueError: Field 'age' expected a number but got 'string'.
+-----------------------------------------------------------------------------
+
+-----------Validation Models--with--Full--Clean---Method---------------
+
+# full clean method
+# we use this method for model validation.
+# we have used small hack for model field validation.
+# we override the save method with self.full_clean() and return super class save method.
+
+
+from django.db import models
+
+class UserInfo(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    age = models.IntegerField()
+
+    bio = models.CharField(max_length=200, blank=True)
+
+    is_active =models.BooleanField(default=False)
+
+    def save(self, **kwargs):
+        self.full_clean()  # validation calling full clean method
+        return super().save(**kwargs) # returning save method with super user
+
+
+-------now open new python3 manage.py shell-------------------
+
+# and we try to add only age to the models UserInfo
+
+>>> from modelextra.models import UserInfo
+>>> y = UserInfo.objects.create(age=25)
+
+# now error will raise.
+ValidationError: {'name': ['This field cannot be blank.'], 'email': ['This field cannot be blank.']}
+
+--this shows that we can do the validations of model on ORM hitting.
+--- with full_clean() method we can validate the whole model before saving to the database from ORM or shell..
+
+-------------------------------------------------------------------------------
+
+
+
+
 
 
 
