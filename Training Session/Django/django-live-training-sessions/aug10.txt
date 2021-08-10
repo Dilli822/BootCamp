@@ -1,0 +1,36 @@
+
+---------------aug 10 live training session notes-----
+# many to many relations
+# user_set is our default related_name
+# we can keep ou custom related_name
+# it is better to use related_name when there is foreignkey for readable format.
+
+---------manytomany table
+# doesnot give extra table
+# but django gives intermediate table indb.
+# for reverse we __id or double underscore id.
+ 
+class A()
+    pass
+
+class B()
+    pass
+# from A to B it is forward and B TO a IS REVERSE.
+
+# query
+.through()
+flat = True
+value_list
+
+# adding anothe column in many to many relations
+ class PublicationArticle(models.Model):
+       publication = models.ForeignKey(Publication, on_delete=models.CASCADE)
+       article = models.ForeignKey(Article, on_delete=models.CASCADE)
+       
+
+# In this way we can add columns in table.
+---basic queries----
+---some additional queries----
+----- related_name------
+# dotted query __id
+
