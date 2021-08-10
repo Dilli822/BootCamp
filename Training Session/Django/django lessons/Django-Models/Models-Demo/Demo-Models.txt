@@ -1,0 +1,12 @@
+
+-----------------Complete Demo Models of Djano---------------
+
+# first create an app.
+# check the migrations with 
+ cmd: python3 manage.py makemigrations
+
+
+# settings.py
+---- By default django will look default database key at first............
+
+
