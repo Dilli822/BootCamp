@@ -1,0 +1,141 @@
+
+---------------ManyToMany Relation----------------------
+
+# for many to many relations we created a models called country
+# one person can travel to different countries and same country can be travelled by different persons.
+
+from django.db import models
+
+class User(models.Model):
+    name = models.CharField(max_length=100)
+
+class Address(models.Model):
+    street = models.CharField(max_length=100)
+
+class Country(models.Model):
+    name = models.CharField(max_length=100)
+
+
+class UserDetail(models.Model):
+    age = models.IntegerField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    address = models.ForeignKey(Address,on_delete=models.SET_NULL,
+                                null=True,
+                                related_name='user_address')
+     
+    country = models.ManyToManyField(Country)
+
+# makemigrations and migrate.
+# but when we see the db table and data details there is no such table called country because we only making attributes country
+# and intermediate table is made by django itself 
+# check it there must be modelrelation_userdetail_country
+
+
+--------Updating,Adding,Removing data in ManyToMany table---------
+
+# python3 manage.py shell
+
+>>> from modelrelation.models import Country, UserDetail
+>>> nepal = Country.objects.create(name='Nepal')
+# with this nepal variable django creates query and sent to db making table named Nepal in modelrelation_country
+
+
+# we just confirmed the shyam user by shyam.user.name
+# instance of UserDetail object id 2 is returning.
+
+
+>>> shyam = UserDetail.objects.get(user_id=2)
+
+In [4]: shyam.user.name
+Out[4]: 'Shyam'
+
+In [5]: shyam
+Out[5]: <UserDetail: UserDetail object (2)>
+
+In [6]: type(shyam)
+Out[6]: modelrelation.models.UserDetail
+
+In [7]: shyam.age
+Out[7]: 30
+
+In [8]: shyam.address
+Out[8]: <Address: Address object (1)>
+
+In [9]: shyam.address.street
+Out[9]: 'putali-line'
+
+In [10]: shyam.country
+Out[10]: <django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager at 0x7effbcfe5710>
+
+# here we access shyam's age address but when we try to acccess the country we get .related_descriptors
+
+# coz country can be visited by many person or shyam can visit many countries.
+# when it comes to multiple choices it is iterables.
+# shyam.country.all() will ask query set of shyam country.
+
+In [11]: shyam.country.all()
+Out[11]: <QuerySet []>
+
+In [12]: nepal
+Out[12]: <Country: Country object (1)>
+
+In [13]: shyam.country.add(nepal)
+
+# nepal is country's instance with .add() method we are adding country nepal to shyam's db list table.
+
+# when we look  the modelrelation_userdetail_country no such table of country is added
+
+# this is bcoz for many to many relation intermediate table is required which is not made by us and django itself made for us 
+
+# check the modelrelation_userdetail_country_db  which is django made intermediate table.
+ 
+# we found the id 1 userdetail_id 2 and country_id 1 (userdetail_id is 2 means this is shyam user)
+
+# What if we try to assign country nepal again to shyam's table?
+# django will know there is already table named country_id and doesnot allow further adding or duplicate the row.
+
+
+In [13]: shyam.country.add(nepal)
+
+In [14]: shyam.country.add(nepal)
+
+In [15]: shyam.country.add(nepal)
+
+In [16]: shyam.country.add(nepal)
+
+In [17]: shyam.country.all()\
+    ...: 
+    ...: 
+Out[17]: <QuerySet [<Country: Country object (1)>]>
+# returns object which can be iterable and loops can be applied to retrieve the data .
+
+In [18]: y = _
+
+In [19]: y
+Out[19]: <QuerySet [<Country: Country object (1)>]>
+
+In [20]: y = shyam.country.all()
+
+In [21]: for i in y: print(i)
+Country object (1)
+
+In [22]: for i in y: print(i.name)
+Nepal
+
+--------Deleting record in ManyToMany Relation Table's data------------
+---------------Deleting the recorded data of shyam's visited the Nepal----------
+
+# we can delete nepal as visited country from shyam's record
+# just like we created .add(nepal) for deleting  we use .remove(nepal)
+
+In [23]: nepal
+Out[23]: <Country: Country object (1)>
+
+In [24]: shyam
+Out[24]: <UserDetail: UserDetail object (2)>
+
+In [25]: shyam.country.remove(nepal)
+
+
+
+

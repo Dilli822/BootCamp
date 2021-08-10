@@ -130,6 +130,187 @@ and ./manage.py migrate
 ---------------------------------------------------------------------
 
 
+# Now our table in db with id , name , age and user_id is made now how can we add more data inside it and pulloted data inside it.
+
+--------python3 managa.py shell----------------
+
+from modelrelation.models import User,UserDetail,Address
+
+# lets create another user named Shyam with .create()
+# we declared variables named user, address and detail for new user Shyam
+
+>>> user = User.objects.create(name="Shyam")
+>>> address = Address.objects.create(street="putali-line")
+---------------------------------------------------------
+>>> detail = UserDetail.objects.create(age=30,user=user)
+                     OR withoutpassing instance
+>>> user.id
+   2
+---------------------------------------------------------
+>>> detail = UserDetail.objects.create(age=30, user_id=2,address=address)
+>>> detail.age
+>>> 30
+
+>>> detail.user
+<User: User object (2)>
+
+>>>detail.address
+<Address: Address object (1)>
+
+>>> detail.address.street
+'Putali-line
+
+# Now if we check the database we can use newly created user with address, user_id , id and age and also address_id.
+
+--now let's put shyam's address into ram's address field as it is null.
+
+---------creating a variable called ram with id or pk 1-----------
+----both are correct but pk value will be given priority by django.
+>>> ram = User.objects.get(id=1)
+>>> ram = User.objects.get(pk=1)
+-----------------------------------------------------------------
+
+# taking out ram's detail from userdetail as it is oneToone relations
+>>ram.userdetail
+<UserDetail: UserDetail object (1)>
+
+>>> ram.userdetail.address = address
+
+# we save userdetail not ram because we are updating userdetail address
+
+>>> ram.userdetail.save()
+
+# now it is saved in db with same address_id of shyam both will have same id of address_id of 1.
+
+                  OR 
+# we can do by taking instance in another way 
+
+
+>>> b = UserDetail.objects.get(user_id=1)
+>>> b
+<UserDetail: UserDetail object (1)>
+>>> b.age
+>>> 20
+>>> b.address = address
+>>> b.save()
+
+-----------------------------------------------------------------
+eg:
+>>> a = UserDetail.objects.get(user_id=2)
+>>> a
+<UserDetail: UserDetail object(2)>
+>>> a.age
+30
+>>> a.name
+shyam
+
+# from above we get access to user named shyam from instance.
+
+---------------------------------------------------------------------
+
+----------------Concept of Reverse Relations-------------------------
+
+# we see the address name and id 
+# now how many users are taking reference on the address?
+# we need reverse relations and address key is foreign key.
+
+
+In [38]: address.street
+Out[38]: 'putali-line'
+
+In [39]: address.id
+Out[39]: 1
+
+In [40]: address.userdetail
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-40-83a18b3bc844> in <module>
+----> 1 address.userdetail
+
+AttributeError: 'Address' object has no attribute 'userdetail'
+----------------------------------------------------------
+class User(models.Model):
+    name = models.CharField(max_length=100)
+
+class Address(models.Model):
+    street = models.CharField(max_length=100)
+
+
+class UserDetail(models.Model):
+    age = models.IntegerField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    address = models.ForeignKey(Address,on_delete=models.SET_NULL,null=True)
+
+---error has raised because Address object has no attribute 'userdetail' and when class Address table comes to UserDetail table by default django has kept class name_set.---------
+
+----- any address can be in mutiple places so we do .all and use iteration
+
+>>> address.userdetail_set.all()
+>>>  <QuerySet [<UserDetail: UserDetail object (1)>, <UserDetail: UserDetail object (2)>]>
+
+# this shows that two userdetail is using the same address-street called putali-line.
+
+-----------------------------------------------------------------
+# django store last information as _ underscore.
+>>> y = _
+>>> y
+ <QuerySet [<UserDetail: UserDetail object (1)>, <UserDetail: UserDetail object (2)>]>
+
+# Now we put loop to y.
+# in i userdetail instance being called and we are accessing to userdetail user name.
+>>> for i in y:
+        print(i.user.name)
+    ...: 
+Ram
+Shyam
+
+---------This is an example of reverse relations----------------
+
+
+-----------Changing related_name by ourselves---------------
+ # class UserDetail
+
+address = models.ForeignKey(Address,on_delete=models.SET_NULL,
+                                null=True,
+                                related_name='user_address')
+
+# we changed the default related_name to user_address
+
+# makemigrations and migrate
+
+-----------------------------------------
+# from manage.py shell
+>>> dharan = Address.objects.get(id=1)
+>>> dharan
+<Address: Address object (1)>
+>>> dharan.street
+'Putali-line'
+
+# As we know the address.street is accessed by both ram and shyam with default username_set but now we have modified and kept custom related_name 
+
+>>> dharan.user_address.all()
+<QuerySet [<UserDetail: UserDetail object (1)>, <UserDetail: UserDetail object (2)>]>
+
+-------------------------------------------------------------
+from modelrelation.models import Address
+
+In [2]: ktm = Address.objects.get(id=1)
+
+In [3]: ktm
+Out[3]: <Address: Address object (1)>
+
+In [4]: ktm.street
+Out[4]: 'putali-line'
+
+In [5]: ktm.user_address.all()
+Out[5]: <QuerySet [<UserDetail: UserDetail object (1)>, <UserDetail: UserDetail object (2)>]>
+
+----When to use custom related_name and override it?-------------
+------we can use it when we want clean and readable format----
+
+
+
+
 
 
 
