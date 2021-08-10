@@ -30,6 +30,7 @@ class UserDetail(models.Model):
 # and intermediate table is made by django itself 
 # check it there must be modelrelation_userdetail_country
 
+--------------------------------------------------------------------
 
 --------Updating,Adding,Removing data in ManyToMany table---------
 
@@ -122,7 +123,10 @@ Country object (1)
 In [22]: for i in y: print(i.name)
 Nepal
 
+-----------------------------------------------------------------------
+
 --------Deleting record in ManyToMany Relation Table's data------------
+
 ---------------Deleting the recorded data of shyam's visited the Nepal----------
 
 # we can delete nepal as visited country from shyam's record
@@ -135,6 +139,17 @@ In [24]: shyam
 Out[24]: <UserDetail: UserDetail object (2)>
 
 In [25]: shyam.country.remove(nepal)
+
+# check the db of the intermedaite table the country row will be deleted.
+
+-----------------------------------------------------------------------
+
+# How to delete all the manytomany relations table data ?
+# by using .care() method.
+
+----------------------------------------------------------------------
+
+
 
 
 
