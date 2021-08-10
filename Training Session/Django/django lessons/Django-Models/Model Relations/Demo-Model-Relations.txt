@@ -20,3 +20,118 @@ class UserDetail(models.Model):
 
 ---data polluting by hitting ORM inside the shell-----
 
+>>> python3 manage.py shell
+
+In [1]: from modelrelation.models import User,UserDetail
+
+In [2]: user = User.objects.create(name="Ram")
+>>> user
+>>> <User: User object (1)>
+
+# with these line a new table named Ram must be made
+# check by going into db directly modelrelation_user.
+
+# now we put age of ram having id 1.
+
+>>> detail = UserDetail.objects.create(age=20)
+
+----Error arises modelrelation_userdetail.user_id because it needs user instance too--
+
+>>> detail = UserDetail.objects.create(age=20,user=user)
+
+>>> detail
+Out[5]: <UserDetail: UserDetail object (1)>
+
+---- Class UserDetail(models.Model):
+      age = models.IntegerField()
+      user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+# django create a field of age from model UserDetail.
+# but why donot we see any table of user if we look into db table of modelrelation_userdetail 
+# because django has made user_id another column for us in the table if we check the db table.
+# actually the user = ...... is user_id but giving only user =...is enough.
+
+----looking into db of modelrelation_user---
+# we only get to see id and user name
+
+---looking into db of modelrelation_userdetails---
+--we get to see primary-key PK (id) , user name and user_id unqiue number 1 itself...
+
+------------------------------------------------------
+
+
+------------Concepts on-----------------
+----------Related_Name and Reverse Case---------------
+
+>>> detail.age
+>>> 20
+
+>>> detail.user
+>>> <User: User object (1)>
+# this user is our class User(models.Model): object 
+
+>>> detail.user. .....(can be used dot operator now .user.id or .user.age)
+
+# this one is reference of User and details of age in UserDetails model.
+
+>> detail.user.name
+>>> 'Ram'
+
+
+# this one is faster coz it's user model id itself.
+>> detail.user_id
+>>> 1
+
+>>> user = User.objects.get(id=1)
+>>> user.name
+>>> 'Ram'
+
+# long method to get UserDetails age inherited from User.
+>>> UserDetail.objects.get(user=user).age
+>>> 20
+
+# but django gives us more shortcut or facilitate to get the age of user
+# since we have oneToOneField model so 
+
+# UserDetail will inherit the User model and we can access the age and user id from User model.
+>>> user.userdetail.age
+>> 20
+
+# this method is quite easier than above method.
+
+------------------------------------------------------
+
+-------------Examples on OneToMany-------------------
+
+# we made address model
+# then we add attributes to it as street.
+# why ForeignKey ?-->other users may access the same address
+# after address on_delete our models will be SET_NULL
+
+from django.db import models
+
+class User(models.Model):
+    name = models.CharField(max_length=100)
+
+class Address(models.Model):
+    street = models.CharField(max_length=100)
+
+
+class UserDetail(models.Model):
+    age = models.IntegerField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    address = models.ForeignKet(Address,on_delete=models.SET_NULL, null=True)
+
+# after this completion we do migrations ./manage.py makemigrations
+and ./manage.py migrate
+
+# Now we refresh our db and there will be anothe coloumn called address_id which is null.
+
+---------------------------------------------------------------------
+
+
+
+
+
+
+
