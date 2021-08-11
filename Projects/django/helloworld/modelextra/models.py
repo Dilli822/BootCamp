@@ -8,6 +8,8 @@ class UserInfo(models.Model):
 
     bio = models.CharField(max_length=200, blank=True)
 
+    detail = models.CharField(max_length=200,null=True)
+
     is_active =models.BooleanField(default=False)
 
     def save(self, **kwargs):
