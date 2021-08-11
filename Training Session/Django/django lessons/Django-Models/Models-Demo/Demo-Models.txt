@@ -241,6 +241,7 @@ class UserInfo(models.Model):
 >>> y = UserInfo.objects.create(age=25)
 
 # now error will raise.
+# this is validation error from model not from database.
 ValidationError: {'name': ['This field cannot be blank.'], 'email': ['This field cannot be blank.']}
 
 --this shows that we can do the validations of model on ORM hitting.
@@ -248,13 +249,217 @@ ValidationError: {'name': ['This field cannot be blank.'], 'email': ['This field
 
 -------------------------------------------------------------------------------
 
+[2]: from modelextra.models import UserInfo
+
+In [3]: y = UserInfo.objects.get(id=1)
+
+In [4]: y
+Out[4]: <UserInfo: UserInfo object (1)>
+
+In [5]: y = UserInfo.objects.get(id=2)
+
+In [6]: y
+Out[6]: <UserInfo: UserInfo object (2)>
+
+In [7]: y = UserInfo.objects.get(id=3)
+
+In [8]: y
+Out[8]: <UserInfo: UserInfo object (3)>
+
+
+In [9]: y.age
+Out[9]: 30
+
+In [10]: y.name
+Out[10]: ''
+
+In [11]: y.name = 'Shyam'
+
+In [12]: y.save()
+---------------------------------------------------------------------------
+ValidationError                           Traceback (most recent call last)
+<ipython-input-12-26b16d9c9a2d> in <module>
+----> 1 y.save()
+
+/media/dilli/SSD 1/IW-BootCamp/Projects/django/helloworld/modelextra/models.py in save(self, **kwargs)
+     12 
+     13     def save(self, **kwargs):
+---> 14         self.full_clean()
+     15         return super().save(**kwargs)
+
+~/.local/lib/python3.6/site-packages/django/db/models/base.py in full_clean(self, exclude, validate_unique)
+   1236 
+   1237         if errors:
+-> 1238             raise ValidationError(errors)
+   1239 
+   1240     def clean_fields(self, exclude=None):
+
+ValidationError: {'email': ['This field cannot be blank.']}
+
+# here error raised due to validation of model with ful_clean() method that we have created by ourselves.
+
+
+In [13]: y.email = "shyam@gmail.com"
+
+In [14]: y.name
+Out[14]: 'Shyam'
+
+In [15]: y.email
+Out[15]: 'shyam@gmail.com'
+
+In [16]: y.save()
+
+In [17]: y
+Out[17]: <UserInfo: UserInfo object (3)>
+# now our data is saved on db.
+
+---------------------------------------------------
+# Case -I
+# if we have to delete shyam row.
+
+# first we get the objects.
+>>> a = UserInfo.objects.get(id=2) 
+
+#(we could do.get(name="shyam")  but name shyam is not unique so we use id which is always unique.
+
+----------------------------------------------------------
+# Case - II
+
+# What if we try to use.get() method to retrieve the same mulitple place used data from table ?
+# for eg : in this case we have shyam age 50 and id 2 also has age 50 now if we try to get the user from table with only.
+
+>>> UserInfo.objects.get(age=50).
+
+# then we get error 
+ MultipleObjectsReturned: get() returned more than one UserInfo -- it returned 2!
+ # this is bcoz get method is only used for calling only one objects.
+# .get() only reterive single data objects stored in db.
+
+-----------------------------------------------------------
+# Case - III
+# NO I need all users from the db having age 50?
+# for that we can use .filter() method
+
+In [30]: a = UserInfo.objects.filter(age=50)
+
+In [31]: a
+Out[31]: <QuerySet [<UserInfo: UserInfo object (2)>, <UserInfo: UserInfo object (3)>]>
+
+In [32]: type(a)
+Out[32]: django.db.models.query.QuerySet
+
+In [33]: for i in a: print(i.name)
+
+Shyam
+
+# although we have two row containing age 50 we get onyl shyam bcoz we havenot given name to id 2 yet.
+# a is now iterables and we can iterate it loop it.
+
+# Case - IV
+# Deleting the user data in the table.
+# first we get the user objects and used delete() method to delete it.
+
+In [45]: a = UserInfo.objects.get(id=3)
+
+In [46]: a
+Out[46]: <UserInfo: UserInfo object (3)>
+
+In [47]: a.delete()
+Out[47]: (1, {'modelextra.UserInfo': 1})
+
+
+---------we can put loops,take to html and logics on it further-----
+
+--------------------------------------------------------------------
+# Case - V
+# creating again row objects in the table.
+ a
+Out[48]: <UserInfo: UserInfo object (None)>
+
+In [49]: a = UserInfo.objects.create(name="shyam",email="shyam@gmail.com",age=50,is_active=False)
+
+In [50]: a
+Out[50]: <UserInfo: UserInfo object (4)>
+
+# we get new created obj id 4 bcoz id is always unique and id 3 was used in shyam's table.
+
+-------------------------OR-------------------
+
+# first we create a UserInfo class and assigned attributes putting values inside it and saving it to the db.
+
+>>> obj = UserInfo()
+>>> obj.name = "shyam"
+>>> obj.email = "shyam@gmail.com"
+>>> obj.age = 50
+>>> obj.is_active = False
+>>> obj.save()
+
+
+-----------above both methods are same way to create a new row and table in the db-----------
+---------------------------------------------------------------------
+
+
+-----View sqlite table with sqlite cmd----------------
+
+sqlite3 db.sqlite3
+SQLite version 3.22.0 2018-01-22 18:45:57
+Enter ".help" for usage hints.
+sqlite> select * from modelextra_userinfo;
+1|dilli hang|dilli@gmail.com|21||0
+2|Ram|ram@gmail.com|50||0
+4|shyam|shyam@gmail.com|50||1
+sqlite> 
+------------------------------------------------------------
+
+--------------------created model---------------------------
+-----------------practice with creating a lots of field-------
+------------keep options value null default blank------------
 
 
 
+# eg:
+# let's add a detail attribute in UserInfo model with no null value.
+# then what we get is followin error
 
+>>> python3 manage.py makemigrations
+You are trying to add a non-nullable field 'detail' to userinfo without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 2
 
+--------------------------------------------------------------
+# we tried to add newfield but null is not kept true 
+# as we have already rows columns in table with pre-existing values of users so django is asking what to do with old rows ?
 
+# and django provide first option to solve this issue as you may enter the default value
+# and opt 2 is quiting and making own default in models.py
 
+-------------------------------------------------------------------
+
+# now we make null=True into newfield options which is now case is detail.
+
+from django.db import models
+
+class UserInfo(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    age = models.IntegerField()
+
+    bio = models.CharField(max_length=200, blank=True)
+
+    detail = models.CharField(max_length=200)
+
+    is_active =models.BooleanField(default=False)
+
+    def save(self, **kwargs):
+        self.full_clean()
+        return super().save(**kwargs)
+
+# now makemigrations and migrate and check db table.
+# checking migrations folder in app we can get new file named 0002_userinfo_detail.py made by django itself.
+
+-----------------------------------------------------------------
 
 
 
