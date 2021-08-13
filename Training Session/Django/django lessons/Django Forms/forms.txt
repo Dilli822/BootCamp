@@ -1,0 +1,194 @@
+
+---------------------HTML--FORMS------------------
+
+# A collection of elements inside <form> </form>
+# which allows visitor to input data or manipulate data send the information back to server.
+
+# A form must specify two things.
+     -- The URL (action attribute)
+     --- The HTTP(method attribute).
+
+
+# Example of simple HTML form
+     <form action="/send-data">
+        <label for="fname">First name:</label> <br>
+        <input type="text" id="fname" name="fname" value="Dilli"> <br>
+        <label for="lname">Last name:</label> <br>
+        <input type="text" id="lname" name="lname" value="Hang Rai"> <br>
+        <button type="submit" value="submit">submit</button>
+        </form>
+
+
+-------------GET & POST----------------------
+
+# GET & POST are only HTTP methods to use when dealing with forms
+
+
+--POST
+
+# In which browser bundles up the form data, encodes it for transmission and sends it to the server and receives back the response.
+
+---GET
+
+# Bundles the submitted data into a string and composes a URL based on it.
+  Eg: https://example.com/send?name=ram&age=22
+ 
+#Note: we use POST method to send the form input or sensitive data to server because GET method display the information on URL but POST method means it bundles the user input submitted data and send along with forms to server without spiliting any information like GET in the url to server.
+
+-----------------------------------------------------
+
+
+-----------------Django Forms------------------------
+
+# Prepare data to make it ready for rendering
+# Creating HTML forms for the data
+# Receiving and processing submitted forms and data from the client.
+
+# data validation and data processing of the submitted forms , defining forms, representing datas on from model are some reasons of using django forms.
+
+
+----------Simple HTML form with explanation---------
+# See: form action . form method and input
+
+ <form action="/send/" method="post">
+        <label for="name">Your Name: </label>
+        <input type="text" id="name" name="name" value="{{ current_name }}">
+        <input type="submit" value="submit">
+        </form>
+
+-----------Creating this form in Django------------
+
+# we import forms from django
+# creating MyForm class and placing name field in the Myform attributes.
+# where to keep these code?
+# It's good to place forms code on forms.py under our django application.
+
+# forms.py
+
+from django.import forms
+
+class MyForm(forms.Form):
+      name = forms.CharField(label='Name', max_length=100)
+
+-----------------------------------------------------
+# we defined a form class with a single field(name)
+# we added a human friendly label to the field. This will appear in the <label> when it's rendered.
+# The field maximum allowed length is defined by max_length
+ --puts maxlength=100 on the HTML <input>
+ -- when django receives the data , it will validate the length of the data.
+
+----frontend part also receives max_length=100 while form validation.
+
+----------is_valid() method-------
+----- it will validate the form same as full_clean() method.........
+
+# A form instance has is_valid() method which will run all validations.
+# when it's called, if all the fields contain valid then it will 
+--Return True
+--Place the form's data in cleaned_data attribute.
+
+------------------When Rendering our form it will look like----------
+--- rendering form of django will look like it in HTML------
+
+  <label for="id_name">Name: </label>
+        <input type="text" name="name" maxlength="100" required id="id_name">
+
+
+# django only generate from fields elements but it doesnot keep other tags buttons submit.
+
+
+=============HOW DOES EVERYTHING FIT?==================
+
+# Creating new view to pass our form to template.
+
+from django.shortcuts import render
+
+from .forms import MyForm
+
+def render_form(request):
+    form = MyForm()
+   
+   # pass from instance to template using context
+   # passed same as context: html we used to do in html_context
+    return render(request, 'name.html', {'form': form})
+-------------------------------------------------------------------
+
+
+
+------------Making Template(name.html)-------------------
+
+# we first create template of form by ourselves.
+# now we have torender the form that comes from context
+# with variables {{ }} django will render the html context.
+
+
+     <form action="/send/" method="post">
+        {% csrf_token %}  # cross site request forgery protection
+                          # csrf_token is required when submitting from via post
+                          # with CSRF protection enabled.
+        
+        {{ form }}
+        
+        <input type="submit" value="submit">
+        </form>
+
+---------------------------------------------------------------
+
+-----------------View to process submitted data----------------------
+
+from django.http import HttpResponse
+from .forms import MyForm
+
+
+# Let's assume: URL /send/ points to this view func
+def send(request):
+    # this func will allow both GET and POST to land here
+    # so we might need to add some Validations
+
+
+    form = MyForm(request.POST)
+    if form.is_valid():
+        # process the data in form.cleaned_data as required
+    
+    else:
+        return HttpResponse('Error')
+          
+------------------------------------------------------------------------
+# we can disable the csrf_token cross site if we want to do that.
+
+    <form action="/send/" method="post">
+        {% csrf_token %}  # cross site request forgery protection
+                          # csrf_token is required when submitting from via post
+                          # with CSRF protection enabled.
+        
+        {{ form }}
+        
+        <input type="submit" value="submit">
+        </form>
+
+-------------------------------------------------------------------
+
+-------------------Let's merge these two views---------------------
+----this is data incoming logics type------------
+
+from django.http import HttpResponse
+from .forms import MyForm
+
+def send(request):
+    if request.method == 'POST':
+        form = MyForm(request.POST)
+        if form.is_valid():
+            #process the data in form.cleaned_data as required
+            return HttpResponse('Everything is OK')
+        
+        else:  # form is not valid
+            return HttpResponse('Error')
+        else:
+            form = MyForm()
+            return render(request, 'name.html', {{ 'form': form}})
+
+----------------------------------------------------------------------
+
+
+-------------{{ form }} in template is enough but,---------------
+
