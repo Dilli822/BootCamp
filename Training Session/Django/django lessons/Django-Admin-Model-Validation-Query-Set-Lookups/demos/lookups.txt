@@ -19,7 +19,7 @@ erick
 # what we want is --that we want not from python but from  database itself filter the user whose age is more than 25 so what we do is we use lookups for that.
 
 ---------------------------------------------------------
->> qs = UserBio.objects.filter(Age__gt=25)
+>> qs = UserBio.objects.filter(age__gt=25)
 >>> qs
 >>> QuerySet [<UserBio: hari>]>
 # __gt(), __lt()

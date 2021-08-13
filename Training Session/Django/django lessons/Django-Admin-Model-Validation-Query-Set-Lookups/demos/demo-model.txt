@@ -122,7 +122,7 @@ id	name	email	                age	bio
 
 # then if condition is not meet then we raise an exception validationerror
 
-# then we put the validators inside the age filed with passing iterables ie.list inside it.
+# then we put the validators inside the age field with passing iterables ie.list inside it.
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 from django.db import models
 from django.core.exceptions import ValidationError
