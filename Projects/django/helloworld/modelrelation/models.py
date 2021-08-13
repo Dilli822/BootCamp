@@ -15,3 +15,15 @@ class UserDetail(models.Model):
     # as foreign key
     address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True)
     
+
+class BaseModel(models.Model):
+    created_at = models.DateTimeField()
+    updated_at = models.DateTimeField()
+
+    class meta:
+        abstract = True
+
+class Information(BaseModel):
+    info = models.CharField(max_length=100)
+    bio = models.TextField()
+
