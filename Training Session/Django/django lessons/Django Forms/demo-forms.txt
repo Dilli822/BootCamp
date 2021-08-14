@@ -70,6 +70,168 @@ def home_forms(request):
         return HttpResponse("OKOK")
         
         -----server will print we can check on server console for clear confirmation---
+        ====OK THIS IS GET METHOD.===
+[14/Aug/2021 16:21:10] "GET /forms/home/ HTTP/1.1" 200 458
+====OK THIS IS GET METHOD.===
+[14/Aug/2021 16:21:11] "GET /forms/home/ HTTP/1.1" 200 458
+====OK THIS IS GET METHOD.===
+[14/Aug/2021 16:21:15] "GET /forms/home/ HTTP/1.1" 200 458
+====OK THIS IS GET METHOD.===
+[14/Aug/2021 16:21:16] "GET /forms/home/ HTTP/1.1" 200 458
+====OK THIS IS GET METHOD.===
+[14/Aug/2021 16:21:16] "GET /forms/home/ HTTP/1.1" 200 458
+
+-----this shows that by default our request method id GET 
+--- for changing the request method of form what we do is change the method attribute of html form
+-- ie. <form method="POST" action="forms/home">  </form> only for form posting method.
+--- refresh the page and click on the submit button---
+
+# we get error forbidden on page because while sending the form or while we are accepting the POST request from client we must include csrf token {% csrf_token %} in our forms.html and provide token to client-side.
+
+# every post req must have csrf token so error has raised.
+# we can add {% csrf_token %} anywhere inside th form tag of forms.html
+
+
+-- now refresh the server and form page also check the view source page-
+# this is what we get to see
+
+    <form action="/forms/home/", method="post">
+
+        <input type="hidden" name="csrfmiddlewaretoken"     value="ue66DwedCtQchxBCmtof8EfSBGVxhcbHgY9wACuL9HNEzkBb8mK8HUVERjY1BaGV">
+
+        <input type="text" name="name" placeholder="Your Name"> <br>
+        <input type="submit" name="submit">
+
+    </form>
   
+  # with single tag {% csrf_token %} django has generated input tag with hidden type, name and value(value is for cross side protection).
   
+  --now we can post the data to server.
+  
+  ---OKOK will come after submitting the data.
+  
+  ---------------------------------------------------------
+  
+  # now lets write name or pass string value in the name field of form.
+  # and submit to server.
+  # checking the server terminal console we get.
+  <QueryDict: {'csrfmiddlewaretoken': ['z1NxizhojMRsgIeg9Zuc0iUi8LDX05cXlLQXfFxWQ0OUyvePVSQ5zyA4ooGrk3Hb'], 'name': ['dilli'], 'submit': ['Submit Query']}>
+[14/Aug/2021 16:37:30] "POST /forms/home/ HTTP/1.1" 200 4
+# we are getting the information of client who had submitted the  form in this the client/user is dilli with submit query and unique csrf token value.
+
+---also we can look the client's name directly on server console.
+-- with function .get('name'))
+ else: # must be post method
+        print(request.POST.get('name'))
+        return HttpResponse("OKOK")
+Quit the server with CONTROL-C.
+dilli
+[14/Aug/2021 16:40:48] "POST /forms/home/ HTTP/1.1" 200 4
+
+--This is an example of simple form and user/client submitting the form with data and we are getting the data from user and extracting the information in a simple way..
+
+
+--------------------------------------------------------
+----Now let's make proper form---------
+
+# it's good practice to make all the forms in the form.py 
+# we make several fields in the forms.py of app folder.
+# creating MyForm with field name
+# now we can use this MyForm to render the data at the frontend and validate the data that comes to the backend.
+
+# forms.py
+from django import forms
+
+clas MyForm(forms.Form):
+     name = forms.CharField(max_length=100)
+     
+-----------------------
+# we create a new html file named django_form.html 
+# and we create key value pair in context {'form': form}
+# views.py
+
+# we created a func 
+# then obj called form and we pass the obj to the templates forms.html as context {'key': value }
+
+from .forms import MyForm
+
+def django_form(request):
+    form = MyForm()
+    return render(request, 'formspractice/django_form.html', {'form': form})
+    
+ 
+ # now we pass <form> {{ form }} </form>
+ 
+ # ok let's make url for this.
+ from .views import home_forms, django_form
+ 
+ urlpatterns = [
+    path('home/', home_forms),
+    path('home/django-forms', django_form),
+]
+
+-----NOw hitting the url https://127.0.0.1:8000/forms/django-forms/
+# we get name field 
+# viewing the source page
+
+  <form>
+      <tr><th><label for="id_name">Name:</label></th><td><input type="text" name="name" maxlength="100" required id="id_name"></td></tr>
+      
+# this means django has created itself table field table row automatically.
+
+----------------------------------------------------------------------------------
+
+# THis much only is done by django now we can or have to add the form tags and other input as we have done in previous forms.html
+
+  <form action="/forms/home/", method="POST">
+
+    {% csrf_token %}
+    {{ form }}
+
+    <input type="submit" name="submit">
+    
+  </form>
+  
+ ----------------or-----------
+  
+   {% csrf_token %}
+    <!-- {{ form }} -->
+    <!-- {{ form.as_P }} means we are viewing form as paragraph-->
+    {{ form.as_p }}
+    </form>
+ 
+   # view source page
+   
+    <form action="/forms/django-forms/" method="post">
+
+    <input type="hidden" name="csrfmiddlewaretoken" value="6idvDmk9XMc9CJPJh3QKhOgexcZ7kSZFS2gVAsAHu09BUwPi3WcDQ4W0NP2BEQuT">
+    <!-- <tr><th><label for="id_name">Name:</label></th><td><input type="text" name="name" maxlength="100" required id="id_name"></td></tr> -->
+    <!--  means we are viewing form as paragraph-->
+    <p><label for="id_name">Name:</label> <input type="text" name="name" maxlength="100" required id="id_name"></p>
+
+    <input type="submit" name="submit">
+
+  </form>
+  
+ ------------------------------------------------------------------------------------
+ 
+ ---now if we submit the form with name written and submit button
+ # checking the server terminal console what we get is:
+ 
+ [14/Aug/2021 17:11:48] "GET /forms/django-forms/ HTTP/1.1" 200 537
+dilli
+[14/Aug/2021 17:13:59] "POST /forms/home/ HTTP/1.1" 200 4
+
+# noticed GET/ Is changeD into POST/
+
+# but if we look into the django_form func from where template is rendered 
+# we havenot mentioned any POST or get
+
+def django_form(request):
+    form = MyForm()
+    return render(request, 'formspractice/django-form.html', {'form': form})
+
+# THis shows the form has done post request in the backend.
+ 
+ 
  
