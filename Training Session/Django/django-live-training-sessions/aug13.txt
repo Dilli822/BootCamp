@@ -1,0 +1,36 @@
+
+-------------Aug13-Live Training Session--------------
+
+----static and media files.
+----
+hosting static files
+{% load static % }
+
+<img  src={% myapp/img.png %} />
+
+
+note: never use underscore in the url desigining better to use hyphen.
+
+# STATIC_ROOT settings is for multiple static folders to let the django know the static files which are actual and need to be implemented.
+
+----static files stored in multiple app folders for that---
+--settings at templates DIR=[] is empty we have to insert the path of static files.
+
+# settings.py
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = [
+          os.path.join(BASE_DIR, 'static_folder')
+          
+          ]
+
+--------------Media files-----------------
+---files uploaded by users on site.
+# settings for media files
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+

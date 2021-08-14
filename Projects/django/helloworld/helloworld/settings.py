@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'world',
     'modelextra',
     'modelrelation',
+    'djangoforms',
 ]
 
 MIDDLEWARE = [

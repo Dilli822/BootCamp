@@ -1,0 +1,14 @@
+
+------------------Demo-Forms----------------------------
+
+# First we create an app 
+# register the app
+
+
+# let's create urls.py in the djangoforms for the url
+# then we create template folder and we can put files in  formsfolder.
+
+
+# creating views 
+# registering to url of formsfolder app.
+
