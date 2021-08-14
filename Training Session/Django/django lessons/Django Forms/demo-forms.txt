@@ -12,3 +12,64 @@
 # creating views 
 # registering to url of formsfolder app.
 
+---projectfolder
+      ---- project folder with files
+       ------ apps folder
+       
+ 
+ 
+ # we create urls.py inside the new app folder 
+ # then we create a templates folder inside a app folder.
+ # and again create template_html folder inside a templates folder for storing html files.
+ # then we create index.html or any templates html files for front end part.
+ 
+ -------we come to app/views.py and write small views logics---------
+ ---- at app/urls.py we import the views func and pass url path i.e.path('home/', view_func_name),
+ 
+ ---- then we register the url in the main project urls.py by importing include function and
+ ---- we add path -- path('forms/', include('appsname.urls')),
+ 
+ 
+ # let's create a simple form in html templates folder.
+ # apps/templates/formspractice/forms.html
+ 
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Django HTML Forms</title>
+    </head>
+    <body>
+
+    <form action="">
+        <label for=""></label>
+        <input type="text" name="name" placeholder="Your Name"> <br>
+        <input type="submit" name="submit">
+    </form>
+
+    </body>
+    </html>
+    
+  -------------------------------------------------------------------------
+  -- How to send the data of form to the backend?-------
+  
+  # for that we go to the app/views.py and write small logics
+  
+ from django.shortcuts import render
+
+from django.http import HttpResponse
+
+def home_forms(request):
+    if request.method == 'GET':
+        print("====OK THIS IS GET METHOD.===")
+        return render(request, 'formspractice/forms.html', {})
+    else: # must be post method
+        print(request.POST)
+        return HttpResponse("OKOK")
+        
+        -----server will print we can check on server console for clear confirmation---
+  
+  
+ 
