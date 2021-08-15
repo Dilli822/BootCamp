@@ -12,4 +12,73 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 -----------------------------------------------------------
 
----------------------
+---------------------------------------------
+# at the staticmedia/views.py we create views
+
+# inside the app/template/media.html
+
+   <!DOCTYPE html>
+   {% load static %}
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Media</title>
+   </head>
+   <body>
+
+    <form enctype="multipart/form-data" method="post">
+     {% csrf_token %} 
+     Full Name: <input type="text" name="name"> <br>
+     File: <input type="file" name="myfile"> <br>
+     <button type="submit">Submit</button>
+    </form>
+       
+   </body>
+   </html>
+   
+   
+--# inside the app/views.py
+from django.shortcuts import render
+
+
+def render_static(request):
+    return render(request, 'static.html')
+
+
+def manage_media(request):
+    return render(request, 'media.html')
+
+
+---------------------------------------------------------------------
+# hitting url
+http://127.0.0.1:8000/static-demo/media/ 
+# we get form.
+
+# submitting the form.
+
+[15/Aug/2021 14:11:03] "GET /static-demo/media/ HTTP/1.1" 200 691
+[15/Aug/2021 14:11:14] "POST /static-demo/media/ HTTP/1.1" 200 691
+
+# before and submitting the form we can see the request method GET and POST.
+----------------------------------------------------------------------
+
+--------------------------------------------------------------
+# Now let's add the logics to the views.py
+from django.shortcuts import render
+
+
+def render_static(request):
+    return render(request, 'static.html')
+
+
+def manage_media(request):
+    if request.method == 'POST':
+        print(" post  data ", request.POST)
+        print(" files ", request.FILES)
+    return render(request, 'media.html')
+
+
+
+
