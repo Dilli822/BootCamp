@@ -1,0 +1,195 @@
+
+
+----------------------Django Static & Media Files-------------------------------
+
+----Static Files--
+# eg: logos, images, templates , files which are static in nature.
+
+--------Managing Static Files(images,JS,CSS)--------
+# Configuration static files
+  # Make sure django.contrib.staticfiles is included in our INSTALLED_APPS
+  # in your settings.py file, add STATIC_URL
+  # for eg: STATIC_URL = '/static/'
+  # we store our static files in folder called static in our app where we js ,css files .
+  
+  --------------------------------------------------
+  
+  ----------How do I use it on templates?--------------
+  # let's assume , example.jpg exists in our app static folder.
+  # first we load the static to use the static  files in our templates.
+  #  <img src="{% static "example.jpg" %}" > means url is static and coming from our app
+   static folder.
+  
+    {% load static %}
+        <html>
+            <body>
+                <img src="{% static "example.jpg" %}" >
+            </body>
+        </html>
+        
+-- we have placed the static url but placing only there will not work 
+-- we have to serve and fetch it when we hit static url.
+
+ ----------Serving static files--------
+
+  # if we use django.contrib.staticfiles as explained in previous slides, runserver command will automatically serve static files when DEBUG is set to True [ DEBUG=True on settings.py ]
+  
+  # so this means, you do not need to create a new URL or view to serve these static files.Django does this for us
+  
+  # But this way is not suitable for production use. We will use a different technique to server our static.
+  
+  Note: if you don't have django.contrib.staticfiles in INSTALLED_APPS then we can still manually serve the static files.
+  
+  -----------------------------------------------
+ 
+ ----------------Static Files Deployment-----------------------
+ # how to use static files in the deployment ?
+ # our static files may be in multiple directory.
+ # for that static file app solves the problems and collect all the files into sinlge directory.
+ 
+ -- django.contrib.staticfiles provides a command for gathering static files from different applications of the project in a single directory so we can serve them easily.
+ 
+ -- steps:
+     1. set STATIC_ROOT On settings.py
+       - STATIC_ROOT = '/var/www/static/'
+     2. Run collectstatic command
+        - python3 manage.py collectstatic
+     3. We can Use any webserver of our choice to serve the files from this single directory.
+        
+ ------------------------------------------------------------------------------
+ 
+ ----------What if static files aren't tied to a particular app?
+ 
+ # for that we bring all the static files into single folder and command the django to look after it.
+ 
+ # sometimes case occurs when we may need a separate directory to store files maybe because it belong to the whole project and cannot be places inside a particular application.
+ 
+ # We can define list of additional directories in our settings file
+ 
+ # Eg:
+  STATICFILES_DIRS = [
+            '/var/www/exampl.com/static',
+            '/var/www/static/',
+     ]
+----------------------------------------------------------------------------------------
+
+--------------------------Media Files(user uploaded files)-------------------------------
+
+# The files(eg: profile pics, docs, form fill up) uploaded by user or the data that comes from front end part to the backend in a form of files are called media files.
+
+-----------File Upload with Django--------
+
+# When files are submitted to server, the file data can be accessed from request.FILES .
+# it's manadatory for the HTML forms to have the attribute enctype="multipart/form-data".
+# Form must be submitted using POST method.
+
+# we can access the file data with using request.FILES attribute.
+# and we must have attribute multipart/form-data in our HTML form.
+
+------------------------------------------------------------------------------------------
+# thanks to django we have proper model fields.
+--uploaded files gets stored in the filesystem and in db at reference filesystem.
+
+# Django has a proper model fields to handle uploaded files;
+ImageField, FileField
+
+# These uploaded files are stored on the filesystem, and only the reference of the file is stored on these field(database).
+
+----------------------------------------------------------------------------
+# here name is blank and that name will be key value .
+
+# request.FILIES is a dictionary like object.
+# Each key in request.FILIES is the name from <input type="file" name="">
+
+----------------------------------------------------------------------------
+
+------------------------------Configurations of Media Files-------------------------
+
+# We need to set MEDIA_URL and MEDIA_ROOT in our project settings.
+# django will store the media files in the root dir.
+# media url will indicate which url will be media urls incoming.
+
+
+  MEDIA_URL = '/media/'
+  MEDIA_ROOT = '/var/www/example.com/media'
+  
+  ----------------------------------------------------------------------------
+  
+  # now we have configured the media files now we also need to serve it.
+  # unlike for static files django has done automatically serving .
+  # django doesnot do automatic serving for the media files we need to manually serve the media files.
+  
+ # urls.py
+ 
+  from django.conf import settings
+  from django.conf.urls.static import static
+  
+  urlpatterns = [
+         # Project url patterns........
+     ]
+     
+  if settings.DEBUG:
+       urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+       
+ # here we have applied if conditions with imported settings 
+ # this conditions will go through the settings.DEBUg and command if settings.MEDIA_url type of url comes then go through the document_root=settings.MEDIA_ROOT OR GO TO THAT FOLDER.
+ 
+ ------------------------------------------------------------------------------------
+ 
+ --------------------SIMPLE FILE UPLOAD------------------------------
+ 
+ # must have multipart/form-data
+ # name here is very important bcoz at the backend same name will carry key value.
+ 
+     <form action="multipart/form-data" method="post">
+        {% csrf_token %}
+        <input type="file" name="myfile"> <br>
+        <button type="submit">Submit</button>
+        
+        </form>
+ 
+ ---------------------------------------------------------------
+ --after data posting 
+ -how do we manipulate the data in backend?
+ 
+# first we can get the files and look the request.files
+# and from request.files we have html name will be here key value 
+and we can pick the value 
+
+# after picking the value my_files will come as variables 
+# then this file needs to be stored in the backend as MEDIA_ROOT.
+# for that we import FileSystemStorage functions
+ 
+-----------------------------------------------------------------
+from django.http import HttpResponse
+from django.core.files.storage import FileSystemStorage
+
+def upload(request):
+    if request.method == 'POST' and request.FILES['myfile']:
+        my_file = request.FILES['myfile']
+        fs = FileSystemStorage()
+        filename = fs.save(my_file.name, my_file)
+
+        file_url = fs.urls(filename) # will give us file url
+
+        return HttpResponse("Ok")
+    else:
+        #return the form
+        pass
+ 
+ -------------------------------------------------------------------------
+ 
+
+ 
+  
+  
+
+
+
+
+
+
+
+     
+ 
+ 
