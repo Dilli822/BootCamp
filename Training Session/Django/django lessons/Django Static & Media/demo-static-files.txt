@@ -1,0 +1,176 @@
+
+---------------------------------DEMO-STATIC-FILES----------------------------------------
+
+# FIRST WE CREATE A APP CALLED STATICMEDIA
+# then register it in settings.py
+
+---How to use or keep the static files ?
+--- we need to make the static folder inside the staticmedia app folder.
+--- in the static folder we can keep the static files like js files
+--- lets create a js file and code console.log("hello i am from static")
+
+---if we have     'django.contrib.staticfiles', in the settings.py and DEBUG TRUE and STATIC_URL = '/static/' then it will serve the static mode.
+
+---running server and hitting the url we get to see the console.log("Hello I am from static folder")
+-- which we have coded in the main.js file.
+----http://127.0.0.1:8000/static/main.js
+
+----this shows django automatically serves the static files eventhough we have not made any url for static files.
+
+
+-------------------------------------------------------------------------
+
+# now we create the template folder and create a html files inside it.
+# template folder must be created inside the staticmedia folder.
+
+# inside the staticmedia folder.
+
+# views.py
+from django.shortcuts import render
+
+def render_static(request):
+    return render(request, 'static.html')
+
+-----------------------------------------------------------------------------
+# urls.py
+
+from django.urls import path
+
+from .views import render_static
+
+urlpatterns = [
+    # static-demo
+    path('demo/', render_static),
+]
+---------------------------------------------------------------------------
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+  </head>
+  <body>
+
+
+    <h1>I am from static static.html</h1>
+      
+  </body>
+  </html>
+
+---------------------------------------------------------------------
+
+======main root urls.py========
+# urls.py in the main project .
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('forms/', include('djangoforms.urls')),
+    path('static-demo/', include('staticmedia.urls')),
+]
+-----------------------------------------------------------------------
+# hitting the url we get 
+I am from static static.html
+
+http://127.0.0.1:8000/static-demo/demo/
+
+[15/Aug/2021 10:32:54] "GET /static-demo/demo HTTP/1.1" 301 0
+[15/Aug/2021 10:32:54] "GET /static-demo/demo/ HTTP/1.1" 200 332
+------------------------------------------------------------------------
+
+---Now how to use the static main.js in our templates for that we what we
+do is we add at the top of head of static.html .
+--- and checking the console of static.html we get to see hello i am from static.
+# this is actual way to include our static js files in html.
+------------------------------------------------------------------
+   {% load static %}
+
+    <scrpt sric="/static/main.js"></script>
+--------------------------------------------------------------------
+
+# ok this is we have done manually but we donot know in the future we may change the static folder name or we may need it dynamically.
+
+# for that we use tag which command the django where the static and our static files are.
+        <script src="{% static main.js' %}"></script>
+# this will pass our main.js with static folder dir and create a path dynamically.
+
+# reloading server will gives us same result.
+------------------------------------------------------------------------
+
+---let's check it again by making this in settings.py 
+STATIC_URL = '/static-demo-url/'
+# now if we refresh again we get same result which shows django has created itself path for static files {% static 'main.js' %} 
+---it add the static path up to main.js and serve itself by django.
+--- in the local environment.
+-------------------------------------------------------------------------
+
+-- we can add static files like images,css, js any other static files.
+-- now lets add any img file in static folder of an app.
+-- then pass the static tag in img src. of static.html .
+--     <img src="{% static 'night-city.jpg' %}" alt="beautiful-night-city">
+
+--refreshing the server again we get to see the content with img.
+
+--------------------------------------------------------------------------------
+
+
+------------For Deployment Case--------------------
+# on deployment files like images,css,js can be served statically as it is straight forward for browser to understand and no need to browser .
+
+#so we donot need django for such case we need another server which will serve those files.
+
+# but our static files may be presented in several folders which will be very difficult to provide each files and folders dir to server.
+# so to solve this problems what we do is go to the settings.py
+# STATIC_ROOT = os.path.join(BASE_DIR, 'prod-static')'
+-----------------------------------------------------
+
+#checking the folder dir in server console.
+└─$ python3 manage.py runserver                                             1 ⨯
+/home/dilli/Documents/djangopractice/prod-static
+/home/dilli/Documents/djangopractice/prod-static
+
+----------------------------------------------------
+
+└─$ python3 manage.py collectstatic       
+/home/dilli/Documents/djangopractice/prod-static
+
+130 static files copied to '/home/dilli/Documents/djangopractice/prod-static'.
+
+# this shows 130static files copied to this dir
+# checking it we really find all these files in prod-static folder which we created.
+# there are admin folder including css & other static files that are made by django itself.
+# also static folder that we created by ourselves.
+
+--------------------------------------------------------------------
+
+# now we can serve the prod-static folder only.
+
+
+# first close any server if it is opened.
+# then hit cmd python3 -m http.server
+
+http://127.0.0.1:8000/prod-static/main.js
+# we will get the result as 
+console.log("Hello I am from static folder")
+
+# this shows we can serve the static files without the help of django.
+--------------------------------------------------------------------------------
+# you can delete the static-prod folders for now.
+
+# when to use the static-root?
+# while deployment .
+# sometimes some apps and static files will not be able to collect all the static files together fo such cases we can .
+#STATICFILES_DIRS = [
+  ' # PROVIDING FILES DIRS FROM ANYWHERE IN OUR PC'
+  ]
+---------------------------------------------------------------------------------------
+
+
+
+
+
+

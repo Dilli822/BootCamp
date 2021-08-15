@@ -1,0 +1,15 @@
+
+-------------------MEDIA FILES DEMO-----------------
+
+# FIRST WE MADE MEDIA_URL IN THE SETTINGS.
+
+# MAKING MEDIA_URL AND MEDIA_ROOT
+# settings.py
+import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+-----------------------------------------------------------
+
+---------------------
