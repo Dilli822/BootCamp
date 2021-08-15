@@ -356,10 +356,144 @@ class FormsModel(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
 
-    
---- now creating it's forms
+
+----------------------------------------------------------------------------------------------------  
+--- now creating it's forms 
+
+from django import forms
+
+from .models import FormsModel
+
+class MyForm(forms.Form):
+    name = forms.CharField(max_length=100)
+
+    def clean_name(self):
+        print("after validation on views", self.cleaned_data)
+
+        name = self.cleaned_data['name']
+        # We can do any validations or clean the name
+        return name.lower()
+
+class FormsModelsForm(forms.ModelForm):
+    class Meta:
+        model = FormsModel
+        fields = ['name', 'email']
+     
+-----------------------------------------------------------------------------------------------------------   
+
+# views.py
+from django.shortcuts import render
+
+from django.http import HttpResponse
+
+from .forms import MyForm,FormsModelsForm
+
+
+def home_forms(request):
+    if request.method == 'GET':
+        print("====OK THIS IS GET METHOD.===")
+        return render(request, 'formspractice/forms.html', {})
+    else: # must be post method
+        print(request.POST.get('name'))
+        return HttpResponse("OKOK")
+
+
+def django_form(request):
+    if request.method == 'GET':
+        form = MyForm()
+        return render(request, 'formspractice/django-form.html', {'form': form})
+    else: # must be POST method
+        form = MyForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            return HttpResponse("Everything is Ok")
+        else:
+            return render(request, 'formspractice/django-form.html', {'form': form})
+            #return HttpResponse("Something is wrong!"
 
 
 
+def django_model_form(request):
+    if request.method == 'GET':
+        form = FormsModelsForm()
+        return render(request, 'formspractice/forms-model.html', {'form': form})
+    else: # must be POST method
+        form = FormsModelsForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            return HttpResponse("Everything is Ok")
+        else:
+            return render(request, 'formspractice/forms-model.html', {'form': form})
+            #return HttpResponse("Something is wrong!"
+--------------------------------------------------------------------------------------------------------
+
+# now we create template html files formsmodel.html
+# in formsmodel.html same as django-forms.html
+
+------then we create a url ------------
+from .models import django_model_forms
+
+# path('django-model-forms/', django_model_forms)
+
+from django.urls import path
+
+from .views import home_forms, django_form, django_model_form
+
+urlpatterns = [
+    path('home/', home_forms),
+    path('django-forms/', django_form),
+    path('django-model-forms/', django_model_form)
+]
+
+# then we create a template called forms-model.html
+
+
+  <form action="/forms/django-model-forms/", method="POST">
+
+    {% csrf_token %}
+    <!-- {{ form }} -->
+    <!-- {{ form.as_P }} means we are viewing form as paragraph-->
+    {{ form.as_p }}
+    <input type="submit" name="submit">
+
+  </form>
+  
+--------------------now let's hit the url and check our models views url and templates properly.
+http://127.0.0.1:8000/forms/django-model-forms/
+# here we get name and email field with submit button.
+
+{'name': 'dilli', 'email': 'dfdfd@gmail.com'}
+[15/Aug/2021 07:18:22] "POST /forms/django-model-forms/ HTTP/1.1" 200 16
+
+# we get submitted user's name and email in dictionary form.
+
+-------now adding save method to our django_model_form in views.py
+ form.save()
+ # we get error in the browser OperationalError at /forms/django-model-forms/
+
+no such table: djangoforms_formsmodel
+ # bcoz we didnot migrate the data to db.
+ # makemigrations and migrate .
+ 
+ 
+ # if form is only valid then the form will get save with .save() method.
+ 
+ # now we can check db table with name djangoforms_formsmodel table
+ # where we can get the submitted user's name and fields in the table 
+ # in this case we receieved the data from user hari & hari@gmail.com
+ # our .save() method save the form data to the db
+ --this is possible because our model has save method which read the class from meta and hit the ORM.
+
+
+----Updating case
+# for that we create a instance in the FormsMode
+i.e. form = FormsModelForm(instance=object,request.POST)
+
+------------------------------------------------------------------------------------------------------------------------
+
+ 
+ 
+
+ 
 
 
