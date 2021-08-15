@@ -232,6 +232,134 @@ def django_form(request):
     return render(request, 'formspractice/django-form.html', {'form': form})
 
 # THis shows the form has done post request in the backend.
+ -------------------------------------------------------------------------------------
  
+ ---------VAlidation Error Case-----------
+ # forms.py
  
+  name = forms.CharField(max_length="2")
+
+-----------------------Hack-------------------------
+# we use small hack as max_length = 2 doesnot allow us to enter more than 2 characters
+# so we inspect and remove the max_length = 2 from input tag in html and now we can enter the characters more than 2.
+# entering the name having characters morethan 2 will throw error.
+-------------------------------------------------
+http://127.0.0.1:8000/forms/django-forms/
+# submitting the form will throw error 
+# i.e. Something is wrong! 
+# because we have validate the field form upto max_length 2 only and we sent the mulitple characters.
+# and we handle the error or validate the form.
+
+-------------------------------------------------------------------------
+# we handled the error and now we can do it in more better
+# passing the form to the front end simply return render(request, 'formspractice/forms.html', {'form': form})
+# def django_form(request):
+    if request.method == 'GET':
+        form = MyForm()
+        return render(request, 'formspractice/django-form.html', {'form': form})
+    else: # must be POST method
+        form = MyForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            return HttpResponse("Everything is Ok")
+        else:
+            #return HttpResponse("Something is wrong!")
+             return render(request, 'formspractice/django-form.html', {'form': form})
+
+# now error will be 
+Ensure this value has at most 2 characters (it has 17).
+Name: 
+Ram Bahadur
+
+submit
+
+# here  our form is not valid form.is_valid() condition not satisfied.
+---- forms name also gets preserved.
+# with the help of this django form our work makes easier.
+
+-- In the case of form validation 
+# enter the valid characters and form.
+# print(form.cleaned_data)
+# here cleaned_data is dictionary which is getting printed on server terminal.
+# no we hit ORM in the database.
+
+[15/Aug/2021 05:59:52] "POST /forms/django-forms/ HTTP/1.1" 200 775
+{'name': '12'}
+[15/Aug/2021 06:02:46] "POST /forms/django-forms/ HTTP/1.1" 200 16
+
+--------------validating the field-----------------
+# validating the name field.
+# forms.py
+from django import forms
+
+class MyForm(forms.Form):
+    name = forms.CharField(max_length=100)
+
+    def clean_name(self):
+        print("I am from form", self.cleaned_data)
+        return "Ram"
+------------------------------------------------
+# enter the name Dilli Hang in the name input 
+# we get in terminal as cleaned_data which is in dict form.
+# we are returning Ram.
+
+I am from form {'name': 'Dilli Hang'}
+{'name': 'Ram'}
+[15/Aug/2021 06:07:52] "POST /forms/django-forms/ HTTP/1.1" 200 16
+----------------------------------------------------
+# now we can take the value of self.cleaned_data in name var
+# then we can take value of dict as name and return the name.
+
+    def clean_name(self):
+        print("I am from form", self.cleaned_data)
+
+        name = self.cleaned_data['name']
+        # We can do any validations or clean the name
+        return "name"
+  --------------------------------------------------------------      
+ # submit the django form with validing we get in server terminal.
  
+ I am from form {'name': 'Dilli Hang'}
+{'name': 'Dilli Hang'}
+[15/Aug/2021 06:12:04] "POST /forms/django-forms/ HTTP/1.1" 200 16
+-----------------------------------------------------------
+
+after validation on views {'name': 'Dilli Hang'}
+{'name': 'Dilli Hang'}
+[15/Aug/2021 06:14:46] "POST /forms/django-forms/ HTTP/1.1" 200 16
+
+# this shows the name dilli hang is in form and validation on views is printed.
+# this is a clean method.
+
+#  def clean_name(self):
+        print("after validation on views", self.cleaned_data)
+
+        name = self.cleaned_data['name']
+        # We can do any validations or clean the name
+        return name.lower()
+        
+after validation on views {'name': 'DILLI'}
+{'name': 'dilli'}
+[15/Aug/2021 06:16:37] "POST /forms/django-forms/ HTTP/1.1" 200 16
+
+# This shows at the form name is in upper case when it goes to form but after the validation on the veiws it is in lower case
+# and def clean_name() method returned the name in lower case.
+# and we can use the field validations in this way for other fields like age ,bio, details.
+
+-----------------------------------------------------------------------------------------------
+
+--When we have to make several fields 
+--first we create a models.
+from django.db import models
+
+class FormsModel(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+
+    
+--- now creating it's forms
+
+
+
+
+
