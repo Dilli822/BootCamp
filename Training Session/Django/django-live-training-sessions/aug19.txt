@@ -1,0 +1,13 @@
+
+----------------aug 19 django live trainins session---------
+
+-- status code
+--100
+-200
+--300
+--400 --forbidden, bad request
+--500 --> server error
+
+
+---RestAPI----
+---Serializer--
