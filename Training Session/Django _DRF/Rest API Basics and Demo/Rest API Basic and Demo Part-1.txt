@@ -40,3 +40,289 @@ urlpatterns = [
 
 # creting urls in the rest folder
 
+# urls in rest app folder
+
+from .views import add_two_numbers
+from django.urls import path
+
+urlpatterns = [
+    #rest/
+    path('add/', add_two_numbers),
+]
+
+
+# views in rest app folder
+
+from django.http import JsonResponse
+
+
+def add_two_numbers(request):
+    if request.method == 'GET':
+        return JsonResponse({'message': 'Welcome to add two numbers'})
+
+
+# Here we have simply send the jsonresponse to the browser.
+
+ -------------------POSTMAN------------------------
+ Postman: Postman is an API(application programming interface) development tool which helps to build, test and modify APIs. 
+ -----------------------------------------------
+  It has the ability to make various types of HTTP requests(GET, POST, PUT, PATCH), saving environments for later use, converting the API to code for various languages(like JavaScript, Python). 
+
+--------------------------------------------------
+I  will use the Postman software to send and receive requests, POST data to the server 
+
+----------------------------------------------------
+# install and rest url in the postman with GET request.
+
+
+# now let's assume user will send two data with POST method.
+for that.
+
+
+from django.http import JsonResponse
+
+ views.py
+ 
+def add_two_numbers(request):
+    if request.method == 'GET':
+        return JsonResponse({'message': 'Welcome to add two numbers'})
+
+
+    elif request.method == 'POST':
+        print(request.POST)
+        
+
+        return JsonResponse({'message': 'okay'})
+        
+
+# hiting the url http://127.0.0.1:8000/rest/add/
+# we get {"message": "Welcome to add two numbers"} on the browser.
+---on the server console----
+ [24/Aug/2021 02:57:04] "GET /rest/add/ HTTP/1.1" 200 41
+ 
+ # let's check it in postman with POST method
+ http://127.0.0.1:8000/rest/add/
+ # we get error HTML file with title
+ 	<title>403 Forbidden</title>
+
+ -----------POST method must csrf token------------------------
+ <div id="summary">
+		<h1>Forbidden <span>(403)</span></h1>
+		<p>CSRF verification failed. Request aborted.</p>
+
+
+		<p>You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is
+			required for security reasons, to ensure that your browser is not being hijacked by third parties.</p>
+		<p>If you have configured your browser to disable cookies, please re-enable them, at least for this site, or for
+			“same-origin” requests.</p>
+
+	</div>
+
+	<div id="info">
+		<h2>Help</h2>
+
+		<p>Reason given for failure:</p>
+		<pre>
+    CSRF cookie not set.
+    </pre>
+----------------------------------------------------------------------
+
+
+# we put csrf token with the help of decorator @csrf_exempt
+
+from django.http import JsonResponse
+
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def add_two_numbers(request):
+    if request.method == 'GET':
+        return JsonResponse({'message': 'Welcome to add two numbers'})
+
+
+    elif request.method == 'POST':
+        print(request.POST)
+        
+
+        return JsonResponse({'message': 'okay'})
+
+---------------------------------------------------------------------------
+
+
+# now hitting again url in the postman we get {"message": "okay" }
+
+
+------------------------------------------------------------------
+# now let's assume user is sending the form data to us.
+[24/Aug/2021 03:07:05] "POST /rest/add/ HTTP/1.1" 200 19
+<QueryDict: {'number': ['1'], 'numbers': ['2']}>
+
+
+-----------------------------------------------------------------
+# we want it to send in json format 
+# for that we have to send through raw data
+# we need to change the headers to the content-type: application/json
+# and send the raw data.
+
+---------------------------------------------------------------
+
+# if we type number 1 and 2 in the body.
+# and when we send the data we get empty queryset.
+
+-----but we need to pick the data------
+
+----we need to parse the json data--as we are using json format.
+
+
+# what is pareser?
+-->A parser is a compiler or interpreter component that breaks data into smaller elements for easy translation into another language.
+
+# what is parsing?
+->Parsing, syntax analysis, or syntactic analysis is the process of analyzing a string of symbols, either in natural language, computer languages or data structures, conforming to the rules of a formal grammar. 
+ 
+ --> a process of analayzing a string of symbols, either in natural language or in computer languages according to the rules of a formal grammar which also means determining the synatctic structure of an expression.
+ 
+ ------------------------------------------------
+ 
+ # so we import parser from django restframework
+ # every parser has parse method which we will use here.
+ 
+# views.py
+
+
+from django.http import JsonResponse
+
+from django.views.decorators.csrf import csrf_exempt
+
+
+from rest_framework.parsers import JSONParser
+
+
+@csrf_exempt
+def add_two_numbers(request):
+    if request.method == 'GET':
+        return JsonResponse({'message': 'Welcome to add two numbers'})
+
+
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        print("request.POST--->", request.POST)
+        print("data--->", data)
+        # print(request.POST)
+        
+
+        return JsonResponse({'message': 'okay'})
+        
+ ---------------------------------------------------
+ 
+ # now again we go to the postman and hit the send button
+ # we get on terminal server
+ 
+ request.POST---> <QueryDict: {}>
+data---> {'number': 2}
+[25/Aug/2021 14:25:20] "POST /rest/add/ HTTP/1.1" 200 19
+
+# we are getting those json data which we have sent.
+
+# we have used json parser for parsing the json data.
+# if we have used other data format or send the empty body then we get this error.
+
+--------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="robots" content="NONE,NOARCHIVE">
+	<title>ParseError
+		at /rest/add/</title>
+	<style type="text/css">
+
+--------------------------------------------
+---------on terminal server-----------------
+  raise ParseError('JSON parse error - %s' % str(exc))
+rest_framework.exceptions.ParseError: JSON parse error - Expecting value: line 2 column 1 (char 1)
+---------------------------------------------
+
+
+#---- we can use try catch method to handle the error if user send other data format.
+
+---------------------------------------------
+#views.py
+
+from django.http import JsonResponse
+
+from django.views.decorators.csrf import csrf_exempt
+
+
+from rest_framework.parsers import JSONParser
+
+
+@csrf_exempt
+def add_two_numbers(request):
+    if request.method == 'GET':
+        return JsonResponse({'message': 'Welcome to add two numbers'})
+
+
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        print("request.POST--->", request.POST)
+        print("data--->", data)
+        # print(request.POST)
+
+        # now we add the numbers
+
+        result = data['number1'] + data['number2']
+
+        return JsonResponse({'result': result})
+        
+
+        # return JsonResponse({'message': 'okay'})
+ 
+ 
+ # now if we go the postman and hit the url and send we get 
+ # addition value number of number1 and number2.
+ # suppose if we send number1 = 1 and number2 = 3
+ # we get { "result": 4}
+ 
+ --------------------------------------------------
+ 
+ ==== We made simple logic of addition and share publicly in the form of api======
+ 
+ ----we could make big complex various logics and share in the form of api with others--------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
