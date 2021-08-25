@@ -463,6 +463,32 @@ data---> {'number1': 'hhjhdf', 'number2': 99}
 [25/Aug/2021 15:08:06] "POST /rest/add/ HTTP/1.1" 200 33
 ==================================================
 
+2. Setting up status code.
+-# if we notice status code in the postman even after getting something is wrong error msg we get to see the status code is still showing 200 okay which is not true.
+
+--- inthis case this is client side error---
+
+# --- for status code google code----
+
+# 400 Bad Request is suitable for now so we need to send to client as 400 bad Request
+
+# for that we just need to add status=400 on the returning jsonresponse.
+
+# views.py
+        return JsonResponse({'error': 'Something went wrong'},status=400)
+        
+# with these statments we can send and see the 400 Bad Request status code is being shown.
+
+--------------------------------------------------
+---------------------------
+# what we have done in this part?
+---api development
+---- data parsing
+--- serializer
+---- deserializing
+---- added/send status code.
+
+=================================================
  
  
  

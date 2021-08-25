@@ -30,7 +30,7 @@ def add_two_numbers(request):
             # now we add the numbers
             result = number1 + number2
             return JsonResponse({'result': result})
-            
+
         print(serializer.errors)
-        return JsonResponse({'error': 'Something went wrong'})
+        return JsonResponse({'error': 'Something went wrong'},status=400)
 
