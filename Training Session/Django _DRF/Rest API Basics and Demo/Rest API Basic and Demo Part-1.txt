@@ -450,6 +450,18 @@ def add_two_numbers(request):
 request.POST---> <QueryDict: {}>
 data---> {'number1': 'hhjhdf', 'number2': 99}
 [25/Aug/2021 15:04:25] "POST /rest/add/ HTTP/1.1" 200 33
+-----------------------------------------
+============================================
+# === with these we did small validations for interfield =====================
+=================================================
+# wanna read the error more clearly?
+# add print(serializer.errors) just above the return JsonResponse({'error': 'something went wrong'})
+-------------------------------------
+# on the terminal we get.
+
+{'number1': [ErrorDetail(string='A valid integer is required.', code='invalid')]}
+[25/Aug/2021 15:08:06] "POST /rest/add/ HTTP/1.1" 200 33
+==================================================
 
  
  
