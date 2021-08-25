@@ -291,6 +291,22 @@ def add_two_numbers(request):
  
  ----we could make big complex various logics and share in the form of api with others--------
  
+ --------------------------------------------------
+ 
+ 
+ -------------------------------------------------
+ 
+ 1. No data validation 
+ # if user send strings
+ {
+    "a":1,
+    "number2":99
+}
+# we get keyerror in postman
+#     result = data['number1'] + data['number2']
+KeyError: 'number1'
+# this is bcoz of no data validation.
+
  
  
  
