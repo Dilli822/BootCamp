@@ -53,11 +53,66 @@ class UserDetail(models.Model):
  AbstractUser is a full User model, complete with fields, as an abstract class so that you can inherit from it and add your own profile fields and methods. AbstractBaseUser only contains the authentication functionality, but no actual fields: you have to supply them when you subclas
  --------------------------------------------------
  
+ -----------------------------------------
  
+ # user model also provide apis.
+ # there are other helpers methods in django model like password validations, hash password.
  
+ # better to add public api.
  
+ -------------------------------------------------
+ from django.db import models
+
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    middle_name = models.CharField(max_length=100)
+
+
+----------------------------------------------
+# look the default settings in site
+-- github/django/conf/global_settings.py
+
+# Now we need to tell the django 
+
+# by default there is AUTHENICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUserModelBackend']
+
+# adding our user model which will tell the django that this user.User is our custom model and django will not touch this model.
+---------------------------------------
+AUTH_USER_MODEL = 'user.User'
+--------------------------------------
+ AUTH_USER_MODEL = 'foldername.className'
+ # makemigrations and migrate.
  
- 
+ ***********************************************************
+ File "/home/dilli/.local/lib/python3.9/site-packages/django/db/migrations/loader.py", line 306, in check_consistent_history
+    raise InconsistentMigrationHistory(
+django.db.migrations.exceptions.InconsistentMigrationHistory: Migration admin.0001_initial is applied before its dependency user.0001_initial on database 'default'.
+********************************************************************
+
+******************************************************************
+# if you get this error then you had already auth user model that has been kept by django in the project
+# if your migrations history and database already has default user model.
+
+# so django will be confused as admin.001_initial is applied before....
+# never change user model in the middle of project it will bring big bugs and there will be so many fixes left to do.
+
+# and we must always make custom usermodel before project starts.
+
+**********************************************************************
+
+
+# if we now go the database we can see the user_user db table if above error are solved .
+
+# if extra db table user_user_groups come to exist makemigrations again.
+
+*********Note*****************
+# remember there will be no auth_user table as django will not migrate it's auth_user table because we making our own custom user_table.
+
+========================================================================
+
+
+
  
  
  
