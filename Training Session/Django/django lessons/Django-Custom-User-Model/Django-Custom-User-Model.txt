@@ -1,0 +1,101 @@
+
+
+---------Django-Custom-User-Model----------
+
+#first we create a new app with any name for creating user custom model
+ eg: python3 manage.py startapp usercustommodel
+ --register it 
+ 
+ -------------------------------------------------
+ # why and when we should use the user custom model?
+ 
+ *******************************
+ Note:
+ It's highly recommended to set up a custom User model when starting a new Django project. Without it, you will need to create another model (like UserProfile ) and link it to the Django User model with a OneToOneField if you want to add new fields to the User model.
+ *********************************
+ 
+ -----------------------------------------------
+ # we were using the django model before as django provide fields for us.
+ # but django models doesnot comes with all package wrapped.
+ # if we need phone number or user then we put it in a custom way .
+ 
+ --------------------------------------------------
+ # views.py
+ 
+ from django.db import models
+
+# Create your models here.
+
+from django.contrib.auth.models import User
+
+
+class UserDetail(models.Model):
+    phone_number = models.CharField(max_length=50)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+ 
+ --------------------------------------------------
+ 
+ # we just created custom user model table.
+ --------------------------------------------------
+ 
+ ---------------------------------------------------
+ * why don't we create our own user custom model and not depend on django model?
+ --> here comes the role of custom user model.
+ 
+ Note: We must tell or let know the django that we ar building our own custom user model.
+ -- bcoz it may bring conflict as django and other reusable apps may perform action internally on every models.
+ 
+ ------------------------------------------------
+ # if we see the abstractclass made by django there is no any middle name .
+ 
+ # so let's create a AbstractUser with middle name in custom user model.
+ -----AbstractUser-------
+ AbstractUser is a full User model, complete with fields, as an abstract class so that you can inherit from it and add your own profile fields and methods. AbstractBaseUser only contains the authentication functionality, but no actual fields: you have to supply them when you subclas
+ --------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
