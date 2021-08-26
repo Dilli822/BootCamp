@@ -1,0 +1,207 @@
+
+
+-------------Part2 Rest API Basic and Demo------------------------
+
+** more uses of rest framework*****
+----let's register it in installed app---
+
+# django DRF provides us parsing,request handling with so many helpers method.
+
+# in the previous lessons we have created small api 
+# in this lesson we do same development but with the use of django restframework helpers method.
+
+-------------------------------------------------------------------
+# views.py
+from rest_framework.decorators import api_view
+# for function based decorators
+-------------------------------------------------------------------
+
+
+# we have used @api_view decorator provided by DRF which takes two list data types  i.e. GET and POST
+# 
+
+from rest_framework.decorators import api_view
+
+
+@api_view(['GET', 'POST'])
+----------------------------------------------------------
+
+# what we can do now is we can use DRF reponse instead of jsonresponse.
+# for that we import response from DRF.
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+------------------------------------------------------
+
+# and we change the jsonresponse to Response .
+# eg: return Response({'error': 'Something went wrong'},status=400)
+
+--------------------------------------------------------------------
+
+# how everthing gets fit?
+# before that we need to know the DRF default settings.
+---site to look default settings.
+https://github.com/encod/django-rest-framework/settings
+-----------------------------------------------
+# we can override the default settings of DRF
+
+
+==================================
+
+# for parser and render default settings there are 2 and 3 default classes which django has made for ourselves.
+# if we need a specific parser we can modify it in the settings.
+# or globally.
+
+# but how does DRF which data type TO which data type need to be parsed or converted?
+-->ans is from headers or content-headers: application/json
+---> in case of response how it will know which data format to be responsed 
+->and is from content-negotiation
+--> work on which data-type content is send to DRF and response back same data format.
+----------if DRF receives Json Format it will response same Json format data type to client.----------------------------
+
+====================================================================
+# here we donot need print and data part because we have wrapped it in wrapper and it will automatically do the parsing job.
+# after parsing it keep a data.
+--------------------------------------------------------------------
+# what is request.data ? 
+# .data is an new attribute same as req.post, req.files which will be at top of DRF views.
+------------------------------------------------------------------
+#
+# views.py
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+@api_view(['GET', 'POST'])
+def add_two_numbers_in_rest(request):
+    if request.method == 'GET':
+        return Response({'message': 'Welcome to add two numbers'})
+
+
+    elif request.method == 'POST':
+        data = request.data
+        #deserializing
+        serializer = AddTwoNumbersSerializer(data=data)
+
+-----------------------------------------------------------------------
+
+# now hitting the send button in the postman
+# url will be http://127.0.0.1:8000/rest/v2/add/
+
+# on terminal server
+
+Bad Request: /rest/v2/add/
+[26/Aug/2021 12:38:02] "POST /rest/v2/add/ HTTP/1.1" 400 32
+
+-----------------------------------------------------------------
+# now let's return the serializer errors itself.
+# return Response(serializer.errors)
+
+{
+    "number1": [
+        "A valid integer is required."
+    ]
+}
+# with status code 400 as bad request.
+-----------------------------------------------------
+
+
+------------------------------------------------------------
+# is_valid(raise_exception=True) , is_valid method.
+# we have flag of raise_exception we turn on the flag True 
+# with raise_exception flag on we donot need if else conditon and return Response.
+
+--------------------------------------------------------------------
+        serializer.is_valid(raise_exception=True)
+        number1 = serializer.validated_data['number1']
+        number2 = serializer.validated_data['number2']
+        # now we add the numbers
+        result = number1 + number2
+        return Response({'result': result})
+---------------------------------------------------------------------
+
+# now hitting same url on the postman we get similar response with these code.
+# note bad request or status code automatically gets called with raise_exception flag on.
+------------------------------------------------------------------
+
+
+-------------Creating a small model------------------
+
+# so that we can understand more clearly how does everything fit?--
+
+# for that let's create model in models.py
+# models.py
+
+from django.db import models
+
+class Info(models.Model):
+    name = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
+    
+-----------------------------------------------------------
+# now let's make migrations and migrate it.
+
+# then register it to the admin.
+# admin.py
+from django.contrib import admin
+
+from .models import Info
+
+admin.site.register(Info)
+-------------------------------------------------------------
+
+# then let's create a superuser .
+# and we go the admin dashboard provided by django.
+# then create some users detail in the Rest/Infos
+
+# models.py # we overrid the string and changed to name 
+    def __str__(self):
+        return self.name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
