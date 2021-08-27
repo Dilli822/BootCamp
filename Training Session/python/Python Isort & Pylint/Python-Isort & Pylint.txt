@@ -14,3 +14,8 @@ https://github.com/PyCQA/isort#readme
 ----------------------------------------------------------------
   # pylint?
   Pylint is a source-code, bug and quality checker for the Python programming language. It is named following a common convention in Python of a "py" prefix, and a nod to the C programming lint program.
+  -----------------------------------------------------------------------
+  Pylint is a tool that checks for errors in Python code, tries to enforce a coding standard and looks for code smells. It can also look for certain type errors, it can recommend suggestions about how particular blocks can be refactored and can offer you details about the code's complexity.
+ -----------------------------------------------------------------------
+# more details on:
+https://www.pylint.org/
