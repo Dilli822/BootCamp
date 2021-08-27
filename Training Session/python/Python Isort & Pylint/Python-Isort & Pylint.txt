@@ -9,4 +9,8 @@ https://github.com/PyCQA/isort#readme
 
 # we can install it using following cmds.
  pip install isort
- 
+
+
+----------------------------------------------------------------
+  # pylint?
+  Pylint is a source-code, bug and quality checker for the Python programming language. It is named following a common convention in Python of a "py" prefix, and a nod to the C programming lint program.
