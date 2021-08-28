@@ -3,3 +3,71 @@
 
 # Let's create an app by using flask.
 
+---GET
+--- POST
+--- Query
+-------------------------------
+# small app which allows user to add the username, email and small text message and also allow them to view other users's email,name and text message.
+
+--------------------------------------------------
+
+# start a new project flask web app
+# install flask
+--cmd --pip install flask
+-----------------------------------------
+# create and activate virtual environment for python
+# install pip install virtualenv
+# virtualenv mypythonenv
+# source mypythonenv/bin/activate
+-----now it has to be created and activated the virtual env of python
+
+----------------------------------------------------------
+
+
+# create a python file named app.py
+
+# we import flask from Flask
+# let's initialised the Flask class obj name
+
+# we use @app.route('/') decorator which should call the function home and return 
+# Hello world from func home and our decorator is directing the default route/url
+# default route url  http://127.0.0.1:5000/
+# it should return Hello World
+# app.py
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello World"
+
+    if __name__ == '__main__':
+    app.run()
+
+# we have added condition if so that if python run this scripts then app will run.
+
+# we have return hello world
+
+# but we need to return whole html template for that we have to render the html template in the browser.
+
+---------------------------------------------------
+
+# now we use render_template function given by flask
+# and return the render_template form.html which was created for template purpose.
+
+# app.py
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    # return "Hello World"
+    return render_template('form.html')
+
+
+
+if __name__ == '__main__':
+    app.run()
