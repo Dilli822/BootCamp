@@ -1,0 +1,38 @@
+
+
+=================SIMPLE-DJANGO-DEMO-WEB-APP=============================
+
+=======App Features=====
+ * User can
+    1. upload and see their own status message
+    2. update or delete their status message
+
+
+ ** Hints:
+      start a new app name: statusapp
+      create a new model
+      class Model:
+            status: CharField
+            user: FK relation
+
+
+ ---- we will have foreign key for user model field 
+ because a single user may have multiple status.
+ -- if a user have only one status message at a time then it 
+ could be a one to one relation.
+
+
+---initial configuration-----
+ # must have django-admin startproject myproject
+   --this will create a myproject folder--
+# python3 manage.py startapp appname
+ --this will create a app named appname 
+# register our app in the settings.py
+# configure urls in the main root urls 
+# then create sub root urls.py in the appname folder
+
+--------------------------------------------
+
+
+---------------------------------------------
+-------let's create a model--------------
