@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'world',
     'user',
     'templating',
+    'modelextra',
 ]
 
 MIDDLEWARE = [

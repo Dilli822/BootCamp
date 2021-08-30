@@ -29,4 +29,4 @@ def hello_render(request):
     context = {
         'name': 'albert',
     }
-    return render(request,"hello.html", context, status=200)
+    return render(request,"hello_render.html", context, status=200)

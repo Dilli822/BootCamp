@@ -7,5 +7,5 @@ urlpatterns = [
     # templates/hello
     path('hello/', hello_template),
     
-    path('hello_render/', hello_render)
+    path('hello_render/', hello_render),
 ]
