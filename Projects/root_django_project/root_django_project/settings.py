@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'user',
     'templating',
     'modelextra',
+    'modelpractice',
 ]
 
 MIDDLEWARE = [
@@ -76,7 +77,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'root_django_project.wsgi.application'
 
-
+# print(BASE_DIR)
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
