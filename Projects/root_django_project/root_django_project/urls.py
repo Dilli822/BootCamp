@@ -46,6 +46,6 @@ urlpatterns = [
 
 
     # path for templating urls with include
-    path('template/', include('templating.urls')),
+    path('template/', include('templating.urls'))
     
 ]
