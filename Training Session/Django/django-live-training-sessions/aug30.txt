@@ -1,0 +1,36 @@
+
+
+----------------------live Training on Aug 30----------
+
+----Pagination----
+--- limit object pagination-----
+---- limit-- shows how many data to be prsented
+--- offset --shows from where to show the api data.
+-10/10  ---10/20
+limit/offset  limit/offset
+
+
+----------search filter------
+
+---return search filter api data like 
+ --https://127.0.0.1:8000/person-details/?search=dharan
+ --- return the api data of address dharan
+ 
+ 
+ 
+ -----filter------
+ --- package required 
+ -- pip install django-filter
+ ---- https://127.0.0.1:8000/person-details/?search=dharan
+ --this won't work
+ ---- filter only work with specific fields filtering with full detail request url------
+ 
+ --https://127.0.0.1:8000/person-details/?address=dharan
+ 
+ 
+ ----------ordering filter--------
+ -- .order_by('-id')
+
+
+----exclude and include the fields.
+ 
