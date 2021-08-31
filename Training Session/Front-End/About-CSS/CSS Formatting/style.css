@@ -1,0 +1,64 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.first-bucket{
+    border: 15px solid greenyellow;
+}
+
+.first-bucket2{
+    /* outline covers outer part of elements */
+    /* border covers inner part of elements */
+    outline: 5px solid red;
+
+    /* border: 15px dashed lime; */
+    /* border: 15px ridge rgb(199, 5, 5, 0.8); */
+    border: 15px double dodgerblue;
+}
+
+.second-bucket{
+    background-color: gainsboro;
+    padding: 2rem;
+    font-size: 2rem;
+    margin: 2rem;
+    width: 250px;
+    /* floating sychronizing the elements with eachother */
+    /* float: right; */
+    float: left;
+
+    /* breaking the words which are overflowing */
+    /* it break and wrap the word without destroying the content */
+    word-wrap: break-word;
+    
+}
+
+.second-bucket2{
+    background-color: gainsboro;
+    padding: 2rem;
+    font-size: 2rem;
+    margin: 2rem;
+    width: 200px;
+    height: 300px;
+    /* overflow: hidden; */
+    overflow: scroll;
+    overflow-x: hidden;
+    /* decrease and increase the content to see the auto overflow work */
+    /* for dynamic scroll reacting on content size */
+    /* overflow: auto; */
+}
+
+
+/* list child li*/
+/* display none will remove it's appearance from browser */
+/* but it's code will exist in the page */
+.list > li{
+    /* display: none; */
+    /* inline the elements without breaking the lines in the horizontal lines */
+    /* display: inline; */
+    /* display block will start a line and acts as single whole block in the vertical direction */
+    display: block;
+}

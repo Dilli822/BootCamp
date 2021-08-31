@@ -1,0 +1,12 @@
+
+
+----Border Vs Outline----
+----Padding Vs Margin----
+----Overflow----
+--- Float--- how elements sychornize and managed to keep on eachother
+--- Display---
+--- Word Wrap---
+--- Opacity---
+--- Filter----blur() | saturate()
+--- 
+----External CSS----

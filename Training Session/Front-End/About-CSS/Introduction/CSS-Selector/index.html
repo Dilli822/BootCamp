@@ -19,6 +19,7 @@
         
        /* elementor selector */
        body{
+           font-size: 1.5rem;
            text-align: center;
        }
       
@@ -30,6 +31,8 @@
 
        /* id selector */
 
+       /* id in the css is only one or it doesnot accept mutiple id names */
+       /* <div id="font h2"> <div id="id"> css will only recogninze div#id but not div#font h1 */
        p#id-para{
            color: purple;
        }
@@ -41,6 +44,31 @@
 
        /* css will bydefault look upon the latest 
        css changes if css changes are similar on elements */
+
+       /* child selector nav>ul>li */
+       /* nav > ul > li{ 
+           color: lightseagreen;
+       } */
+       /* css effects will be in li */
+       ul > li{
+           color:magenta;
+       }
+
+       /* attributes css selectors  */
+       input[type="text"]{
+           background-color: lightsteelblue;
+       }
+
+       /* grouping css selectors */
+       h2, h3, h4, h5{
+           color:rgb(9, 52, 107);
+       }
+
+       /* pseudo selectors for pseudo elements */
+       /* :hover is pseudo */
+       a:hover{
+           color:hotpink;
+       }
 
 
         </style>
@@ -64,6 +92,24 @@
         <p id="id-para">
             This is ID selector css.
         </p>
-       
+
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Services</li>
+                <li>About</li>
+            </ul>
+        </nav>
+
+        <input type="text" name="" placeholder="Enter Your Name:"> <br>
+        <input type="text" name="" placeholder="Enter Your SurName: "><br>
+        
+
+        <h2>Heading2</h2>
+        <h3>Heading3</h3>
+        <h4>Heading4</h4>
+        <h5>Heading5</h5>
+
+        <a href="https://facebook.com/dilli822" target="_blank" title="fb_link">links</a>
    </body>
    </html>
