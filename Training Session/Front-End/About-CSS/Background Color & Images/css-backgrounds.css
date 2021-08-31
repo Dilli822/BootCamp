@@ -1,0 +1,65 @@
+
+  *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none!important;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+p{
+  font-size: 1.3rem;
+  padding: 1em;
+}
+
+body{
+    /* background-color: gray; */
+    /* top to bottom linear gradient */
+    /* background-image: linear-gradient(skyblue, green); */
+
+    /* background-image: linear-gradient(to left, yellowgreen, blue); */
+    /* background-image: linear-gradient(to right, yellowgreen, teal); */
+
+    /* radial color acts radially*/
+    /* background-image: radial-gradient(red,blue); */
+    /* background-image: radial-gradient(red,blue,green,yellow); */
+    /* keeping percentage along with color gradient */
+    /* background-image: radial-gradient(red 1%,green 10%,yellow); */
+
+    /* ***** Background Image with different properties */
+    /* normal */
+    /* background-image: url("https://unsplash.it/401"); */
+    /* background-size: 150%; */
+    /* background-size: contain; */
+    /* background-size: 25% cover; */
+    /* for sychromization of three color & 2 images */
+    background-size: cover 25% cover;
+
+    background-repeat: no-repeat;
+    /* background-position: center; */
+    /* no scrolling of bg image but only text scrooling */
+
+    /* keeping one fixed & another scroll */
+    /* background-attachment: fixed, scroll; */
+    /* for sychromization of three color & 2 images */
+    background-attachment: fixed, fixed, scroll;
+
+    /* for multiple bg images */
+    background-image:
+    /* solid color will overlap the bg images */
+    /* linear-gradient(greenyellow, teal), */
+    /* transparent linear gradient for sychronization 
+    of 2 bg images and one linear gradient color */
+    linear-gradient(rgb(0, 0, 255, 0.5), rgba(255, 0, 0, 0.5)),
+    url(https://unsplash.it/450),
+    url(https://unsplash.it/1050);
+    /* keeping mutliple bg images position  */
+    /* background-position: right bottom, left; */
+    /* overlaying the bg with color */
+    /* for sychromization of three color & 2 images */
+    background-position: left, right bottom, left;
+
+
+
+}

@@ -1,0 +1,17 @@
+
+------------Background Images and CSS------------------
+----- Image can be kept single or multiple on the Background
+---- Background Properties:
+---- Background--
+    -- color, image, repeat, attachment, position--
+
+--- Gradient Properties
+--- solid color blue,yellow
+--- Gradient Color - combination of color
+--- can be used as Background-image: linear-gradient()
+-- linear-gradient (direction1, color1, color2,.....);
+-- linear-gradient (angle, color1, color2,...);
+-- repeating-linear-gradient(color1,color 10%, color20%);
+
+----Background Position and Attachments
+--- 
