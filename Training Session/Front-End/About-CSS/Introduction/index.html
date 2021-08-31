@@ -1,5 +1,4 @@
 
-
    <!DOCTYPE html>
    <html lang="en">
    <head>
@@ -11,18 +10,59 @@
        <!-- internal css -->
        <style type="text/css">
 
+       /* asteric is universal selector */
+       *{
+           padding: 0;
+           margin: 0;
+           box-sizing: border-box;
+       }
+        
+       /* elementor selector */
+       body{
+           text-align: center;
+       }
+      
+       /* class selector */
+       /* . (dot) means HTML Class */
        p.internal-css{
            color: limegreen;
        }
+
+       /* id selector */
+
+       p#id-para{
+           color: purple;
+       }
+
+       /* Descendatn Selector */
+       div p{
+           font-size: 1.25rem;
+       }
+
+       /* css will bydefault look upon the latest 
+       css changes if css changes are similar on elements */
+
+
         </style>
+
    </head>
    <body>
+
+    <div>
+        <p>
+            This is Descendant selector css.
+        </p>
+    </div>
 
        <p style="color:red;">
         This is inline css.</p>
 
         <p class="internal-css">
             This is internal css
+        </p>
+
+        <p id="id-para">
+            This is ID selector css.
         </p>
        
    </body>
