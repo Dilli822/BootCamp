@@ -1,0 +1,24 @@
+
+
+ ---CSS Position-
+ - The Position property can help us to manipulate the location of an element.
+
+ -- Position Property Valuse:
+ 1. Static (default)
+ 2. relative
+    -- x-axis , y-axis flow of elements like top left right
+ 3. fixed
+    -- fixed position in the browser
+ 4. absolute
+    -- position absolute to the browser
+     and especially for z-index
+
+ 5. sticky
+     -- for such case when it reach to certain
+       height it will be fixed 
+    
+  ----CSS Layer----
+  -- z-index means layering of css
+  ---which css layer to be shown first 
+  --- like we have z-index 1 or z-index 2
+

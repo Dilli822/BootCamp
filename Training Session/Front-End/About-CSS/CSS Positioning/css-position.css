@@ -1,0 +1,61 @@
+
+  *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      text-decoration: none;
+      outline: none!important;
+      font-family: Arial, Helvetica, sans-serif;
+  }
+
+  nav ul li{
+    display: block;
+    float: left;
+    width: 100px;
+    height: 50px;
+    padding: .5rem;
+    background-color: grey;
+  }
+
+  figure{
+    /* if you want to use absolute position then 
+    the parent element must have relative position
+    since relative is only x & y axis and doesnot
+    overlap to eachother */
+    position: relative;
+  }
+
+  /*  we are trying to take figcaption to top
+  but it is not happening but it is overlapping 
+  the nav ul so this means it's working */
+  figcaption{
+    position: absolute;
+    /* top: 0; */
+    bottom: 0;
+    /* keeping same width as image's width */
+    width: 900px;
+    color:#fff;
+    /* left: 50%; */
+    left: 25px;
+    /* z-index: 2 secondl css layer */
+    z-index: 2;
+    padding: 1rem;
+  }
+
+  /* showing the work of position absolute for div */
+  figure div{
+    background-color: rgb(124, 107, 12);
+    height: 50px;
+    width: 900px;
+    /* spacing from left side */
+    left: 5px;
+    /* adding only position absolute without bottom
+    will extract figcaptions from figure div */
+    position: absolute;
+    /* give bottom to div */
+    bottom: 5px;
+    /* without adding z-index the div will 
+    cover the figcaption and text will not
+    be seen */
+    z-index: 1;
+  }
