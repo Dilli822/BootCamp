@@ -62,3 +62,16 @@
     /* display block will start a line and acts as single whole block in the vertical direction */
     display: block;
 }
+
+.image{
+    height: 200px;
+    width: 200px;
+    /* opacity: 0.5; */
+    /* filter: blur(5px); */
+    /* filter: saturate(250%); */
+    /* black and white */
+    /* filter: grayscale(100%); */
+    /* filter: contrast(250%); */
+    /* filter: drop-shadow(15px 25px 17px green); */
+    /* explore more on filter */
+}
