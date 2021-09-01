@@ -1,0 +1,94 @@
+
+
+  *{
+      padding: 0;
+      margin: 0;
+      text-decoration: none;
+      box-sizing: border-box;
+  }
+
+  /* pseudo-elements */
+  /* eg: :hover, :nth-child() */
+
+  /* dynamic pseudo classes changes evently */
+
+  /* structural pseudo classes */
+  /* .box:nth-of-type(odd) */
+
+
+  a:link{
+      background-color: dodgerblue;
+      color: rgba(157, 255, 0, 0.938);
+      font-size: 2rem;
+  }
+
+  a:visited{
+      color: rgb(255, 255, 255);
+  }
+
+  /* hovering effects */
+
+  a:hover{
+      background-color: floralwhite;
+      color: dodgerblue;
+  }
+
+  /* link on click */
+  a:active{
+      background-color: rgb(2, 117, 21);
+      color: rgb(233, 0, 0);
+  }
+
+  /* structural pseudo classes */
+  nav ul li{
+      font-size: 1.5rem;
+  }
+
+   
+  /* .home{
+      color: red;
+  } */
+
+  /* styling with the 
+  help of pseudo class */
+  ul >li:first-child{
+      color:red;
+  }
+
+  /* on the last child dynamically*/
+  ul > li:last-child{
+      color:blue;
+  }
+
+  /* alternative color evenly on li */
+  ul > li:nth-child(odd){
+      color: fuchsia;
+  }
+
+  /* bring odd at below 
+  in the case of overridding */
+  ul >li:first-child{
+    color:red;
+}
+/* elements comes after 
+colons :, are
+pseudo classes */
+ p::first-letter{
+     font-size: 2rem;
+ }
+/* line */
+p::first-line{
+    background-color: fuchsia;
+}
+
+/* after and before */
+/* adding html content in the para
+cannot be selected */
+p::after{
+    content: 'read more...';
+    color:fuchsia;
+}
+
+/* p::before{
+    content:'before starting';
+} */
