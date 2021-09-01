@@ -1,0 +1,76 @@
+
+ *{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+p{
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+div.triangle{
+    border-left: 50px solid red;
+    border-right: 50px solid black;
+    border-bottom: 100px solid blue;
+
+    /* giving it height & width */
+    height: 0;
+    width: 100px;
+    /* removing the black and red bg color */
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    /* playing with bg color gives
+    different shapes */
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    /* border-bottom: 100px solid transparent; */
+}
+
+/* alternative and most used method
+to make various shape */
+/* clip path method allows us to
+make various shapes in the css */
+.shapes{
+    /* circle(500px at x-axis y-axis */
+    /* clip-path: circle(500px at 0 0); */
+    /* clip-path: circle(50px at 0 0); */
+    /* making perfect circle */
+    clip-path: circle(30%);
+    /* for ellipse */
+    /* giving horizontally and vertically */
+    /* clip-path: ellipse(30% 50% at 30% 50%); */
+    /* polygon */
+    /* must give angle to make shapes */
+    /* 50% mid left 0 top 0 bottom right 100% */
+    /* clip-path: polygon(50% 0,0 100%, 100% 100%); */
+    width: 100px;
+    height: 100px;
+    background-color: tomato;
+}
+
+
+/* another div with shape class */
+.shape{
+    padding: 1em;
+    border: 5px solid rgb(3, 217, 255);
+    background-color: teal;
+    /* border radius % increasing tends to become circle */
+    border-radius: 100%;
+    /* it sits on left side of div */
+    float: left;
+    /* margin to para */
+    margin: 2rem 2rem 0 1rem;
+
+    /* want to make space 
+    just act like in a circular */
+    /* notice there is space
+    after we gave margin between them */
+    /* for tha we have shape outside */
+    /* with margin box after giving value to box */
+    shape-outside: margin-box;
+    
+
+
+}
