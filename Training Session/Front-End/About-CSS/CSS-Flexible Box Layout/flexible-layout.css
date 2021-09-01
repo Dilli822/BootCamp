@@ -1,0 +1,75 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none!important;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+section div{    
+    padding: 2rem;
+    /* flex will make fiv to take 
+    every div with 100 and hright 150px on every div */
+    /* width: 150px; */
+    width: 200px;
+    height: 150px;
+    background-color: dodgerblue;
+    color: #fff;
+    font-size: 2rem;
+
+}
+
+section{
+    /* Parent takes flex */
+    display: flex;
+    /* flex-direction: column; */
+    /* flex-direction: row; */
+    /* flex-direction: row-reverse; */
+    /* flex-direction: column-reverse; */
+
+    /* wrapping  */
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+}
+
+/* I have togive various bg color to every div */
+/* for that we can use psuedo class ans css selector */
+
+section div:nth-child(odd){
+    background-color: hotpink;
+}
+
+section.section2{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    /* justify-content: flex-start; */
+    /* justify-content: flex-end; */
+    /* justify-content: center; */
+    /* justify-content: space-between; */
+    justify-content: space-around;
+    /* justify-content: space-evenly; */
+    /* align-items: flex-end; */
+    /* align-items: flex-start; */
+    align-items: center;
+    /* align-items: space-around; */
+
+    /* vertically alignments wrapper*/
+    height: 200px;
+    /* width: 350px; */
+    background-color: gainsboro;
+}
+
+section.section2 div{
+    width: 150px;
+    height: 100px;
+    background-color: rgb(49, 141, 77);
+    color: #fff;
+    font-size: 2rem;
+    padding: 2rem;
+
+}

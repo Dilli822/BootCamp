@@ -1,0 +1,16 @@
+
+-------------CSS Flexible Box Layout------
+-- a module of CSS that defines CSS box model optimized 
+-- for UI design, the layout of items in 2 Dimensions
+
+---- Flexible Properties:
+-- Flex
+-- Flex-Basis
+-- Flex-direction
+-- flex-flow
+-- flex-shrink
+-- flex-wrap
+-- order
+
+---- CSS Flexible Box-Items Order---
+
