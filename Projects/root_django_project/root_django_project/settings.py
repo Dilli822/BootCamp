@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'templating',
     'modelextra',
     'modelpractice',
+    'modelrelation',
 ]
 
 MIDDLEWARE = [
