@@ -52,7 +52,7 @@ make various shapes in the css */
 
 
 /* another div with shape class */
-.shape{
+.shape,.circle{
     padding: 1em;
     border: 5px solid rgb(3, 217, 255);
     background-color: teal;
@@ -62,7 +62,6 @@ make various shapes in the css */
     float: left;
     /* margin to para */
     margin: 2rem 2rem 0 1rem;
-
     /* want to make space 
     just act like in a circular */
     /* notice there is space
@@ -70,7 +69,20 @@ make various shapes in the css */
     /* for tha we have shape outside */
     /* with margin box after giving value to box */
     shape-outside: margin-box;
-    
-
-
+    /* we have added paragraph circle like identation */
 }
+
+/* making circle frame */
+.circle-frame{
+    padding: 1rem;
+    float: left;
+    margin: 1.5rem;
+    border: 5px solid rgb(255, 115, 0);
+    border-radius: 50%;
+    /* we donot size bg image */
+    shape-outside: url(https://unsplash.it/80);
+    shape-margin: 5rem;
+    /* change or play with 1 or 0.2 , 0.5  */
+    shape-image-threshold: 0.6;
+}
+
