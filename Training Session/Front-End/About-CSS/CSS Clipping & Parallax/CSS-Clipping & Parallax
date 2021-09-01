@@ -1,0 +1,8 @@
+
+------------CSS Clipping & Patallax------------
+-- The clip CSS property defines what position of an element
+is visible 
+
+-- parallax where the bg content is moved at a different
+speed then the foreground content while scrolling
+

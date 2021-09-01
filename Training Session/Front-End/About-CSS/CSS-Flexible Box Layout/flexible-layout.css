@@ -30,18 +30,44 @@ section{
     /* flex-direction: column-reverse; */
 
     /* wrapping  */
-    flex-wrap: wrap;
+    /* flex-wrap: wrap;
     justify-content: flex-start;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
 
 }
 
 /* I have togive various bg color to every div */
 /* for that we can use psuedo class ans css selector */
-
+/* for nth child odd div , every div inside the section */
 section div:nth-child(odd){
     background-color: hotpink;
 }
+
+/* for even nth child */
+section div:nth-child(even){
+    background-color: lightgreen;
+}
+
+/* ordering and sizing in the flex */
+/* for giving flex style width we use
+flex-basis */
+div.a{
+    /* width: 300px; */
+    flex-basis: 300px;    
+}
+
+/* making class b width 
+smaller with flex style 
+
+*/
+div.b, .g{
+    flex-shrink: 0;
+    /* comment out the parent
+    wrapping for looking changes */
+}
+
+
+
 
 section.section2{
     display:flex;
@@ -72,4 +98,13 @@ section.section2 div{
     font-size: 2rem;
     padding: 2rem;
 
+}
+
+/* making div even bigger
+with flex-grow 3
+means three times bigger */
+section.section2 div.c{
+    background-color: lightseagreen;
+    /* flex-grow: 1; */
+    flex-grow: 0;
 }
