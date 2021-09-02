@@ -36,3 +36,103 @@
 
 ---------------------------------------------
 -------let's create a model--------------
+# models.py
+
+from django.db import models
+
+# we can use any of these of models 
+
+# this first one is we have created by ourselves 
+# this user can be use directly.
+from user.models import User
+from django.conf import settings
+
+# 
+from django.contrib.auth import getr_user_model
+
+
+class StatusMessage(models.Model):
+    status = models.CharField(max_length=200)
+    user = models.ForeignKey()
+
+------------------------------------
+#user = models.ForeignKey(get_user_model)
+# user = models.ForeignKey(user)
+# user = models.ForeignKey(settings())
+--------------------------------------------
+# models.py
+from django.conf import settings
+from django.contrib.auth import get_user_model
+
+
+class StatusMessage(models.Model):
+    status = models.CharField(max_length=200)
+    user = models.ForeignKey(get_user_model())
+-------------------------------------------------
+
+-----------------------------------------
+# we can use default or auto now for dateime field
+# we use auto timezone so that it remains dynamic even our model gets changed
+# we also add modeified_at field so that we know when it was created or modified.
+
+Note: We can this type of creating or modeified_at fields from application layer 
+or any other possible but doing from model itself is regarded as good practice.
+
+
+----------------------------------------------------------
+#models.py
+from django.db import models
+
+# from user.models import User
+from django.conf import settings
+from django.contrib.auth import get_user_model
+
+
+class StatusMessage(models.Model):
+    status = models.CharField(max_length=200)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+
+    created_at = models.DateTimeField(default=timezone.now)
+
+ ----------------------------------------------------
+
+ # urls.py
+ # we must provide app name to urls so that our urls will know on which url root 
+ it need to work on.
+
+app_name = 'app_status'
+urlpatterns = [
+    
+]   
+----------------------------------------------
+
+#models.py
+from django.db import models
+
+
+# from user.models import User
+from django.conf import settings
+from django.contrib.auth import get_user_model
+
+
+class StatusMessage(models.Model):
+    status = models.CharField(max_length=200)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
+
+
+    def __str__(self):
+        return self.user
+
+--------------------------------------------------------
+AUTH_USER_MODEL = 'user.User'
+--------------------------------------------------------
+
+# now let's do the migrations
+# migrate it
+# create a superuser.
+
+-----------------------------------
+
