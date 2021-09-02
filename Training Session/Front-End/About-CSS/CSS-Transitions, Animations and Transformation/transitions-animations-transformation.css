@@ -100,3 +100,77 @@ img{
     transparent creating rgba*/
     box-shadow: 25px 25px 25px rgba(0,0,0,0.8);
 }
+
+/* animations on p */
+section p{
+    font-size: 1.5rem;
+    font-weight: bolder;
+    /* background-color: lightgreen; */
+    /* animations with keyframws only */
+    /* let's call the animations with its name */
+    /* animation: name  duration*/
+    animation-name: slider;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    /* animation-direction: alternate; */
+    animation-direction: alternate-reverse;
+
+}
+/* function of keyframe
+@keyframes identifier {
+    
+} */
+
+@keyframes slider {
+    from{
+        /* now moves from left side
+        to corner most right side */
+        /* corenermost and will be invisible */
+        margin-left: 100%;
+        width: 400%;
+    }
+    to{
+        /* now moves from right to left */
+        margin-left: 0;
+        /* back to normal with 100% */
+        width: 100%;
+    }
+    /* and again from left to right */
+}
+
+.animation{
+    width: 250px;
+    height: 250px;
+    background-color: rgb(240, 80, 16);
+    /* making it to move and chnage its
+    bg color with movement */
+    animation-duration: 8s;
+    animation-name: img-back;
+    position: relative;
+    animation-iteration-count: infinite;
+
+}
+/* lets break 8s into smaller fraction section and effects */
+/* for movement we must have position absolute or relative */
+@keyframes img-back {
+    0%{
+        background-color: rgb(240, 80, 16); left: 0;
+    } 
+    /* half time 4s at 50% */
+    50%{
+        /* setting image */
+        /* background-color: blue; left: 500px; 
+        keeping bg size cover so that it will be 
+        properly displayed */
+        background-image: url("https://unsplash.it/401"); 
+        background-size: cover;
+        left: 500px;
+
+    }
+
+    100%{
+        background-color: rgb(240, 80, 16); left: 0;
+    }
+}
+
+/* tooltip */
