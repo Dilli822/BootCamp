@@ -11,6 +11,9 @@
 
     <!-- Main Standard External Stylesheet -->
     <link rel="stylesheet" href="css/style.css" type="text/css">
+
+    <!-- Customized My own CSS -->
+    <!-- <link rel="stylesheet" href="css/Style.css" type="text/css"> -->
  
 </head>
  <body>
@@ -20,7 +23,7 @@
         <div class="header">
             <div class="container">
                 <div class="header-content">
-                    <h1 class="m-f">Welcome to Nepal!</h1>
+                    <h1 class="m-f">Welcome <span>to</span> Nepal<span>!</span></h1>
                     <h2><span> Heaven </span>is myth, <span> Nepal </span> is Real!</h2>
                     <br>
                     <a href="#" class="btn btn-trans">Explore</a>
@@ -41,6 +44,7 @@
                 </div>
 
                 <div class="intro-text">
+                    <article>
                     <h1 class="m-f">Nepal</h1>
                     <p>
                         Land of mystic mountains and tales,
@@ -53,6 +57,7 @@
                         its real challenge: the Mount Everest. 
                         Nepal is finally a haven of peace and tolerance. 
                     </p>
+                </article>
 
                 </div>
             </div>
@@ -62,12 +67,92 @@
         <!-- Services Section Starts -->
         <section class="services">
             <div class="container service-content">
+                <div class="bucket">
+                    <h1>Blogs</h1>
+                    <p>
+                        Fishtail mountain, known locally as Machupuchare, 
+                        is one of the Himalayas' most iconic and revered mountains
+                        not only because of its unique appearance but also because
+                        local traditions consider the summit home to the Hindu Lord 
+                        Shiva. The trek to Mardi Himal base camp, at the foot of 
+                        this natural wonder, is one of the most immersive and 
+                        transformative adventures on
+                        <span><a href="#">readmore...</a></span>
+                    </p>
+                </div>
+
+               <div class="bucket">
+                <h1>Activity</h1>
+                <p>
+                    Experience a magical sunrise over the Annapurna 
+                    ranges from the spectacular heights of Poon 
+                    Hill – an early morning hike to this prime spot 
+                    will be well worth the effort.
+                    Relax and unwind in Pokhara after your trek, 
+                    choose to cruise along Phewa Tal (Lake) and 
+                    gaze up at snow-capped mountains or opt for a 
+                    relaxing massage to rejuvenate those tired legs.
+                    <span><a href="#">read more..</a></span>
+                </p>
+            </div>
+
+                <div class="bucket">
+                    <h1>Accomodations</h1>
+                    <p>
+                    The accommodation package includes one night in 
+                    private cottage and full-board formula (3 meals) 
+                    for 2 guests. The Kalsee Ecolodge is n in the 
+                    Annapurna region, near the town of Pokhara. 
+                    The village of Lumle is principally a Gurung 
+                    community of Western Nepal. Many people move 
+                    away to Katmandu or Pokhara, leaving several empty
+                    houses and fallow lands 
+                    <span><a href="#">read more..</a></span>
+                </p>
+            </div>
 
             </div>
         </section>
 
         <!-- Services Section Ends -->
 
+        <!-- Contact Section Starts -->
+        <section class="contact">
+            <div class="container contact-section">
+                <h1 class="m-f"> Get in Touch</h1>
+                    <form action="#" method="post">
+                        <div class="full-name">
+                            <input type="text" name="full_name" id="" placeholder="Enter Your Name" required>
+                        </div>
+                        <div class="email">
+                            <input type="email" name="email" id="" placeholder="Enter Your Email" required>
+                        </div>
+                        <div class="message">
+                            <textarea name="message" placeholder="Any Message For Us" id="" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="send-btn">
+                            <input type="submit" name="submit-btn" class="btn btn-submit" value="Send">
+                        </div>
+                    </form>
+
+            </div>
+        </section>
+        <!-- Contact Section Ends -->
+
+        <!--  Footer Section Starts -->
+        <footer>
+            <p id="copyright"></p>
+        </footer>
+        <!-- Footer Section Ends -->
+
     </main>
+
+    <!-- Javascript -->
+    <script type="text/javascript">
+    const currentYear = new Date();
+    document.getElementById("copyright").innerHTML = 
+    " &copyCopyright|&regAll Rights Reserved-" + currentYear.getFullYear();
+    </script>
+    
  </body>
  </html>
