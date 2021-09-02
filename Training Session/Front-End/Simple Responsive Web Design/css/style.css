@@ -1,0 +1,115 @@
+
+/* google font Aclonica imported */
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
+/* only for bigger text font/main font */
+.m-f{
+  font-family: 'Aclonica', sans-serif;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+  outline: none !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-image: url("../img/mount-ama-dablam-nepal-mountain-range.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+main {
+  position: absolute;
+  /* keeping top and left
+  zero means starting initially */
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+/*# sourceMappingURL=style.css.map */
+
+.header{
+  height:100vh;
+  color: #ffffff;
+
+}
+
+.container{
+  width: 70%;
+  margin: 0 auto;
+}
+
+.header-content{
+  padding-top: 40vh;
+  text-align: center;
+}
+
+.header-content h1, .intro-content h1{
+  font-size: 42px;
+  line-height: 50px;
+}
+
+.header-content h2 span{
+  color: #e6f700;
+  line-height: 100px;
+}
+/* button design */
+.btn{
+  background-color: transparent;
+  border: 3px solid #ffffff;
+  padding: .5rem 2rem;
+  margin: 0 .5rem;
+  font-weight: bolder;
+  color: #ffffff;
+  /* adding transition animations */
+  transition: all 500ms ease-in-out;
+
+}
+
+.btn-fill{
+  background-color: #ffffff;
+  color: #252525;
+  font-family: serif;
+  border: 5px solid #ffffff;
+
+}
+
+.btn-fill:hover{
+  background-color: #e6f700;
+  border-color: transparent;
+}
+
+.btn-trans:hover{
+  background-color: #e6f700;
+  color: #252525;
+}
+
+.intro{
+  background-color: #ffffff;
+  padding: 25vh 0;
+  /* height: 50vh; */
+  /* float: right; */
+}
+
+.intro-content{
+  height: 50vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.intro-content div{
+  width: 50%;
+}
+
+.intro-text p{
+  text-align: justify;
+  color: #828282;
+  line-height: 30px;
+}

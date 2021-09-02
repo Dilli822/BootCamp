@@ -1,12 +1,5 @@
 
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    outline: none!important;
-}
 img{
     max-width: 100%;
     /* 2D Transformations only */
@@ -173,4 +166,58 @@ section p{
     }
 }
 
-/* tooltip */
+/* tooltip  as dropdown menu*/
+.tooltip{
+    position: relative;
+    border: 1px solid rgb(58, 56, 56);
+    font-size: 1.5rem;
+    padding: 2rem;
+    margin-top: 40rem;
+}
+
+.tooltip span{
+    width: 300px;
+    background-color: green;
+    color: #fff;
+    font-weight: bolder;
+    padding: 1rem 2rem;
+    /* must have top lefr right bottom 
+    with zindex */
+    z-index: 1;
+    top: 10px;
+    left: 100px;
+    /* initial instances of visibility */
+    visibility: hidden;
+}
+
+.tooltip:hover span{
+    visibility: visible;
+}
+
+/* creating arrow in the css */
+.arrow{
+    border-style: solid;
+    /* four sides of border width */
+    /*  topside head   width */
+    border-width: 100px 0 100px 200px;
+    /* color to right or lfet hand side color */
+    border-color: transparent transparent transparent red;
+}
+
+div{
+    margin: 5rem 0;
+}
+
+.buckets{
+    margin-top: 10rem;
+}
+
+.group4{
+    margin-top: 5rem;
+}
+
+@media only screen and (max-width:800px) {
+    div,.group4,.tooltip{
+        margin:0!important;
+    }
+}
