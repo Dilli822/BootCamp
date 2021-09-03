@@ -6,3 +6,13 @@
     text-decoration: none;
     outline: none!important;
 }
+
+.btn,#p{
+    text-align: center;
+    color:red;
+    font-size: 5rem;
+}
+button{
+    padding: .5rem 2rem;
+    font-size: 2rem;
+}
