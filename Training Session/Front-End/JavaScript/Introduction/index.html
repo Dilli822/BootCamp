@@ -1,5 +1,6 @@
 
  <!DOCTYPE html>
+
  <html lang="en">
  <head>
      <meta charset="UTF-8">
@@ -14,12 +15,33 @@
      <p id='p'>
          Hello from Html Templates!
      </p>
+
+   
      <!-- event listener with js -->
      <div class="btn">
         <button onclick="document.getElementById('p').innerHTML = 'I am clicked!'";>
             click me
          </button>
      </div>
+
+     <p id="js_para">
+        <!-- here js content will come -->
+    </p>
+
+    <!-- click to change the images/slider -->
+
+    <figure>
+        <img src="https://unsplash.it/401" id="img" alt="unsplash-img">
+    </figure>
+
+    <button onclick="document.getElementById('img').src = 'https://unsplash.it/401';">
+        Day/Prev
+
+    </button>
+    
+    <button onclick="document.getElementById('img').src = '/img/';">
+        Night/Next
+    </button>
      
      <script type="text/javascript">
         // alerting windows
