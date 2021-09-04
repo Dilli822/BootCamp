@@ -7,10 +7,14 @@
     outline: none!important;
 }
 
+img{
+    max-width: 100%;
+}
+
 .btn,p{
     text-align: center;
     color:red;
-    font-size: 5rem;
+    font-size: 2rem;
 }
 
 button{
