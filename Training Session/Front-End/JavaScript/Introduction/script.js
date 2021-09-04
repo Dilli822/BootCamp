@@ -1,3 +1,5 @@
 
- console.clear()
- console.log("JS Reloaded!")
+console.clear()
+console.log("JS Reloaded!")
+
+
