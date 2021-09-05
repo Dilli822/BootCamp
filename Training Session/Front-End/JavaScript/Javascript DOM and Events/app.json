@@ -1,0 +1,16 @@
+
+
+[
+    {
+        "name": "json",
+        "content": "json-format",
+        "use": "for api"
+
+    },
+
+    {
+        "json": "json is javascript object notation",
+        "content": "it is data exchanging common format which is machine and human friendly and readable"
+
+    }
+]

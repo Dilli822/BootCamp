@@ -1,0 +1,32 @@
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.form-container{
+    display: block;
+    margin: 0 auto;
+    background-color: aqua;
+    width: 80%;
+    height: 100%;
+}
+
+form, p{
+    margin: 20px;
+}
+
+label{
+    width: 300px;
+    margin-top: 20px;
+    display: inline-block;
+}
+input{
+    padding: .5rem;
+}
+/* for error message  */
+label span{
+    font-size: .85rem;
+}
