@@ -67,8 +67,27 @@
         $('#form').validate({
             rules: {
                 name: {
-                    required: true
+                    required: true,
+                    minlength: 5
+                },
+
+                age: {
+                    required: true,
+                    // for integer value field only
+                    number: true,
+                    // for only abover age 16
+                    min: 16
+                },
+                email: {
+                    email: true
+                },
+                mobile:{
+                    required: true,
+                    number: true,
+                    minlength: 10
                 }
+
+                // in case not gmail account
             }
         })
     })

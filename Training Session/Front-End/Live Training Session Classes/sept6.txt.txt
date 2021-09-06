@@ -1,0 +1,15 @@
+
+------ES6(ECMASCRIPT 6)-----
+--- one of the features of the javascript.
+--- Modules -> collection of functions.
+--- it is the latest version of ES6 till 2021/09/06.
+--- files can be imported with import 
+--- keyword with ES6 features
+--- we can import other files in another files with ES6.
+
+---- online code editor for js---
+-- babeljs.io
+--- do more research on babel.js
+
+--- webpack
+--- bundling tools

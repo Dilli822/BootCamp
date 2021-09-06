@@ -4,12 +4,13 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .form-container{
     display: block;
     margin: 0 auto;
-    background-color: aqua;
+    background-color: rgb(179, 189, 189);
     width: 80%;
     height: 100%;
 }
@@ -29,4 +30,12 @@ input{
 /* for error message  */
 label span{
     font-size: .85rem;
+}
+
+/* for error message */
+label.error {
+    color: red;
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 5px;
 }
