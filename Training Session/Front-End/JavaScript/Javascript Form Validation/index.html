@@ -68,7 +68,7 @@
             rules: {
                 name: {
                     required: true,
-                    minlength: 5
+                    minlength: 2
                 },
 
                 age: {
@@ -82,15 +82,39 @@
                     email: true
                 },
                 mobile:{
-                    required: true,
+               
+                    required: {
+                    // making dependicency
+                    //  and making conditional 
+                    // dynamical field
+                    depends: function(elem){
+                        return $("#email").val() == '';
+                    }
+                },
                     number: true,
+                    // not min
+                    //  as min: 5 means it is value
                     minlength: 10
+                      // in case not gmail account
+                // rules block completed
                 }
+             },
+            // for making custom msg
+            messages: {
+                name: {
+                    minlength: "Name Field should be at least 2 or more than 2 character"
+                },
 
-                // in case not gmail account
+                // for many fields msg
+                // for age and min conditional
+                age: {
+                    required: "Please Enter Your age",
+                    number: "Please enter your age in a number ",
+                    min: "You must be at least 16 or more than 16 years old."
+                }
             }
-        })
-    })
+        });
+    });
 
   </script>
 
