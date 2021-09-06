@@ -12,14 +12,96 @@
  </head>
  <body>
      
-    <p id="first"></p>
+    <!-- <p id="first"></p>
+    <p> Document OBject MOdel </p>
+    <p class="second"> </p>
+    <p class="third"></p> -->
 
+    <!--<p id= "first"></p>
+    <p></p>
+    <p></p>
+    <p class="third"></p>-->
+
+    <div id="div">
+        <p>DOM</p>
+        <p id="second">ACtive</p>
+        <p>Last Paragraph</p>
+    </div>
+
+    
+    
     <!-- javascript -->
     <script>
+        console.clear();
+
         // inserting html content from script js
-        document.getElementById('first').innerHTML = 'INserted paragraph from js script!';
+        // document.getElementById('first').innerHTML = 'INserted paragraph from js script!';
+
+        // id points the specific elements in the HTML
+        // here p points all the paragraph tag of HTML
+        // but with ('p').[0] means first paragraph tag
+        // document.getElementsByTagName('p')[1].innerHTML = 'this is first para';
+        // document.getElementsByTagName('p')[2].innerHTML = 'this is first para by DOM Method';
+        //  we can use getELementBy(Tag,ClassName,id,Query)
+        // they all must have unique class id tag name 
+
+        // queryselector
+        // document.querySelectorAll('p.second')[0].innerHTML = 'THis is DOM METHOD queryselectors.';
+        // let's give or select effects of div#id THROUGH P#SECOND
+        // first p#second gets selected
+        // var x = document.getElementById('second');
+        // console.log(x.parentNode);
+        // console will be <div id="second"></div>
+        // now through p#second we can access the parent div#id elements and content from HTML
+        // SELECTED PARENT ELEMENT
+
+
+        // NOW LET'S SELECT THE CHILD THROUGH PARENT
+        // With these methods we can access to child through PARENT
+        // console.log(x.parentElement);
+
+        // var x = document.getElementById('div');
+        // if we want to take only tag then we use node
+        // with node we only get tags 
+        // console.log(x.firstChild.nodeName);
+        // console will be text
+        // for brigning whole paragraph as we get info there is #text
+        // console.log(x.firstElementChild)
+
+
+        // SIBLINGS DOM VVI///
+        // taking out or extracting the DOM siblings
+        // sibings are arranged in the sequence
+        //  DOM -FIRST 
+        // ACTIVE - SECOND
+        //  LAST PARAGRAPH -THIRD
+        var x = document.getElementById('second');
+        // next sibilings and previous siblings DOM method
+
+        console.log(x.nextElementSibling);
+        console.log(x.previousElementSibling);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     </script>
+
     <script src="script/main.js" type="text/javascript"> // external js </script>
  </body>
  </html>
