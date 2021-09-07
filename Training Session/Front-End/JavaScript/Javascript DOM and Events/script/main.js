@@ -67,5 +67,24 @@ form.insertBefore(textField, form.childNodes[0]);
 }
 
 
+// let's make cloning with DOM or cloning the elements of HTML
+
+var cloneDoc = document.getElementById('div');
+var clone = cloneDoc.cloneNode(true);
+
+// now paragraph is cloned
+// let's show it in other places
+// now we change the div id and assign new id
+clone.id = 'div-2';
+document.body.appendChild(clone);
+
+// let's separate the div 2 
+// accessing the CSS through DOM
+// FOr that we need id
+document.getElementById('div-2').style.backgroundColor = "skyblue";
+
+// DOM Events
+
+
 
 

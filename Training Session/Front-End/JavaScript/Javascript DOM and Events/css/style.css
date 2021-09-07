@@ -6,3 +6,12 @@
      box-sizing: border-box;
  }
   */
+
+  .div{
+      background-color: #ff0000;
+      color: #ffffff;
+      height: 100px;
+      padding: 2rem;
+      font-size: 1.5rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
