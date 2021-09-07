@@ -53,9 +53,20 @@
     <div class="div" id="div">
         paragraph
     </div>
-    
+    <br>
+    <!-- automatically changing lower to uppercase -->
+    <label for="name">Name</label>
+    <input type="text" onchange="changeToUp()" id="name" >
+    <!-- can use onblur do research-->
 
-    
+    <!-- on hovering mouse only content displaying -->
+    <!-- padding object param this as which will acts as node -->
+    <div style="font-size: 2rem;" class="hover-me"
+    id="hover-me" onmouseover="HoverToUp(this)"
+    onmouseout="HoverToOut(this)">
+    <!-- added two events for one hovering and another hovering out -->
+        Hover Me!
+    </div>
     
     <!-- javascript -->
     <script>

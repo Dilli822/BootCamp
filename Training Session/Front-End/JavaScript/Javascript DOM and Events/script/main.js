@@ -84,7 +84,32 @@ document.body.appendChild(clone);
 document.getElementById('div-2').style.backgroundColor = "skyblue";
 
 // DOM Events
+// automatically uppercase from lowercase
+// for that we createfunction
+function changeToUp(){
+    var name = document.getElementById('name');
+    // check the value by typing some text in the field
+    // console.log(name.value)
+    // now it will automate the uppercase letters inside the field
+    name.value = name.value.toUpperCase();
+    // for blur effects
 
+}
+
+// mouser over only display the information
+// this node is coming from this which was passed from (pass) param
+function HoverToUp(node){
+    node.innerHTML = 'Information for hovering or mouseover on it!'
+}
+
+// func for mouseout
+function HoverToOut(node){
+    node.innerHTML = "Hover me again!"
+}
+
+// how to make div as button triggering events
+
+document.getElementById
 
 
 
