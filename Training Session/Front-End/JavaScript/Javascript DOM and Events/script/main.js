@@ -39,5 +39,33 @@ var List = document.getElementById('list');
 
 var data = ['Python', 'Bootstrap', 'HTML', 'Javascript', 'Jquery'];
 
+var frag = new DocumentFragment();
+
+data.forEach((data)=>{
+    var li = document.createElement('li');
+    li.innerHTML = data;
+    frag.appendChild(li);
+});
+// need to make append in the list
+list.appendChild(frag);
+
+
+// let's make function when
+// we click any button
+// then all the elements will get
+// appending nodes
+// for functionality
+// when we click on button
+// it should add fields
+
+function addField(){
+var textField = document.createElement('input');
+// where to add 
+var form = document.getElementById('form');
+// what to add textField as form childNodes and get sitted at last
+form.insertBefore(textField, form.childNodes[0]);
+}
+
+
 
 
