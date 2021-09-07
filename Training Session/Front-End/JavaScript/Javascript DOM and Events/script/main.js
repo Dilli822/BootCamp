@@ -108,8 +108,16 @@ function HoverToOut(node){
 }
 
 // how to make div as button triggering events
+// with .addEventListener("eventName", functionName())
+document.getElementById('hover-me').addEventListener('click', testClick);
 
-document.getElementById
+// clickTest Fun
+function testClick(){
+    // alert('Test is Success!');
+    // console.log("YOu clicked me")
+    console.log("test okay")
+}
+
 
 
 
