@@ -1,0 +1,84 @@
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title> Js Local Storage, Session Storage & Cookie </title>
+
+     <style>
+         .local-storage{
+             height: 150px;
+             width: 30%;
+             padding: 50px;
+             color:#ffffff;
+             background-color: #ff0000;
+         }
+     </style>
+    </head>
+ <body>
+     <!-- local storage -->
+     <!-- the input data taken from user when visiting the web pages and 
+    browser keep the storage of those input data -->
+
+    <!-- session stroage stays temporarily -->
+    <!-- Cookies are used to store the files as in text format it remains unless it is cleared
+    --- expiry data can be done in cookies, so cookies must have expiry date-->
+    <!-- local storage and session storage can be done locally -->
+    <!-- whereas for cookies we need server -->
+    <!-- <h1>hello worlf </h1> -->
+    <button id="btn" onclick="showDiv()">
+        Show 
+    </button>
+    <br>
+
+    <!-- show div only when clicked on the button-->
+    <!-- we make h1 visible only when button clicked
+    and we set the data/events in localStorage which will 
+    stored untill it is deleted -->
+    <div class="local-storage" id="div" style="display: none;">
+        <h1>
+            LocalStorage in JS!
+        </h1>
+    </div>
+
+    <!-- elements for local storage to be removed after closing browser -->
+    <button id=""></button>
+
+    <br>
+    <br>
+    <div id="">
+        <h1>
+            session Storage
+        </h1>
+    </div>
+    <!-- giving inline script -->
+    <script>
+        // function for showDiv
+        function showDiv(){
+            document.getElementById('div').style.display = "block";
+            document.getElementById('btn').innerHTML = "Hide Me";
+            // let it make it happen visible ecen after brwoser refreshes
+            localStorage.setItem('display', 'true');
+            }
+        // let's make it visible once it is clicked even after refreshing browser
+        if(localStorage.getItem('display') === 'true'){
+            showDiv();
+        }
+        // now it will not remove unless the localStorage is clear
+        // local stroage will remain untill it is cleared from browser
+        // let's make after clicking th hide me remove it
+        // let's make such function the local storage will gets removed from browser when 
+        // browser is closed
+</script>
+
+<!-- script for local storage memory which will gets removed with browser closed -->
+     <script>
+
+
+     </script>
+
+    <script src="script/app.js" type="text/javascript"></script>
+ </body>
+ </html>
