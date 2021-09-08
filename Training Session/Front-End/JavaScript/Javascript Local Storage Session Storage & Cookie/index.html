@@ -44,16 +44,23 @@
     </div>
 
     <!-- elements for local storage to be removed after closing browser -->
-    <button id=""></button>
+    <button id="session-btn" onclick="showSessionDiv()">
+        click
+    </button>
 
     <br>
     <br>
-    <div id="">
+    <div id="session" style="display: none;">
         <h1>
-            session Storage
+            Session Storage in JS!
         </h1>
     </div>
+
+    <!-- Cookies Session -->
+    <!-- for different browser have different cookies settings -->
+    <!-- settings in browsers clear and cache  -->
     <!-- giving inline script -->
+
     <script>
         // function for showDiv
         function showDiv(){
@@ -76,9 +83,8 @@
 <!-- script for local storage memory which will gets removed with browser closed -->
      <script>
 
+     </script> 
 
-     </script>
-
-    <script src="script/app.js" type="text/javascript"></script>
+    <script src="./script/app.js" type="text/javascript"></script>
  </body>
  </html>
