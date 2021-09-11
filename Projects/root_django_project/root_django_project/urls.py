@@ -46,6 +46,9 @@ urlpatterns = [
 
 
     # path for templating urls with include
-    path('template/', include('templating.urls'))
+    path('template/', include('templating.urls')),
+
+    # path for formspractice
+    path('forms/', include('formspractice.urls'))
     
 ]

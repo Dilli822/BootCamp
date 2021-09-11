@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'modelextra',
     'modelpractice',
     'modelrelation',
+    'formspractice',
 ]
 
 MIDDLEWARE = [
