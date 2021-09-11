@@ -152,3 +152,70 @@ class Bike{
 }
 
 // let's make a child which will inherit the parent class
+// extra properties of bike 
+// class Bajaj{
+//     brand(){
+//         console.log("Pulser is bajaj's machinery product!")
+//     }
+// }
+// var baj = new Bajaj();
+// // calling the brand
+// baj.brand();
+// baj.tyres();
+// baj.headlight();  // throw error
+
+
+// lets' acces the Bike properties from Bajaj class for that
+class Bajaj extends Bike{
+    brand(){
+        console.log("pulser is bajaj products this is inheritance")
+    }
+}
+
+// now bike properties is in in parent class
+var bike = new Bike();
+bike.tyres();
+bike.headlight();
+
+var baj = new Bajaj();
+baj.brand();
+baj.headlight();
+
+// polymorphism in js
+
+class Computer{
+    keyboard(){
+        // using console will be console inside the console
+        // down below so we user return
+        // console.log('pc must have keyboard')
+        return "basic keyboard "
+    }
+    mouse(){
+        console.log('one mouse')
+    }
+}
+class Acer extends Computer{
+    brand(){
+        console.log('aspire a7')
+    }
+    // same properties as parent
+    keyboard(){
+        // accesing the parent porperties with super
+        // now we can get the parent's attributes
+        super.keyboard();
+        console.log("new touch keyboard")
+        // lets add them
+        console.log(super.keyboard()+ " new LED keyboard ");
+
+    }
+}
+
+var pc = new Acer();
+pc.mouse();
+pc.brand();
+
+// here function will be overrided
+//  below Acer function class's keyboard
+// will override the above ones
+// thiis what we say polymorphism in simple langauage
+pc.keyboard();
