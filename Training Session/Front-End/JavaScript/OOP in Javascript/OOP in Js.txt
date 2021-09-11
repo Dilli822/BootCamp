@@ -1,0 +1,10 @@
+
+-------Javascript Encapsulation---------------
+- Mechanism of restricting direct access to some of the 
+object's component and bundling data with methods
+that operate on the data.
+
+- use var keyword to make data members private
+- use setter methods to set the data and 
+getter methods to get the data
+

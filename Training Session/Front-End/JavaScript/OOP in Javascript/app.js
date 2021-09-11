@@ -47,3 +47,6 @@ console.log(data);
 console.log(data.name);
 console.log(data.address);
 console.log(data.contact);
+// getting only the name from data
+console.log(data.getName);
+
