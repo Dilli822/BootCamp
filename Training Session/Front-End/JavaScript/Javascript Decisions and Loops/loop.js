@@ -55,10 +55,10 @@ while(a<10){
 }
 
 // ****do while loop*****
-var z = 50;
+var z = 0;
 do{
     console.log(z)
     z++
 }
 
-while(z<60);
+while(z<2);
