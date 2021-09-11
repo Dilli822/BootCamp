@@ -8,3 +8,38 @@ that operate on the data.
 - use setter methods to set the data and 
 getter methods to get the data
 
+
+---Why Encapsulation:
+- security controlled access
+- Hide implementation and expose behavior
+
+---- we can allow to give direct access to the data 
+or not with js 
+
+
+-- Javascript Abstraction
+--- js AbstractionClass 
+-- An Abstraction is a way of hiding the implementation
+details and showing only the functionality to the users.
+In other words, it ignores the irrelevant details 
+and shows only the required one.
+
+-For eg: we only gives output or result to the
+users after taking the input.
+we donot show all the processs and damn codes.
+
+--Javascript Inheritance
+- process where one class acquires properties from another class
+  parent -> child
+
+
+----Javascript Polymorphism--
+-- The Polymorphism is a core concept of an object-Oriented
+paradigm that provides a way to perform a single
+action in different forms.It provides an ability
+to call the same method on different Javascript objects.
+As Javascript is not a type-safe language, we can pass
+any type of data members with the methods.
+
+---we can overrride the parent properties from child class.
+--- we can override the methods of parent from child class.
