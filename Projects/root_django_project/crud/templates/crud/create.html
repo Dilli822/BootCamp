@@ -10,10 +10,13 @@
  </head>
  <body>
 
-    <form action="" method="get">
+    <!-- making form -->
+    <form action="" method="post">
         
         {% csrf_token %}
-        {{ form }}
+        {{ form }} 
+
+        <br>
 
         <button type="submit">Submit</button>
 
