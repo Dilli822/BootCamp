@@ -49,6 +49,21 @@ urlpatterns = [
     path('template/', include('templating.urls')),
 
     # path for formspractice
-    path('forms/', include('formspractice.urls'))
+    path('forms/', include('formspractice.urls')),
+
+    # path for staticmedia 
+    path('static-demo/', include('staticmedia.urls'))
     
 ]
+
+# default static url is with static url/staticfileName
+# http://127.0.0.1:8000/static/main.js
+# STATIC_URL = '/static/'
+
+# settings for serving
+from django.conf import settings
+from django.conf.urls.static import static
+
+# creating new url with importing settings MEDIA_ROOT
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

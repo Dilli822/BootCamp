@@ -1,0 +1,22 @@
+
+   <!-- loading static js -->
+   <!-- {% load static %} -->
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title> Static Demo Files </title>
+  </head>
+  <body>
+      <h1>I am Static File.</h1>
+
+      <!-- loading static files dynamically where django will automate the images path -->
+      <img src="{% static 'dolpa.png' %}" alt="dolpa-shey-phoksundo" srcset="">
+      <figcaption>dolpa-shey-phoksundo</figcaption>
+
+      <!-- <script src="/static/main.js"></script> -->
+      <script src="{% static 'main.js' %}"></script>
+  </body>
+  </html>

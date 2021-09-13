@@ -1,0 +1,10 @@
+
+
+<form action="/forms/django-model-form/" method="post">
+    {% csrf_token %}
+    <!-- form  paragraph style -->
+    {{ form.as_p }}
+
+    <br> <br>
+    <input type="submit" value="Submit">
+</form>

@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+# importing os
+import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
     'modelpractice',
     'modelrelation',
     'formspractice',
+    'staticmedia',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +139,32 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL =  'user.User'
+
+
+# configurations of static url
+# or use this(optional)
+# http://127.0.0.1:8000/static-demo-url/main.js
+# STATIC_URL = '/static-demo-url/'
+# configuring the static root for all staticfiles
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'prod-static')
+print(STATIC_ROOT)
+
+# hit ./manage.py collectstatic
+# for static server python3 -m http.server
+
+#----Alternative way to store static files--
+# for static files to bring all of them
+# in a single dirs
+# STATICFILES_DIRS = [
+#     STATIC_ROOT
+# ]
+
+
+# configurations of media url
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+
