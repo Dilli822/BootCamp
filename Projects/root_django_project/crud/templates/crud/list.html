@@ -12,12 +12,15 @@
          table{
              width: 100%;
              border: 1px solid rgb(224, 26, 20);
+             text-align: center;
          }
          table th{
             border: 1px solid rgb(231, 87, 19);
          }
          table tr td{
              border: 1px solid rgb(228, 71, 10);
+             padding: .5rem;
+
          }
 
          /* alerntaives color */
@@ -40,64 +43,53 @@
             <th>Middle Name</th>
             <th>Last Name</th>
             <th>Email</th>
+            <th>Action</th>
         </tr>
 
-        <!-- table's data -->
-        <!-- <tr>
-            <td>1</td>
-            <td>Ram</td>
-            <td>---</td>
-            <td>Bahadur</td>
-            <td>ram@gmail.com</td>
-        </tr> -->
-
-           <!-- table's data -->
-           <!-- <tr>
-            <td>1</td>
-            <td>Ram</td>
-            <td>---</td>
-            <td>Bahadur</td>
-            <td>ram@gmail.com</td>
-        </tr> -->
-
-           <!-- table's data -->
-           <!-- <tr>
-            <td>1</td>
-            <td>Ram</td>
-            <td>---</td>
-            <td>Bahadur</td>
-            <td>ram@gmail.com</td>
-        </tr> -->
-
-           <!-- table's data -->
+           <!-- Static table's data -->
          <tr>
-            <td>1</td>
+            <td>Static 1</td>
             <td>Ram</td>
             <td>---</td>
             <td>Bahadur</td>
             <td>ram@gmail.com</td>
+            <td>
+                <a href="/crud/detail/{{ u.id }}">Detail</a>
+            </td>
         </tr> 
 
-           <!-- table's data -->
+           <!-- Static table's data -->
            <tr>
-            <td>1</td>
+            <td>static 2</td>
             <td>Ram</td>
             <td>---</td>
             <td>Bahadur</td>
             <td>ram@gmail.com</td>
+           
         </tr>
 
 
-    <!-- let's store dynamic datas -->
+    <!-- let's store dynamic datas in the table -->
     {% for u in data %} 
     <!-- looping data in u  -->
     <tr>
         <!-- we are iterating data here -->
         <td>{{ u.id }}</td>
         <td>{{ u.first_name }}</td>
-        <td>{{ u.middle_name }}</td>
+        <!-- conditions for middle name -->
+        <td>  {% if u.middle_name %}
+            <!-- middle name found -->
+            {{ u.middle_name }}
+        {% else %} 
+            <!-- middle name not found -->
+            ---
+        {% endif %}
+        </td>
         <td>{{ u.last_name }}</td>
         <td>{{ u.email }}</td>
+        <td>
+            <a href="/crud/detail/{{ u.id }}">Detail</a>
+        </td>
 
     </tr>
 
