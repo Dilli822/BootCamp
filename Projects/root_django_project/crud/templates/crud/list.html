@@ -43,13 +43,40 @@
         </tr>
 
         <!-- table's data -->
-        <tr>
+        <!-- <tr>
             <td>1</td>
             <td>Ram</td>
             <td>---</td>
             <td>Bahadur</td>
             <td>ram@gmail.com</td>
-        </tr>
+        </tr> -->
+
+           <!-- table's data -->
+           <!-- <tr>
+            <td>1</td>
+            <td>Ram</td>
+            <td>---</td>
+            <td>Bahadur</td>
+            <td>ram@gmail.com</td>
+        </tr> -->
+
+           <!-- table's data -->
+           <!-- <tr>
+            <td>1</td>
+            <td>Ram</td>
+            <td>---</td>
+            <td>Bahadur</td>
+            <td>ram@gmail.com</td>
+        </tr> -->
+
+           <!-- table's data -->
+         <tr>
+            <td>1</td>
+            <td>Ram</td>
+            <td>---</td>
+            <td>Bahadur</td>
+            <td>ram@gmail.com</td>
+        </tr> 
 
            <!-- table's data -->
            <tr>
@@ -59,37 +86,26 @@
             <td>Bahadur</td>
             <td>ram@gmail.com</td>
         </tr>
-
-           <!-- table's data -->
-           <tr>
-            <td>1</td>
-            <td>Ram</td>
-            <td>---</td>
-            <td>Bahadur</td>
-            <td>ram@gmail.com</td>
-        </tr>
-
-           <!-- table's data -->
-           <tr>
-            <td>1</td>
-            <td>Ram</td>
-            <td>---</td>
-            <td>Bahadur</td>
-            <td>ram@gmail.com</td>
-        </tr>
-
-           <!-- table's data -->
-           <tr>
-            <td>1</td>
-            <td>Ram</td>
-            <td>---</td>
-            <td>Bahadur</td>
-            <td>ram@gmail.com</td>
-        </tr>
-    </table>
 
 
     <!-- let's store dynamic datas -->
+    {% for u in data %} 
+    <!-- looping data in u  -->
+    <tr>
+        <!-- we are iterating data here -->
+        <td>{{ u.id }}</td>
+        <td>{{ u.first_name }}</td>
+        <td>{{ u.middle_name }}</td>
+        <td>{{ u.last_name }}</td>
+        <td>{{ u.email }}</td>
+
+    </tr>
+
+    {% endfor %}
+
+
+  </table>
+
 
  </body>
  </html>
