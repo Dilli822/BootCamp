@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'modelrelation',
     'formspractice',
     'staticmedia',
+
+    'crud',
+    'classbased',
 ]
 
 MIDDLEWARE = [

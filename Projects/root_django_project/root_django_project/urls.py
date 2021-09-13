@@ -52,7 +52,10 @@ urlpatterns = [
     path('forms/', include('formspractice.urls')),
 
     # path for staticmedia 
-    path('static-demo/', include('staticmedia.urls'))
+    path('static-demo/', include('staticmedia.urls')),
+
+    # for crud 
+    path('crud/', include('crud.urls')),
     
 ]
 
