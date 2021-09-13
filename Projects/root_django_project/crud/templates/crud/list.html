@@ -9,6 +9,10 @@
      <title> User info List </title>
 
      <style>
+
+         a:visited{
+             color:rgb(247, 0, 82);
+         }
          table{
              width: 100%;
              border: 1px solid rgb(224, 26, 20);
@@ -25,7 +29,7 @@
 
          /* alerntaives color */
          tr:nth-child(even){
-             background-color: rgb(85, 140, 211);
+             background-color: rgb(2, 188, 221);
              color: #ffffff;
          }
      </style>
@@ -54,7 +58,9 @@
             <td>Bahadur</td>
             <td>ram@gmail.com</td>
             <td>
-                <a href="/crud/detail/{{ u.id }}">Detail</a>
+                <button>
+                    <a href="/crud/detail/{{ u.id }}">Detail</a>
+                </button>
             </td>
         </tr> 
 
@@ -88,7 +94,9 @@
         <td>{{ u.last_name }}</td>
         <td>{{ u.email }}</td>
         <td>
-            <a href="/crud/detail/{{ u.id }}">Detail</a>
+            <button>
+                <a href="/crud/detail/{{ u.id }}">Detail</a>
+            </button>
         </td>
 
     </tr>

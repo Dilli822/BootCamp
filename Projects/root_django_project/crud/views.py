@@ -29,4 +29,12 @@ def detail_view_of_users(request, user_id):
     })
 
 
+# function '
+def create_user_info(request):
+    if request.method == 'POST':
+        #form passess
+        pass
+        
+
+
 
