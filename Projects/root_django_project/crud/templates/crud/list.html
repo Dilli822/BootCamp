@@ -11,18 +11,18 @@
      <style>
 
          a:visited{
-             color:rgb(247, 0, 82);
+             color:rgb(0, 0, 0);
          }
          table{
              width: 100%;
-             border: 1px solid rgb(224, 26, 20);
+             border: 1px solid rgb(138, 129, 128);
              text-align: center;
          }
          table th{
-            border: 1px solid rgb(231, 87, 19);
+            border: 1px solid rgb(36, 35, 35);
          }
          table tr td{
-             border: 1px solid rgb(228, 71, 10);
+             border: 1px solid rgb(114, 102, 97);
              padding: .5rem;
 
          }
@@ -99,16 +99,22 @@
         <td>{{ u.email }}</td>
         <td>
             <button>
-                <a href="/crud/detail/{{ u.id }}">Detail</a>
+                <!-- hardcore static type url -->
+                <!-- <a href="/crud/detail/{{ u.id }}">Detail</a> -->
+                <!-- more dynamic type of url link -->
+                <a href=" {% url 'crud:detail' u.id  %}">Details</a>
             </button>
 
             <button>
-                <a href="/crud/update/{{ u.id }}"> Update </a>
+                <!-- <a href="/crud/update/{{ u.id }}"> Update </a> -->
+                <!-- namespace dynamic urls -->
+                <a href="{% url 'crud:update' u.id %}"> Update </a>
 
             </button>
 
             <button>
-                <a href="/crud/delete/{{ u.id }}/"> Delete </a>
+                <!-- <a href="/crud/delete/{{ u.id }}"> Delete </a> -->
+                <a href="{% url 'crud:delete' u.id %}"> Delete </a>
             </button>
         </td>
 

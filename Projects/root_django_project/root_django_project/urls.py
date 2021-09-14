@@ -21,7 +21,7 @@ from world.views import profile_json, int_converter_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', home),
-    path('profile/', profile),
+    path('profile/', profile, name="profile"),
     # this is  static url
     path('RamProfile/ram', RamProfile),
    
@@ -42,7 +42,7 @@ urlpatterns = [
 
     # path for test 
     # only hitting this http://127.0.0.1:8000/test-path/ will bring ValueError
-    path('test-path/', debug_request),
+    path('test-path/', debug_request, name="test-path"),
 
 
     # path for templating urls with include
@@ -55,7 +55,8 @@ urlpatterns = [
     path('static-demo/', include('staticmedia.urls')),
 
     # for crud 
-    path('crud/', include('crud.urls')),
+    # for making a tags and link dynamic
+    path('crud/', include('crud.urls', namespace='crud')),
     
 ]
 

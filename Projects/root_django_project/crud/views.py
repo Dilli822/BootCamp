@@ -99,7 +99,8 @@ def update_user_info(request, user_id):
             #Form is invalid or not validated,Wrong Input!
             # THis will be printed on the server terminal.
     else:
-        form = UserInfoModelForm()
+        # pre polluting the user's data as an instance at the update page
+        form = UserInfoModelForm(instance = user_object)
     
     return render(request, 'crud/update.html', {
         'form': form
@@ -111,15 +112,16 @@ def update_user_info(request, user_id):
 # for deleting views
 
 def delete_user_info(request, user_id):
-    if request.method == 'POST':
+    # if request.method == 'POST':
         user_object = get_object_or_404(UserInfo, id=user_id)
         user_object.delete()
-        # return redirect(f'/crud/list/')
+        return redirect(f'/crud/list/')
 
     
-    return redirect(f'/crud/list')
+    # return redirect(f'/crud/list')
 
 
 
+# pre polluting the users data for /crud/update/user_id
 
 
