@@ -41,6 +41,7 @@ class FirstTemplate(TemplateView):
 # for redirect url 
 # how does this redirection works 
 # webiste cctv.co.uk maybe better for understanding mechanism
+# important to know and learn the calls of function and method
 class FirstTemplateRedirect(RedirectView):
     url = '/c/template/'
 

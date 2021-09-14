@@ -1,7 +1,7 @@
 
+from classbased.crud_views import Create
 from django.urls import path 
-from  .views import (FirstTemplate, FirstTemplateRedirect,
- FirstView)
+from  .views import FirstTemplate, FirstTemplateRedirect,FirstView
 
 
 app_name = 'classbased'
@@ -18,6 +18,10 @@ urlpatterns = [
     path('template3/', FirstTemplateRedirect.as_view()),
     path('template4/', FirstTemplateRedirect.as_view()),
 
+    # path for form create
+    # we must call .as_view() for generic class view
+    # urls be /c/create/
+    path('create/', Create.as_view(), name='create')
 
 
 ]
