@@ -1,8 +1,9 @@
-from crud.forms import UserInfoModel
-from modelrelation.models import User
 from crud.models import UserInfo
+# from crud.forms import UserInfoModel
+from modelrelation.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import UserInfo
+from .forms import UserInfoModelForm
 
 # Create your views here.
 
@@ -30,14 +31,16 @@ def detail_view_of_users(request, user_id):
     })
 
 
-# function '
+# function/views for creating and allowing users to apply,submit,validate
+# and redirect them to users table data
+
 def create_user_info(request):
 
     if request.method == 'POST':
         #form passess
 
         # if post method
-        form = UserInfoModel(request.POST)
+        form = UserInfoModelForm(request.POST)
         if form.is_valid():
 
             # printing the data
@@ -49,17 +52,74 @@ def create_user_info(request):
             # after form validations redirect to
             return redirect('/crud/list/')
 
-        # pass
+        # if form is not passed 
         else:
-            form = UserInfoModel()
+            print("Form is invalid or not validated,Wrong Input!")
+            # [13/Sep/2021 17:03:41] "GET /crud/create/ HTTP/1.1" 200 1268
+            #Form is invalid or not validated,Wrong Input!
+            # THis will be printed on the server terminal.
     else:
-        form = UserInfoModel()
+        form = UserInfoModelForm()
         
     return render(request, 'crud/create.html', {
         'form': form
     
-    })
+    }) 
+
+
+# views for Update
+# update for user_id to know on which user_id to update,create or delete
+# padding user id as an param
+
+def update_user_info(request, user_id):
+    user_object = get_object_or_404(UserInfo, id=user_id)
+
+    if request.method == 'POST':
+        #form passess
+
+        # if post method
+        form = UserInfoModelForm(
+            request.POST,
+            instance = user_object
+        )
         
+        if form.is_valid():
+            # printing the data
+            print(form.cleaned_data)
+            print("form is valid and printed")
+            # model form have save method which wilsave form in the db
+            form.save()
+            # after form validations redirect to
+            return redirect(f'/crud/detail/{user_id}')
+
+        # if form is not passed 
+        else:
+            print("Form is invalid or not validated,Wrong Input!")
+            # [13/Sep/2021 17:03:41] "GET /crud/create/ HTTP/1.1" 200 1268
+            #Form is invalid or not validated,Wrong Input!
+            # THis will be printed on the server terminal.
+    else:
+        form = UserInfoModelForm()
+    
+    return render(request, 'crud/update.html', {
+        'form': form
+    
+    }) 
+
+
+
+# for deleting views
+
+def delete_user_info(request, user_id):
+    if request.method == 'POST':
+        user_object = get_object_or_404(UserInfo, id=user_id)
+        user_object.delete()
+        # return redirect(f'/crud/list/')
+
+    
+    return redirect(f'/crud/list')
+
+
 
 
 

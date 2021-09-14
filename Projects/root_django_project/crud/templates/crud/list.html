@@ -38,6 +38,10 @@
      
     
     <h1>List of All Users</h1>
+
+    <h2>
+        <a href="/crud/create/">Create New</a>
+    </h2>
     <!-- Table of All Users -->
     <!-- showing first middle last name and email only to users -->
     <table>
@@ -51,7 +55,7 @@
         </tr>
 
            <!-- Static table's data -->
-         <tr>
+         <!-- <tr>
             <td>Static 1</td>
             <td>Ram</td>
             <td>---</td>
@@ -62,17 +66,17 @@
                     <a href="/crud/detail/{{ u.id }}">Detail</a>
                 </button>
             </td>
-        </tr> 
+        </tr>  -->
 
            <!-- Static table's data -->
-           <tr>
+           <!-- <tr>
             <td>static 2</td>
             <td>Ram</td>
             <td>---</td>
             <td>Bahadur</td>
             <td>ram@gmail.com</td>
            
-        </tr>
+        </tr> -->
 
 
     <!-- let's store dynamic datas in the table -->
@@ -96,6 +100,15 @@
         <td>
             <button>
                 <a href="/crud/detail/{{ u.id }}">Detail</a>
+            </button>
+
+            <button>
+                <a href="/crud/update/{{ u.id }}"> Update </a>
+
+            </button>
+
+            <button>
+                <a href="/crud/delete/{{ u.id }}/"> Delete </a>
             </button>
         </td>
 
