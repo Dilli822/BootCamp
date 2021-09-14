@@ -27,3 +27,9 @@ class FirstView(View):
 # inheriting the templateView
 class FirstTemplate(TemplateView):
     template_name = 'classbased/template.html'
+
+    # passing the context in the generic class views
+    # for tht we function get_context-data()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        print("context", context)
