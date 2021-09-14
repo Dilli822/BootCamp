@@ -1,5 +1,5 @@
 
-from classbased.crud_views import Create
+from classbased.crud_views import Create, List, Detail
 from django.urls import path 
 from  .views import FirstTemplate, FirstTemplateRedirect,FirstView
 
@@ -21,7 +21,17 @@ urlpatterns = [
     # path for form create
     # we must call .as_view() for generic class view
     # urls be /c/create/
-    path('create/', Create.as_view(), name='create')
+    path('create/', Create.as_view(), name='create'),
+
+    # URL for list model
+    path('list/', List.as_view(), name= 'list'),
+
+    # for detail with id
+    path('detail/<int:id>/', Detail.as_view(),name='detail'),
+    
+    # for pk itself
+    # path('detail/<int:pk>/',Detail.as_view(),name='detail'),
+
 
 
 ]
