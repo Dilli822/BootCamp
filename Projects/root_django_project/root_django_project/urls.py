@@ -57,6 +57,9 @@ urlpatterns = [
     # for crud 
     # for making a tags and link dynamic
     path('crud/', include('crud.urls', namespace='crud')),
+
+    # for classbased 
+    path('c/', include('classbased.urls', namespace='classbased')),
     
 ]
 
