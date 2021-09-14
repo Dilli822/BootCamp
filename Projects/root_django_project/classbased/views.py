@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 from django.views import View
 # for rendering the templates types views
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 
 class FirstView(View):
     # for get method--> get()
@@ -32,4 +32,15 @@ class FirstTemplate(TemplateView):
     # for tht we function get_context-data()
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # context is dictdata type
+        context['msg'] = "Hello World"
+        return context
         print("context", context)
+
+
+# for redirect url 
+# how does this redirection works 
+# webiste cctv.co.uk maybe better for understanding mechanism
+class FirstTemplateRedirect(RedirectView):
+    url = '/c/template/'
+
