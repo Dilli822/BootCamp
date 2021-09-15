@@ -57,6 +57,9 @@ INSTALLED_APPS = [
 
     'crud',
     'classbased',
+
+    #for login middlwware,cache,mail
+    'login',
 ]
 
 MIDDLEWARE = [
@@ -172,6 +175,16 @@ print(STATIC_ROOT)
 # configurations of media url
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+
+# MailTrap.io settings for django
+# Testing mails from django
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = 'e4dc6eab56c062'
+EMAIL_HOST_PASSWORD = '5254e289d31297'
+EMAIL_PORT = '2525'
 
 
 
