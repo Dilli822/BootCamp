@@ -20,7 +20,7 @@ from django.urls import path, include
 from world.views import debug_request, home, int_converter_view, profile, RamProfile
 from world.views import profile_json, int_converter_view
 from login.views import open
-# from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -73,7 +73,7 @@ urlpatterns = [
 
     # # for middleware apps
     # path('login/', LoginView.as_view(template_name='login.html'), name='login'),
-    # path('logout/', LogoutView(template_name='login.html'), name='logout'),
+    # path('logout/', LogoutView.as_view(template_name='login.html'), name='logout'),
     # path('', user_views.home, home='home')
 ]
 
