@@ -1,2 +1,96 @@
 
-this is logout
+
+
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title> Login Page </title>
+
+       <style>
+           body{
+            background-color: limegreen;
+           }
+
+           .container-wrapper{
+               padding: 6rem 2rem;
+           }
+
+           .login-wrapper{
+               text-align: center;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               padding: 5rem;
+               
+           }
+
+           .login-wrap{
+            background-color: #ffffff;
+            padding: 5rem 4rem;
+            text-align: justify;
+            box-shadow: 10px 10px 5px 1px rgba(0,0,0,0.75);
+               -webkit-box-shadow: 10px 10px 5px 1px rgba(0,0,0,0.75);
+               -moz-box-shadow: 10px 10px 5px 1px rgba(0,0,0,0.75);
+               -o-box-shadow: 10px 10px 5px 1px rgba(0,0,0,0.75);
+           }
+           input[type=password],
+           input[type=text]{
+               padding: .5rem;
+               margin: .5rem 0;
+               width: 100%;
+           }
+
+           input[type=checkbox]{
+               padding: .5rem 0;
+               margin: .5rem 0.2rem;
+           }
+           aside{
+               margin:  .5rem 0;
+           }
+
+           button.sign-in{
+               margin: 0rem;
+               padding: .5rem ;
+               width: 100%;
+           }
+
+           img.profile{
+               border-radius: 50%;
+               width: 200px;
+           }
+       </style>
+   </head>
+   <body>
+
+
+    <div class="container-wrapper">
+        <div class="login-wrapper">
+             <div class="login-wrap">
+            <figure>
+                <img class="profile" src="https://unsplash.it/200" alt="user-profile-pic">
+                <!-- <img src="https://media-exp1.licdn.com/dms/image/C5603AQF93oDScRWwiQ/profile-displayphoto-shrink_800_800/0/1631416122984?e=1637193600&v=beta&t=iIqJJdjNkLuWBaQ8kQx3L-IAQHGU8fKjKXskOdjwE8c" alt=""> -->
+            </figure>
+            <input type="text" name="name" placeholder="UserName"> <br>
+            <input type="password" name="password" id="" placeholder="Password"> <br>
+
+            <input type="checkbox" name="" id="">Remember me 
+            <br>
+           
+
+            <aside>
+                <a href="#">Forget Password?</a>
+            </aside>
+
+            <button class="sign-in">
+                Sign In
+            </button>
+        </div>
+    </div>
+ </div>
+
+       
+   </body>
+   </html>

@@ -187,5 +187,7 @@ EMAIL_HOST_PASSWORD = '5254e289d31297'
 EMAIL_PORT = '2525'
 
 
-
+# for login 
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'open'
 

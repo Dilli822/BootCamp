@@ -21,10 +21,10 @@ from world.views import debug_request, home, int_converter_view, profile, RamPro
 from world.views import profile_json, int_converter_view
 from login.views import open
 from django.contrib.auth.views import LoginView, LogoutView
+from login import views as open
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', open, name='open'),
     path('home/', home),
     path('profile/', profile, name="profile"),
     # this is  static url
@@ -72,9 +72,13 @@ urlpatterns = [
 
 
     # # for middleware apps
+    path('', open.open, name='open'),
     # path('login/', LoginView.as_view(template_name='login.html'), name='login'),
     # path('logout/', LogoutView.as_view(template_name='login.html'), name='logout'),
     # path('', user_views.home, home='home')
+    path('login/', open.LoginView, name='login'),
+    # path('logout/', open.LogoutView, name='login'),
+
 ]
 
 # default static url is with static url/staticfileName
