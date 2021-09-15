@@ -11,3 +11,8 @@ def LoginView(request):
 
 def LogoutView(request):
     return render (request, 'login/logout.html')
+
+
+
+def open(request):
+    return render (request, 'login.html')

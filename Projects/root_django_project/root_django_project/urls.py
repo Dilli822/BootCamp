@@ -19,10 +19,12 @@ from django.contrib import admin
 from django.urls import path, include
 from world.views import debug_request, home, int_converter_view, profile, RamProfile
 from world.views import profile_json, int_converter_view
+from login.views import open
 # from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', open, name='open'),
     path('home/', home),
     path('profile/', profile, name="profile"),
     # this is  static url
