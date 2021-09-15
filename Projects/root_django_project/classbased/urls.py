@@ -1,5 +1,5 @@
 
-from classbased.crud_views import Create, List, Detail
+from classbased.crud_views import Create, List, Detail, Update, Delete
 from django.urls import path 
 from  .views import FirstTemplate, FirstTemplateRedirect,FirstView
 
@@ -32,6 +32,9 @@ urlpatterns = [
     # for pk itself
     # path('detail/<int:pk>/',Detail.as_view(),name='detail'),
 
+    # for update
+    path('update/<int:id>/', Update.as_view(),name='update'),
 
-
+    # for delete with default pk
+    path('delete/<int:id>/', Delete.as_view(), name='Delete')
 ]

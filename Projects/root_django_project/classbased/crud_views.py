@@ -1,7 +1,8 @@
 
 
 # ccv.co.uk site for more details
-from django.views.generic import CreateView, ListView, DetailView, UpdateView
+from re import template
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from .forms import UserInfoModelForm
 
 from .models import UserInfo
@@ -72,8 +73,46 @@ class Detail(DetailView):
 
 # For update
 class Update(UpdateView):
-    return()
+    # which form to update
+    form_class = UserInfoModelForm
+    #if we wisht to use pk no need to declare to id
+    pk_url_kwarg = 'id'
+    success_url = '/c/list/'
 
-   
+    # let's keep model
+    model = UserInfo
+    template_name = 'classbased/update.html'
 
-   
+
+    # after form validation need to do something to the form
+    def form_valid(self, form):
+        print("Form is validated")
+        # logics
+        return super().form_valid(form)
+    
+
+    def form_invalid(self, form):
+        return super().form_invalid(form)
+
+
+
+# for deleting
+# delete in the get method too
+class Delete(DeleteView):
+    # if it comes get method it will take confirmations
+    model = UserInfo
+    pk_url_kwarg = 'id'
+
+    success_url = '/c/list'
+
+    def get(self, request, *args, **kwargs):
+        # must be confirm before deleting
+        # in the get method 
+        # calling post method
+        return self.post()
+
+
+# for more details and other types of form views 
+# for contact type of form where we sent email to user
+# we can use formview
+# more details on ccbv.co.uk
