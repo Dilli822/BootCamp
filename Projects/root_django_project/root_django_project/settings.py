@@ -70,6 +70,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # custom middelware
+    # 'login.middleware.MyCustomMiddleware',
+    # 'root_django_project.middleware.MyCustomMiddleware',
 ]
 
 ROOT_URLCONF = 'root_django_project.urls'
@@ -181,13 +184,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # MailTrap.io settings for django
 # Testing mails from django
-EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = 'e4dc6eab56c062'
-EMAIL_HOST_PASSWORD = '5254e289d31297'
-EMAIL_PORT = '2525'
+# EMAIL_HOST = 'smtp.mailtrap.io'
+# EMAIL_HOST_USER = 'e4dc6eab56c062'
+# EMAIL_HOST_PASSWORD = '5254e289d31297'
+# EMAIL_PORT = '2525'
 
 
-# for login 
+#tls transport layer security
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'dillihangrae@gmail.com'
+# EMAIL_HOST_PASSWORD = 'dilli21April1999@gmail.com'
+# EMAIL_PORT = 587
+
+# for loginrequired decorator to work
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'open'
 
