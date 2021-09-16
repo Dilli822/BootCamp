@@ -60,6 +60,9 @@ INSTALLED_APPS = [
 
     #for login middlwware,cache,mail
     'login',
+
+    # accounts handlig app
+    'accounts',
 ]
 
 MIDDLEWARE = [

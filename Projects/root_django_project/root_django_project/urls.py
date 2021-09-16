@@ -79,6 +79,10 @@ urlpatterns = [
     path('login/', open.LoginView, name='login'),
     # path('logout/', open.LogoutView, name='login'),
 
+
+    # URL for accounts app
+    path('accounts/', include('accounts.urls')),
+
 ]
 
 # default static url is with static url/staticfileName
