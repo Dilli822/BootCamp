@@ -1,13 +1,13 @@
 
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+# from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 # Create your views here.
 
 
 
 # login required decorators
-@login_required
+# @login_required
 def open(request):
     # for mail sending
     subject = 'Test'

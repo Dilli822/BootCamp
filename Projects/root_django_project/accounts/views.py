@@ -1,4 +1,5 @@
 
+from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 
 # to let the user know and get inside the site with login method
@@ -10,6 +11,12 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 # Create your views here.
 
+# login_required decorators
+# from django.contrib.auth.decorators import login_required
+
+
+# using decorators here
+# @login_required
 def login_view(request):
     if request.method == 'POST':
         # for confirmation of post data
@@ -41,10 +48,18 @@ def login_view(request):
 
 
 def profile_view(request):
-    # if request.user.is_authenicated:
+    if request.user.is_authenticated:
         # pass
-        # pass
-    # else:
+        # print 
+        print("I am authenicated!")
+        pass
+    else:
+        # we have put conditionals but
+        # with decorators login_required
+        # we can do this in more shortcuts way
         # no auth give error
         # pass
+        print("---I am not authenicated!---")
+        return HttpResponse("Invalid User")
+
     return render(request, 'accounts/profile.html')

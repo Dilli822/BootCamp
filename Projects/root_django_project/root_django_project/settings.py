@@ -201,6 +201,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # EMAIL_PORT = 587
 
 # for loginrequired decorator to work
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'open'
+# LOGIN_URL = 'login'
+# LOGIN_REDIRECT_URL = 'open'
+# LOGIN_URL = ''
+# LOGIN_REDIRECT_URL = 'accounts/login_view'
 
