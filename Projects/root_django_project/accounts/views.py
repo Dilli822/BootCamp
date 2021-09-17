@@ -1,10 +1,11 @@
 
+# from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 
 # to let the user know and get inside the site with login method
 # for checking the user existance with authnicate method
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate
 
 # look the modelbackend which will handle the user authenication
 # from django.contrib.auth import backends
@@ -52,7 +53,6 @@ def profile_view(request):
         # pass
         # print 
         print("I am authenicated!")
-        pass
     else:
         # we have put conditionals but
         # with decorators login_required
