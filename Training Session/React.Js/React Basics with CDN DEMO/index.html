@@ -7,7 +7,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title> React Basics with CDN Demo </title>
 
-      <!-- Bootstrap CDN Links -->
+      <!-------------------------------------Bootstrap CSS CDN Links ---------------------->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
   </head>
   <body>
@@ -17,7 +18,10 @@
     <div id="root"></div> 
 
 
-      
+   <!--------CDN Js Links of Bootstrap---------------->
+   <!-----------------JavaScript Bundle with Popper -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
    <!----------------------CDN Links of React and ReactDOM-------------------------->
    <!---------------------------Used development version during development--------->
    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
@@ -32,10 +36,16 @@
    <script type="text/babel">
    const App =()=> {
        return (
-           <div> 
-            <h3>               
-            this is iw training session.
-            </h3>
+           
+            <div className="card" style= {{ width: "500px"}}>
+                <div className="inner" style= {{ width: "300px", display: "block", margin: "0 auto" }}>
+                <img src="https://unsplash.it/300" alt="img" classname="card-img-top"/>
+                <div className="card-body">
+                    <h3>               
+                        This is iw training session.
+                    </h3>
+                    </div>
+                </div>
             </div>
        );
    };
