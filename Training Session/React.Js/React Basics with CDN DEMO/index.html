@@ -1,0 +1,49 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title> React Basics with CDN Demo </title>
+
+      <!-- Bootstrap CDN Links -->
+
+  </head>
+  <body>
+
+
+    <!-- main root file -->
+    <div id="root"></div> 
+
+
+      
+   <!----------------------CDN Links of React and ReactDOM-------------------------->
+   <!---------------------------Used development version during development--------->
+   <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+   <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+   <!------------------------------------------------------------------------------->
+
+   <!-----------------------------Babel CDN as React only understnds JSX------------------->
+   <!--------------------Babel will convert HTML to JSX------------------------------------->
+   <!---------------------------------Load Babel--------------------------->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+   <!----------------custom script here and let browser know this is babel------------------->
+   <script type="text/babel">
+   const App =()=> {
+       return (
+           <div> 
+            <h3>               
+            this is iw training session.
+            </h3>
+            </div>
+       );
+   };
+
+    //  let's run this in real DOM too
+    ReactDOM.render(<App/>, document.getElementById("root"))
+    
+    </script>
+
+  </body>
+  </html>
