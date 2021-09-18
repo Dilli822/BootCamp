@@ -57,7 +57,7 @@
 // list and props
 //  we used appone  in inex.js so we use appone here as comp
 import React, { Component } from 'react'
-import { render } from 'react-dom'
+// import { render } from 'react-dom'
 
 import Profile from './components/Profile'
 
