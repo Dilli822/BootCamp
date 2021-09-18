@@ -1,34 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+
+import React from "react";
 
 // function App() {
 //   return (
 //     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
+//       Hello this is react app
 //     </div>
 //   );
-// }
+// };
+
+// class Based Component
+// lets create a counter app  
+class App extends React.Component{
+  // class based comp must have start which holds temporary data
+  state = {
+    count: 0,
+  }
+
+  // function for increment and decrement and reset
+  handleInc = () => {
+    // setState method will call the state and rerender the component
+    this.setState({count: this.state.count + 1});
+  };
+
+  handleDec = () => {
+    this.setState({count: this.state.count - 1});
+  };
+
+  handleRes = () =>{
+    this.setState({count: 0});
+  };
 
 
-function App() {
-  return (
-    <div className="App">
-      Hello this is react app
-    </div>
-  );
+  render(){
+    return (
+      <div>
+        {/* accessing the class state with this helper  */}
+        <h2>The Counter value is:{this.state.count}</h2>
+        <button onClick={this.handleInc}> Increment</button>
+        <button onClick={this.handleRes}> Reset </button>
+        <button onClick={this.handleDec}> Decrement </button>
+      </div>
+
+    );
+  };
 };
 
 export default App;
