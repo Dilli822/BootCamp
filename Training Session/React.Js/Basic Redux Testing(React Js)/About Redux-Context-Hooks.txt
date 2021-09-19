@@ -4,4 +4,109 @@
  1. Context
  2. Hooks
  3. Testing
- 
+ 4. Redux Testing
+
+
+ --Context(context api)
+ -- it proviides a way to pass data through component
+ tree without having to pass props down mannually at 
+ every level
+ - context is primarily used when some data needs to 
+ be accesible by many components at different nesting levels
+
+
+--- it has features of passing data to childs 
+
+
+--with context api we can send the data to any nested childs
+where without context it will long chainable processs
+
+
+
+------Two ways to get information in or pass and similarly
+-- in a two types we can get out the information or extract the data
+
+
+
+
+----------------Source Data/Parent component---------
+                         |
+-----------------------data----------------------
+------------------------------------------------
+                 |                     |
+              this.context          consumer
+            === Nested Child===
+
+
+
+---------------Hooks-----------------
+--- introduced from react version 16.8--
+--- it is a function that let us "hook inot" --
+--it doesnot work inside the classes and let us to
+--- it without classes---- widely used for function-
+--based component for state and lifecycle method
+
+
+----------------------------------------------------
+
+--- why hooks?
+---- due to performance ,with hooks and function based component--
+-------performance is high and it is easier complier to compile and generate codes
+--- rather then class based component
+
+
+
+--- Types of Hooks---
+----- for function based component
+1. useState() allows to use component level
+
+2. userEffect() allows to use lifecycle method
+
+3. useContext() allows to use context system
+
+4. useRef() to use ref system(sometimes for using RealDOM system)
+
+5. useReducer() allows to store data through the reducer
+
+
+
+------Redux-------
+--a predicatble state container for JS apps
+--- mainly used for state management library
+--- makes creating complex apps easier
+-- not explicity design to work with react.
+--- redux is not made for react-
+--but for other languages frameworks too.
+
+----- Testing in React------
+-- Testing is a line-by-line review of how your code will execute
+-- a suite of tests for an application comprises various bit of code
+-- to verify whether an application is executing successfully and without
+error-
+
+---- to ensure our code and UI doesnot break in the proudction 
+----types of Testing
+
+1. unit test
+   - done in every function 
+
+2. component 
+-- test for component to ensure they are returning the types of value and correct values
+
+3. snapshot test
+-- mainly for UI
+---- elements testing on rendering browser.
+
+
+------ Testing library----
+
+--jest with enzyme
+---built-in mocking and assertion abilities
+
+
+-Mocha with chai 
+--- {
+    "name": "revents",
+}
+
+--!!!!!!!!!!!DO MORE RESEARCH FROM OTHER SOURCES!!!!!!!!!!!!---
