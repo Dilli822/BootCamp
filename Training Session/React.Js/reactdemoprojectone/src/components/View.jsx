@@ -1,11 +1,21 @@
 
 import React, { Component } from 'react'
 
+import Edit from './Edit';
+import { Table } from 'semantic-ui-react';
+
 export default class View extends Component {
     render() {
         return (
             <div>
-                  <h2>his is view</h2>
+
+            <Edit></Edit>
+            <Table sortable called fixed>
+                <Table.Header>
+                    <Table.HeaderCell
+                </Table.Header>
+            </Table>
+
             </div>
         )
     }

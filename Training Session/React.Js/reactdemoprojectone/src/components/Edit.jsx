@@ -6,7 +6,7 @@ export default class Edit extends Component {
         return (
             <div>
 
-                <h2>his is edit</h2>
+                <h2>this is edit Component</h2>
             </div>
         )
     }
