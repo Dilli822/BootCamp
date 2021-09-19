@@ -1,40 +1,63 @@
 
 import React, { Component } from 'react'
-import { Button, Form, Header, Modal , Checkbox} from 'semantic-ui-react'
+import { Button, Form, Modal , Checkbox} from 'semantic-ui-react'
+import { v4 as uuidv4 } from 'uuid';
 
 export default class Add extends Component {
     state = {
+        // add name value for testing
+         id: uuidv4(),
         name: "",
         usename: "",
     };
 
+    // event handler
+    onInputChange = (event) => {
+        this.setState({
+        // setting the state her
+       [event.target.name]: event.target.value,
+        });
+        // console.log(event.target.value);
+        console.log(event.target.name);
+        // console.log(event.target.username);
+
+    };
+
+    // submit method
+    onFormSubmit = (event) => {
+        // preventDefault method will stop the browser refreshing the page
+        // after the submission of form
+        event.preventDefault();
+        this.props.onSubmit(this.state);
+        this.setState({name:"", username: ""})
+        console.log('form is successfully submitted!')
+    };
+
     render() {
-        const {user, username} = this.state;
+        const {name,username} = this.state;
         return (
             <Modal
             trigger={<Button>Add a New User</Button>}
           >
-            <Header icon='archive' content='Archive Old Messages' />
             <Modal.Content>
-              <p>
-                Your inbox is getting full, would you like us to enable automatic
-                archiving of old messages?
-              </p>
+              <h3>
+                Want to add a new user please fill the box below!
+              </h3>
 
-              <Form>
+              <Form onSubmit={this.onFormSubmit}>
 
                   <Form.Field>
-                      <label>First Name</label>
-                      <input placeholder='Full Name ' value={user} />
+                      <label>Full Name</label>
+                      <input name="name" onChange={this.onInputChange} placeholder='Full Name' value={name}/>
                       </Form.Field>
 
                       <Form.Field>
-                           <label>Last Name</label>
-                           <input placeholder='UserName' value={username} />
+                           <label>UserName</label>
+                           <input name="username"  onChange={this.onInputChange} placeholder='UserName' value={username} />
                             </Form.Field>
 
                              <Form.Field>
-                                  <Checkbox label='Remeber Me' />
+                                  <Checkbox label='Remember Me' />
                                   </Form.Field>
                                    <Button type='submit'>Submit</Button>
                                    </Form>

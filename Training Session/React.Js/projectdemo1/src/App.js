@@ -18,15 +18,22 @@ export default class App extends Component {
   onSearchChange = (event) =>{
     console.log(event.target.value)
   }
-  render() {
 
-    // 
+  // // argu user from View.jsx
+  onFormSubmit = (user) => {
+    console.log(user)
+    const {users} = this.state;
+    this.setState({users: [...users, user]});
+  };
+
+
+  render() {
     const { users } =this.state;
-    console.log(users)
+    // console.log(users)
     return (
 
       <Container>
-        <Add></Add>
+        <Add onSubmit={this.onFormSubmit}></Add>
         <Input icon="search" placeholder="search" onChange={this.onSearchChange}></Input>
         <View data={ users }>
 
