@@ -14,9 +14,15 @@ from .forms import LoginForm, SignUpForm
 # Create your views here.
 
 # login_required decorators
-# from django.contrib.auth.decorators import login_required
-# for new user 
+from django.contrib.auth.decorators import login_required
+# for new user creation
+from django.contrib.auth.models import User
 # using decorators here
+
+# getusermodel for custom usermodel
+# from django.contrib.auth import getusermodel
+# User = getusermodel
+
 # @login_required
 def login_view(request):
     if request.method == 'POST':
@@ -43,8 +49,8 @@ def login_view(request):
                 return render(request,'accounts/fail.html')
 
     elif request.method == 'GET':
-        # if request.user.is_authenticated:
-        #     return redirect('/accounts/profile-view/')
+        if request.user.is_authenticated:
+            return redirect('/accounts/profile-view/')
             
         form = LoginForm()
 
@@ -53,6 +59,8 @@ def login_view(request):
     {'form': form})
 
 
+
+@login_required
 def profile_view(request):
     if request.user.is_authenticated:
         # pass
@@ -93,12 +101,15 @@ def signup_view(request):
             user = User(
                 first_name = form.cleaned_data['first_name'],
                 last_name = form.cleaned_data['last_name'],
-                username = form.cleaned_data['user_name'],
+                username = form.cleaned_data['username'],
                 password = form.cleaned_data['password'],
-                email = form.cleaned_data['email']
+                email = form.cleaned_data['email'],
 
                 )
 
+            user.save()
+            # let's make password hash
+            user.set_password(form.cleaned_data['password'])
             user.save()
             return redirect('/accounts/login/')
 
@@ -106,3 +117,9 @@ def signup_view(request):
         form = SignUpForm()
 
     return render(request, 'accounts/signup.html',{'form': form})
+
+
+#Note: by default if user in the model is not active or is_active is set to false
+# then we cannot login bocz model backend doesnot allow us to login
+
+# but we have allowall user method which can override the default

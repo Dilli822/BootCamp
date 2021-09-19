@@ -128,3 +128,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # login
+LOGIN_URL = '/accounts/login/'
+
+
+#overriding the default model backend 
+# which was only allowing the active user
+# try with pycharm
+AUTHENICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUserModelBackend']
