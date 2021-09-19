@@ -1,5 +1,4 @@
 
-
 //  for semantic ui
 // functional com rfx
 // component for profile Racher
