@@ -8,4 +8,13 @@ from django.contrib.auth.models import AbstractUser
 
 # swapable model
 class User(AbstractUser):
-    pass
+    middle_name = models.CharField(max_length=50, blank=True)
+
+    groups = None
+    user_permissions = None
+
+
+    #@staticmethod
+    def get_bio(self):
+        return "This is BIo section!"
+

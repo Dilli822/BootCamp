@@ -14,14 +14,16 @@
      User Name: 
      {{ request.user }}<br>
      Email: {{ request.user.email}} <br>
-     name: {{ request.user.get_full_name }}
+     name: {{ request.user.get_full_name }} <br>
+     Bio: {{ request.user.get_bio }}
      <br>
      <br>
      <button>
          <a href="/accounts/logout-view/">
             logout
-
         </a>
      </button>
+
+
  </body>
  </html>

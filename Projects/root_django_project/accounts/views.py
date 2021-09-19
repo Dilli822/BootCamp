@@ -1,6 +1,5 @@
 
 # from django.contrib.auth.decorators import login_required
-from django.contrib import auth
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 
@@ -13,11 +12,22 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm, SignUpForm
 # Create your views here.
 
+
+# from where user models be imported
+# from django.contrib.auth.models import User
+# from user.models import User
+
+from django.contrib.auth import get_user_model
+USER = get_user_model()
+
 # login_required decorators
 # from django.contrib.auth.decorators import login_required
-# for new user 
-# using decorators here
+# for new user
+
+# using decorators
 # @login_required
+
+
 def login_view(request):
     if request.method == 'POST':
         # for confirmation of post data
@@ -76,13 +86,14 @@ def fail_view(request):
 
 
 def logout_view(request):
-    # for thrwoing or removing the cookies from browser
+    # for throwing or removing the cookies from browser
     logout(request)
     return redirect('/accounts/login-view/')
     # return render (request, 'accounts/login.html')
 
-from django.contrib.auth.models import User
-# for new user sign up 
+
+# for new user sign up
+
 def signup_view(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
