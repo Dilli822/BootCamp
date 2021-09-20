@@ -68,10 +68,8 @@ def login_view(request):
 
 
 def profile_view(request):
-    # for statusapp showing status 
-    from statusapp.models import StatusMessage
-    messages = StatusMessage.objects.all() 
-    
+  
+
     if request.user.is_authenticated:
         # pass
         # print 
@@ -88,7 +86,9 @@ def profile_view(request):
 
 
        
-
+    # for statusapp showing status 
+    from statusapp.models import StatusMessage
+    messages = StatusMessage.objects.filter(user=request.user) 
     return render(request, 'accounts/profile.html',{
         'messages': messages
     })

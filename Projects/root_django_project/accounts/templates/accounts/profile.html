@@ -18,14 +18,18 @@
      Bio: {{ request.user.get_bio }} <br>
 
      <hr>
-    {% for msg in messages %}
-     User's status: <b> {{ msg.status }}
-     Created At: <b>{{ msg.user.email }}
-     User's email: <b> {{ msg.user.email }} 
 
-    {% endfor % }
+{% for msg in messages %}
+      <b>Status: </b> {{ msg.status }}  <br>
+      <b>Created At: </b>{{ msg.created_at }} <br>
+      <b>UserName </b> {{ msg.user }} 
+      <!-- email: <b> {{ msg.user.email }} </b> <br> -->
+
+{% endfor  %}
+
      <br>
      <br>
+     <hr>
      click <a href="{% url 'statusapp:create' %}">
          Here
      </a> To create 
@@ -36,7 +40,6 @@
             logout
         </a>
      </button>
-
 
  </body>
  </html>
