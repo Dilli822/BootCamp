@@ -2,17 +2,17 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DeleteView
 
 from .forms import StatusMessageModelForm 
 
 from django.contrib.auth.decorators import login_required
 #we cannot use decoratos directly to dispatch so we import
 from django.utils.decorators import method_decorator
-
+from .models import StatusMessage
 
 # this one is shortcut method with which part need to login_required
-@method_decorator(login_required, name="dispatch")
+# @method_decorator(login_required, name="dispatch")
 class StatusMessageCreateView(CreateView):
     form_class = StatusMessageModelForm
     template_name = 'statusapp/create.html'
@@ -32,3 +32,15 @@ class StatusMessageCreateView(CreateView):
 
     
 
+class StatusMessageDeleteView(DeleteView):
+    model = StatusMessageModelForm
+    success_url = '/accounts/profile-view/'
+
+    # allowing only to certain specific user
+    def get_queryset(self):
+        return StatusMessage.objects.filter(
+            user = self.request.user
+        )
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)

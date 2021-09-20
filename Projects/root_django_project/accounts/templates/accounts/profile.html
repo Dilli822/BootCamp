@@ -24,6 +24,11 @@
       <b>Created At: </b>{{ msg.created_at }} <br>
       <b>UserName </b> {{ msg.user }} 
       <!-- email: <b> {{ msg.user.email }} </b> <br> -->
+      <button>
+      <a href="{% url 'statusapp:delete' msg.id %}">Delete</a> <br> </button>
+      <button>
+      <a href="/statusapp/delete/">Delet this</a>
+     </button>
       <hr>
 {% endfor  %}
 

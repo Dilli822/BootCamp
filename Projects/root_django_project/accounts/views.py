@@ -24,6 +24,9 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+
+from statusapp.models import StatusMessage
+
 # login_required decorators
 # from django.contrib.auth.decorators import login_required
 # for new user
@@ -69,26 +72,25 @@ def login_view(request):
 
 def profile_view(request):
   
+    # if request.user.is_authenticated:
+    #     # pass
+    #     # print 
+    #     print("I am authenicated!")
+    # else:
+    #     # we have put conditionals but
+    #     # with decorators login_required
+    #     # we can do this in more shortcuts way
+    #     # no auth give error
+    #     # pass
+    #     print("---I am not authenicated!---")
+    #     return HttpResponse("Invalid User")
+    #     # return render(request, 'accounts/fail.html')
 
-    if request.user.is_authenticated:
-        # pass
-        # print 
-        print("I am authenicated!")
-    else:
-        # we have put conditionals but
-        # with decorators login_required
-        # we can do this in more shortcuts way
-        # no auth give error
-        # pass
-        print("---I am not authenicated!---")
-        return HttpResponse("Invalid User")
-        # return render(request, 'accounts/fail.html')
-
-
-       
     # for statusapp showing status 
     from statusapp.models import StatusMessage
-    messages = StatusMessage.objects.filter(user=request.user) 
+    messages = StatusMessage.objects.filter(user=request.user)
+    messages = StatusMessage.objects.filter(user_id=request.user.id)
+    # messages = StatusMessage.objects.all()
     return render(request, 'accounts/profile.html',{
         'messages': messages
     })
