@@ -86,7 +86,7 @@ urlpatterns = [
 
 
     # for statusapp
-    path('accounts/', include('statusapp.urls', namespace='statusapp')),
+    path('statusapp/', include('statusapp.urls', namespace='statusapp')),
     
 
 

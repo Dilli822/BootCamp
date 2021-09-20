@@ -8,6 +8,17 @@
      <title> Create Status Message </title>
  </head>
  <body>
-     
+
+    <h3>
+        Create Your Status Message
+    </h3>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }} <br>
+        <button type="submit">
+            Save
+        </button>
+    </form>
  </body>
  </html>

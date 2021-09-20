@@ -68,6 +68,10 @@ def login_view(request):
 
 
 def profile_view(request):
+    # for statusapp showing status 
+    from statusapp.models import StatusMessage
+    messages = StatusMessage.objects.all() 
+    
     if request.user.is_authenticated:
         # pass
         # print 
@@ -82,7 +86,12 @@ def profile_view(request):
         return HttpResponse("Invalid User")
         # return render(request, 'accounts/fail.html')
 
-    return render(request, 'accounts/profile.html')
+
+       
+
+    return render(request, 'accounts/profile.html',{
+        'messages': messages
+    })
 
 
 def fail_view(request):
