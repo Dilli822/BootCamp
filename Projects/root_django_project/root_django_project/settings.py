@@ -63,6 +63,9 @@ INSTALLED_APPS = [
 
     # accounts handlig app
     'accounts',
+
+    # status app
+    'statusapp',
 ]
 
 MIDDLEWARE = [

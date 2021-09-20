@@ -17,8 +17,12 @@ from .forms import LoginForm, SignUpForm
 # from django.contrib.auth.models import User
 # from user.models import User
 
+# from django.contrib.auth.models import User, get_user_model
+# User = get_user_model()
+
 from django.contrib.auth import get_user_model
-USER = get_user_model()
+
+User = get_user_model()
 
 # login_required decorators
 # from django.contrib.auth.decorators import login_required
@@ -112,6 +116,7 @@ def signup_view(request):
 
             user.save()
             return redirect('/accounts/login-view/')
+            user.save()
 
     elif request.method == 'GET':
         form = SignUpForm()
