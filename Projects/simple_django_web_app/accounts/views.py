@@ -75,7 +75,7 @@ def profile_view(request):
         # no auth give error
         # pass
         print("---I am not authenicated!---")
-        return HttpResponse("Invalid User")
+        # return HttpResponse("Invalid User")
         # return render(request, 'accounts/fail.html')
 
     return render(request, 'accounts/profile.html')

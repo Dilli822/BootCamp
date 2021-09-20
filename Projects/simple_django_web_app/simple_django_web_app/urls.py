@@ -20,4 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('accounts/', include('accounts.urls')),
+
+    path('statusapp/', include('statusapp.urls', namespace='statusapp')),
 ]
