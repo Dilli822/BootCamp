@@ -6,6 +6,12 @@
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title> Profile View Page </title>
+
+     <style>
+         b.imp{
+             color: purple;
+         }
+     </style>
  </head>
  <body>
      <h2>
@@ -20,16 +26,20 @@
      <hr>
 
 {% for msg in messages %}
-      <b>Status: </b> <b>{{ msg.status }} </b> <br>
-      <b>Created At: </b>{{ msg.created_at }} <br>
-      <b>UserName </b> {{ msg.user }} 
+      <b>Status: </b> <b class='imp'>{{ msg.status }} </b> <br>
+      <b>Created At: </b class='imp'>{{ msg.created_at }} <br>
+      <b>UserName </b> <b class='imp'>{{ msg.user }}</b>
       <!-- email: <b> {{ msg.user.email }} </b> <br> -->
-      <button>
-      <a href="{% url 'statusapp:delete' msg.id %}">Delete</a> <br> </button>
-      <button>
-      <a href="/statusapp/delete/">Delet this</a>
-     </button>
+      <br>
       <hr>
+      {% if msg.user == request.user %}
+      <button>
+        <a href="{% url 'statusapp:delete' msg.id %}">Delete</a> <br>
+       </button>
+       {% else %} 
+       You Cannot Delete this!
+       {% endif %} 
+       <hr>
 {% endfor  %}
 
      <br>
