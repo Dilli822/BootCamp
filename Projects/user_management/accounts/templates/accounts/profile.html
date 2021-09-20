@@ -24,5 +24,13 @@
 
         </a>
      </button>
+
+    {% if user == request.user %}
+      <button>
+        <a href="{}">Delete</a> <br>
+       </button>
+       {% else %} 
+       You Cannot Delete this!
+    {% endif %} 
  </body>
  </html>
