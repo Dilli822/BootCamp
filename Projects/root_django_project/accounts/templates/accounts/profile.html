@@ -20,16 +20,15 @@
      <hr>
 
 {% for msg in messages %}
-      <b>Status: </b> {{ msg.status }}  <br>
+      <b>Status: </b> <b>{{ msg.status }} </b> <br>
       <b>Created At: </b>{{ msg.created_at }} <br>
       <b>UserName </b> {{ msg.user }} 
       <!-- email: <b> {{ msg.user.email }} </b> <br> -->
-
+      <hr>
 {% endfor  %}
 
      <br>
      <br>
-     <hr>
      click <a href="{% url 'statusapp:create' %}">
          Here
      </a> To create 
