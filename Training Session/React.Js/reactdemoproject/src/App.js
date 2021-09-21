@@ -1,25 +1,77 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component } from 'react'
+import Add from  './components/Add';
+import View from './components/View';
+import { Container} from 'semantic-ui-react';
+import { Input } from 'semantic-ui-react';
+
+export default class App extends Component {
+ //keeping objects in the state
+  state = {
+    users: [
+      {id: 1, name: "Dilli Hang Rai", username: "Dilli"},
+      {id: 2, name: "Rachel Singh", username: "Rachel"},
+      {id: 3, name: "Hari Bahadur", username: "Hari"},
+    ],
+  // new set query
+  // for search fuction
+  query: "",
+  results: [],
+  };
+
+  
+  // function must be at the top
+  // onSearchChange = (event) =>{
+  //   console.log(event.target.value)
+  // }
+
+  // // argu user from View.jsx
+  onFormSubmit = (user) => {
+    console.log(user)
+    const {users} = this.state;
+    this.setState({users: [...users, user]});
+  };
+
+  // on user delet function
+  onUserDelete = (id) => {
+    const{ users } = this.state;
+    this.setState({
+      users: users.filter((user) => 
+      user.id !== id ),
+    });
+  };
+  // onSearch Function live
+  // capturing event value in vriable value
+  onSearchChange = (event) => {
+    // console.log(event.target.value);
+    const value = event.target.value;
+    const { users } = this.state;
+    this.setState({ query: value });
+
+    // regex will match the value of query and event
+    const results = users.filter(( user)=>{
+      const regex = new RegExp(value, "gi");
+      return user.name.match(regex)
+    });
+    // do results: {results }
+    console.log(results);
+    this.setState({ results }); 
+  }
+
+
+  render() {
+    const { users, results, query } =this.state;
+    const data = results.length===0 && !query ? users : results;
+    // console.log(users)
+    return (
+
+      <Container>
+        <Add onSubmit={this.onFormSubmit}></Add>
+        <Input icon="search" placeholder="search" onChange={this.onSearchChange}></Input>
+        <View data = { data } onUserDelete = { this.onUserDelete }>
+        </View>
+      </Container>
+        
+    )
+  }
 }
-
-export default App;
