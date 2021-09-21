@@ -12,7 +12,9 @@ export default class View extends Component {
             <Edit></Edit>
             <Table sortable called fixed>
                 <Table.Header>
-                    <Table.HeaderCell
+                    <Table.HeaderCell>
+                        
+                    </Table.HeaderCell>
                 </Table.Header>
             </Table>
 
