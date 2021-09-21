@@ -7,8 +7,31 @@
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title> Profile View Page </title>
+
+
+     <style>
+         .container{
+             display: flex;
+             justify-content: center;
+                  }
+
+                  figure img {
+                      border-radius: 50%;
+                      margin-left: 3.5rem;
+                  }
+     </style>
  </head>
  <body>
+
+
+    <div class="container">
+
+        <div class="container-wrapper">
+
+            <figure>
+                <img src="https://unsplash.it/80" alt="">
+            </figure>
+
      <h2>
          This is {{ request.user}}'s Profile!
      </h2>
@@ -32,5 +55,9 @@
        {% else %} 
        You Cannot Delete this!
     {% endif %} 
+</div>
+
+</div>
+
  </body>
  </html>
