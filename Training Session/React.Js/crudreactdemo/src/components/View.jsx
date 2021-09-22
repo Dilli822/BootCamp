@@ -33,13 +33,13 @@ export default class View extends Component {
 
     render() {
         // eslint-disable-next-line 
-        const { data, getUserById } = this.props;
+        const { data, getUserById, onEdit} = this.props;
         const { isOpen, id } = this.state;
 
         return (
             <div>
 
-            <Edit isOpen = { isOpen } onClose = { this.onCloseClick } id = { id } getUserById = {getUserById}></Edit>
+            <Edit isOpen = { isOpen } onClose = { this.onCloseClick } id = { id } getUserById = {getUserById} onEdit = {onEdit}></Edit>
             <Table sortable called fixed>
 
                 <Table.Header>

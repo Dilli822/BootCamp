@@ -5,6 +5,7 @@ import { Modal, Form, Button} from 'semantic-ui-react';
 export default class Edit extends Component {
     
     state = {
+        id: this.props.id,
         name:"",
         username: "",
 
@@ -27,6 +28,12 @@ export default class Edit extends Component {
     onCloseClick = () => {
         this.props.onClose()
     }
+
+    onFormSubmit = (e) =>{
+        e.preventDefault();
+        this.props.onEdit(this.props.id, this.state);
+        this.props.onClose();
+    }
     render() {
         const {  name,username } = this.state;
         const { isOpen } = this.props;
@@ -35,7 +42,7 @@ export default class Edit extends Component {
             <Modal open={ isOpen } onClose={this.onCloseClick}>
                 <Modal.Header> Edit Your Name Here </Modal.Header>
             <Modal.Content>
-
+                <Form onSubmit={this.onFormSubmit}>
                 <Form.Field>
                 <label> Full User Name: </label>
                 <input
@@ -50,6 +57,7 @@ export default class Edit extends Component {
                 onChange = {this.onChangeHandler } /> 
                 <Button type="submit" content="Submit"></Button>
                 </Form.Field>
+                </Form>
             </Modal.Content>
 
             </Modal>
