@@ -6,19 +6,37 @@ import { Table, Button } from 'semantic-ui-react';
 
 export default class View extends Component {
 
+    state = {
+        isOpen: false,
+    };
+
    // let's make function
    onUserDelete = (id) => {
     //passing id for delete
     this.props.onUserDelete(id);
    };
 
+
+   //onEditClick
+   onEditClick = () => {
+       this.setState ({ isOpen: true })
+   }
+
+   onCloseClick = () => {
+       this.setState({
+           isOpen: false,
+       })
+   }
+
     render() {
         const { data } = this.props;
         // console.log( data );
+        const { isOpen } = this.state;
+
         return (
             <div>
 
-            <Edit></Edit>
+            <Edit isOpen = { isOpen } onClose = { this.onCloseClick }></Edit>
             <Table sortable called fixed>
 
                 <Table.Header>
@@ -39,7 +57,8 @@ export default class View extends Component {
                             <Table.Cell>{ user.name }</Table.Cell>
                             <Table.Cell>{ user.username} </Table.Cell>
                             <Table.Cell>
-                                <Button content="Edit"></Button>
+                                <Button content="Edit"
+                                onClick={this.onEditClick}></Button>
                                 <Button content="Delete" onClick = 
                                 {this.onUserDelete.bind(this, user.id) }></Button>
                             </Table.Cell>

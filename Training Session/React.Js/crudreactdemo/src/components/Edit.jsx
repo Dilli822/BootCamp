@@ -13,11 +13,16 @@ export default class Edit extends Component {
     onChangeHandler = (e) => {
         this.setState({ [ e.target.name ] : e.target.value })
     }
+
+    onCloseClick = () => {
+        this.props.onClose()
+    }
     render() {
         const {  name,username } = this.state;
+        const { isOpen } = this.props;
         return (
             // passing props as true open
-            <Modal open={false}>
+            <Modal open={ isOpen } onClose={this.onCloseClick}>
                 <Modal.Header> Edit Your Name Here </Modal.Header>
             <Modal.Content>
 
