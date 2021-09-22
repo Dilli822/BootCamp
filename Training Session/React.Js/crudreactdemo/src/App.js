@@ -20,17 +20,7 @@ export default class App extends Component {
   };
 
   
-  // function must be at the top
-  // onSearchChange = (event) =>{
-  //   console.log(event.target.value)
-  // }
 
-  // // argu user from View.jsx
-  onFormSubmit = (user) => {
-    console.log(user)
-    const {users} = this.state;
-    this.setState({users: [...users, user]});
-  };
 
   // on user delet function
   onUserDelete = (id) => {
@@ -40,6 +30,12 @@ export default class App extends Component {
       user.id !== id ),
     });
   };
+    // function must be at the top
+  // onSearchChange = (event) =>{
+  //   console.log(event.target.value)
+  // }
+
+
   // onSearch Function live
   // capturing event value in vriable value
   onSearchChange = (event) => {
@@ -56,9 +52,20 @@ export default class App extends Component {
     // do results: {results }
     console.log(results);
     this.setState({ results }); 
+  };
+  // // argu user from View.jsx
+  onFormSubmit = (user) => {
+    console.log(user)
+    const {users} = this.state;
+    this.setState({users: [...users, user]});
+  };
+
+
+  getUserById=(id)=>{
+    const {users}=this.state
+    const user = users.filter((user)=>user.id === id);
+    return user[0];
   }
-
-
   render() {
     const { users, results, query } =this.state;
     const data = results.length===0 && !query ? users : results;
@@ -68,7 +75,7 @@ export default class App extends Component {
       <Container>
         <Add onSubmit={this.onFormSubmit}></Add>
         <Input icon="search" placeholder="search" onChange={this.onSearchChange}></Input>
-        <View data = { data } onUserDelete = { this.onUserDelete }>
+        <View data = { data } onUserDelete = { this.onUserDelete } getUserById = {this.getUserById}>
         </View>
       </Container>
         

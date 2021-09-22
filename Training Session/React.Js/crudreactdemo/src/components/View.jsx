@@ -8,6 +8,7 @@ export default class View extends Component {
 
     state = {
         isOpen: false,
+        id: "",
     };
 
    // let's make function
@@ -18,25 +19,27 @@ export default class View extends Component {
 
 
    //onEditClick
-   onEditClick = () => {
-       this.setState ({ isOpen: true })
-   }
+   onEditClick = (id) => {
+       this.setState ({ isOpen: true , id: id})
+   };
 
    onCloseClick = () => {
        this.setState({
            isOpen: false,
        })
-   }
+   };
+
+   
 
     render() {
-        const { data } = this.props;
-        // console.log( data );
-        const { isOpen } = this.state;
+        // eslint-disable-next-line 
+        const { data, getUserById } = this.props;
+        const { isOpen, id } = this.state;
 
         return (
             <div>
 
-            <Edit isOpen = { isOpen } onClose = { this.onCloseClick }></Edit>
+            <Edit isOpen = { isOpen } onClose = { this.onCloseClick } id = { id } getUserById = {getUserById}></Edit>
             <Table sortable called fixed>
 
                 <Table.Header>
@@ -57,8 +60,7 @@ export default class View extends Component {
                             <Table.Cell>{ user.name }</Table.Cell>
                             <Table.Cell>{ user.username} </Table.Cell>
                             <Table.Cell>
-                                <Button content="Edit"
-                                onClick={this.onEditClick}></Button>
+                                <Button content="Edit"  onClick={this.onEditClick.bind(this, user.id)}></Button>
                                 <Button content="Delete" onClick = 
                                 {this.onUserDelete.bind(this, user.id) }></Button>
                             </Table.Cell>

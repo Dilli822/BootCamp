@@ -10,6 +10,16 @@ export default class Edit extends Component {
 
     }
 
+    componentDidUpdate(prevProps) {
+    if (prevProps.id !== this.props.id){
+        const user = this.props.getUserById(this.props.id)
+        this.setState({
+                name:user.name,
+                username:user.username,
+            })
+        }
+    };
+
     onChangeHandler = (e) => {
         this.setState({ [ e.target.name ] : e.target.value })
     }
@@ -27,13 +37,13 @@ export default class Edit extends Component {
             <Modal.Content>
 
                 <Form.Field>
-                <label> Full Name: </label>
+                <label> Full User Name: </label>
                 <input
                  value = { username } 
                  name = "username"
                 onChange={this.onChangeHandler} />
 
-                <label>Name: </label>
+                <label>  Name: </label>
                 <input 
                 value={name}
                 name = "name"
