@@ -9,3 +9,8 @@ class AddTwoNumberSerializer(serializers.Serializer):
 
 
 
+class InfoSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=200)
+    address= serializers.CharField(max_length=100)
+
+

@@ -70,6 +70,7 @@ INSTALLED_APPS = [
 
     #DRF rest app
     'rest',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
