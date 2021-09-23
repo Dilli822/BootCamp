@@ -87,6 +87,10 @@ urlpatterns = [
 
     # for statusapp
     path('statusapp/', include('statusapp.urls', namespace='statusapp')),
+
+
+    #rest urls
+    path('rest/', include('rest.urls', namespace='rest')),
     
 
 

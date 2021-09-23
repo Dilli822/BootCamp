@@ -66,6 +66,10 @@ INSTALLED_APPS = [
 
     # status app
     'statusapp',
+
+
+    #DRF rest app
+    'rest',
 ]
 
 MIDDLEWARE = [
