@@ -135,3 +135,6 @@ LOGIN_URL = '/accounts/login/'
 # which was only allowing the active user
 # try with pycharm
 AUTHENICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUserModelBackend']
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
