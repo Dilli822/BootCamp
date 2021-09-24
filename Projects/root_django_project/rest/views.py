@@ -9,6 +9,9 @@ from .serializers import AddTwoNumberSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from .models import Info
+from .serializers import InfoSerializer
+
 # Create your views here.
 # for csrf
 @csrf_exempt
@@ -70,11 +73,72 @@ def add_two_numbers_in_rest(request):
 
 
 
-@api_view(['GET'])
-def info_view(request):
+@api_view(['GET','POST', 'PUT', 'DELETE'])
+# pk only comes for put delete patch method
+def info_view(request, pk=None):
     if request.method == 'GET':
-        from .models import Info
-        from .serializers import InfoSerializer
         qs = Info.objects.all()
+        # id_obj = Info.objects.get(id=1)
+        # serializer = InfoSerializer(instance=id_obj)
+        # qs = Info.objects.all()
+        # result = []
+        # for i in qs:
+        #     serializer = InfoSerializer(instance=i)
+        #     result.append(serializer.data)
+        #return Response(result)
 
-        return Response({'msg': 'ok'})
+        # more shortcut method
+        serializer = InfoSerializer(instance=qs, many=True)
+        return Response(serializer.data)
+    
+    elif request.method == 'POST':
+        serializer = InfoSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        # name = serializer.validated_data['name']
+        # address = serializer.validated_data['address']
+        # obj = Info.objects.create(
+        #     name = name,
+        #     address = address
+        # )
+
+        # from serializers.py 
+        serializer.save()
+        return Response({'status': 'ok from post method', 'result': serializer.data})
+
+    # patch for partial update 
+    # put for full method update
+    elif request.method == 'PUT':
+        try:
+            obj = Info.objects.get(pk=pk)
+        except Info.DoesNotExist:
+            return Response({'error': 'DoesNotExist'}, status=400)
+
+        #serializer = InfoSerializer(data=request.data)
+        # with instance django will know there is obj instance passed 
+        serializer = InfoSerializer(data=request.data, instance=obj)
+        serializer.is_valid(raise_exception=True)
+
+        # name = serializer.validated_data['name']
+        # address = serializer.validated_data['address']
+        # obj.name = name
+        # obj.address = address
+        # obj.save()
+
+        serializer.save()
+
+        return Response({'status': 'ok from patch method!', 'result': serializer.data})
+    
+
+    #for deleting
+    elif request.method == 'DELETE':
+        try:
+            obj = Info.objects.get(pk=pk)
+        except Info.DoesNotExist:
+            return Response({'error': "User Doesnot Exist!"})
+        
+        obj.delete()
+        return Response({'message': 'user deleted'})
+
+
+

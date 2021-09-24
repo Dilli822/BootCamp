@@ -8,4 +8,5 @@ urlpatterns = [
     path('add/', add_two_numbers),
     path('v2/add/', add_two_numbers_in_rest),
     path('info/', info_view),
+    path('info/<int:pk>/', info_view),
   ]
