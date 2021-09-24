@@ -49,8 +49,8 @@ def login_view(request):
                 return render(request,'accounts/fail.html')
 
     elif request.method == 'GET':
-        if request.user.is_authenticated:
-            return redirect('/accounts/profile-view/')
+        # if request.user.is_authenticated:
+            # return redirect('/accounts/profile-view/')
             
         form = LoginForm()
 
