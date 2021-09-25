@@ -1,0 +1,8 @@
+
+
+---- let's create a class_views.py in the rest app.
+----- To use the class based views we import the 
+--DRF views and apiview
+-- from rest_framework.views import APIView 
+ # let's  create a function with APIView argument
+ 
