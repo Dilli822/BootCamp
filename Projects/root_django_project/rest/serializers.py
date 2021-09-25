@@ -30,9 +30,34 @@ class InfoSerializer(serializers.Serializer):
 
 
 class InfoModelSerializer(serializers.ModelSerializer):
+
+    message = serializers.SerializerMethodField()
+        
     class Meta:
         model = Info
-        fields = ['name', 'address']
+        fields = ['name', 'address','message']
 
+    @staticmethod
+    def get_message(obj):
+        name = obj.name
+        return f"Hi, I am {name}"
+    
+    
 
-# we created class basedView with status code and used serializer
+    # we created class basedView with status code and used 
+    # validaiton 
+    # 1. name length validation
+    @staticmethod
+    def validate_name(name):
+        if len(name) <=  1:
+            raise serializers.ValidationError("length of name should be greater than 1")
+        return name
+
+    # normal name and address validation
+    def validate(self, data):
+        name =data['name']
+        address = data['address']
+        if name == address:
+            raise serializers.ValidationError("Name and Address cannot be same!")
+        return data
+    
