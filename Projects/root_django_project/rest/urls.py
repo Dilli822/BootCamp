@@ -13,5 +13,5 @@ urlpatterns = [
     path('info/<int:pk>/', info_view),
 
     #rest/
-    path('info/class-based/', InfoClassBasedViews.as_views()),
+    path('info/class-based/', InfoClassBasedViews.as_view()),
   ]

@@ -19,6 +19,7 @@ class InfoSerializer(serializers.Serializer):
 
     # more shortcut method for update and create method
     def create(self, validated_data):
+        print("context on serializer---->", self.context)
         return Info.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
@@ -28,3 +29,10 @@ class InfoSerializer(serializers.Serializer):
         return instance
 
 
+class InfoModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Info
+        fields = ['name', 'address']
+
+
+# we created class basedView with status code and used serializer
