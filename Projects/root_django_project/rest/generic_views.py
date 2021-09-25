@@ -51,7 +51,7 @@ class InfoModelRetrieveAPIView(RetrieveAPIView):
 # for that we have reteriveupdate method
 # reterieve+update+destroy method 
 # for more we can use mixins and customize the generic view
-
+# for more details we can visit cdrf.co website
 
 
 
