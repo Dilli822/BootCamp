@@ -7,12 +7,17 @@ from .generic_views import(InfoModelCreateAPIView, InfoModelListAPIView,
 InfoModelDestroyAPIView, InfoModelUpdateAPIView, InfoModelRetrieveAPIView)
 
 from .viewset_views import InfoModelViewSet
-from rest_framework.routers import DefaultRouter
+# from rest_framework.routers import DefaultRouter
+# this is a simple router 
+from rest_framework.routers import SimpleRouter
 
 # This will be default routing method
 # now this will work with all methods get,post,patch,delete,reterieve
 # with single url api modelview set
-r = DefaultRouter()
+
+# see the difference by yourself
+# r = DefaultRouter()
+r = SimpleRouter()
 r.register('info/view-set', InfoModelViewSet)
 
 app_name = "rest"
