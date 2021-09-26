@@ -13,6 +13,14 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions  import IsAuthenticated
 
 from .models import Info 
+from .pagination import MyLimitOffSetPagination
+
+# for searching & filtering 
+from rest_framework.filters import SearchFilter, OrderingFilter
+
+# for filtering only specific fileds
+from django_filters.rest_framework import DjangoFilterBackend
+
 class InfoModelCreateAPIView(CreateAPIView):
     serializer_class = InfoModelSerializer
 
@@ -33,6 +41,21 @@ class InfoModelListAPIView(ListAPIView):
     authentication_classes = [TokenAuthentication]
     #permission for only sign in users
     permission_classes = [IsAuthenticated ]
+
+
+    #pagination
+    # Limit-->5  offset--> 2(initial point)
+    pagination_class = MyLimitOffSetPagination
+    #filtering and searching
+    filter_backends = [SearchFilter, OrderingFilter, DjangoFilterBackend]
+
+    #arragning for which filed can be searched like name and id
+    search_fields = ['name']
+    order_fields = ['name', 'id']
+    filterset_fields = ['name']
+
+    # lets' filter and search filed or name directly
+
 
     def get_queryset(self):
         return Info.objects.all()
