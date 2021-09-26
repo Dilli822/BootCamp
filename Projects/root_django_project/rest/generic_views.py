@@ -9,6 +9,9 @@ ListAPIView,DestroyAPIView, UpdateAPIView, RetrieveAPIView)
 
 from .serializers import InfoModelSerializer
 
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions  import IsAuthenticated
+
 from .models import Info 
 class InfoModelCreateAPIView(CreateAPIView):
     serializer_class = InfoModelSerializer
@@ -24,6 +27,12 @@ class InfoModelCreateAPIView(CreateAPIView):
 class InfoModelListAPIView(ListAPIView):
     # querset = Info.objects.all()
     serializer_class = InfoModelSerializer
+
+    # remeber to keep authenticate and permission class
+    # to every api view 
+    authentication_classes = [TokenAuthentication]
+    #permission for only sign in users
+    permission_classes = [IsAuthenticated ]
 
     def get_queryset(self):
         return Info.objects.all()
@@ -45,6 +54,9 @@ class InfoModelUpdateAPIView(UpdateAPIView):
 class InfoModelRetrieveAPIView(RetrieveAPIView):
     queryset = Info.objects.all()
     serializer_class = InfoModelSerializer
+
+    
+
 
 
 # for reterieve and update combined class view

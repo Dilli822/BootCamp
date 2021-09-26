@@ -13,8 +13,11 @@ from rest_framework.routers import SimpleRouter
 
 # This will be default routing method
 # now this will work with all methods get,post,patch,delete,reterieve
-# with single url api modelview set
+# with single url api modelview set 
 
+# auth token import
+from rest_framework.authtoken.views import obtain_auth_token
+ 
 # see the difference by yourself
 # r = DefaultRouter()
 r = SimpleRouter()
@@ -38,6 +41,9 @@ urlpatterns = [
     # for modelview single url will work for all
     # allow the actions in .as_view arguments
     # path('info/view-set/', InfoModelViewSet.as_view(actions={'get': 'list', 'post': 'create'})),
+
+    # url for login api
+    path('login/', obtain_auth_token)
  ] + r.urls
 
 # for more shortcut methods action={}
