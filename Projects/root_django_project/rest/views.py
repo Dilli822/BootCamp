@@ -30,4 +30,4 @@ def add_two_numbers(request):
 
         print("ERROR IS -->", serializer.errors)
         # if not then return error        
-        return JsonResponse({'error': 'Something went wrong!' })
+        return JsonResponse({'error': 'Something went wrong!' }, status=400)

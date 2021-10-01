@@ -128,7 +128,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # login
-LOGIN_URL = '/accounts/login/'
+# LOGIN_URL = '/accounts/login/'
 
 
 #overriding the default model backend 
