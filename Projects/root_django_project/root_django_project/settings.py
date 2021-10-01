@@ -47,7 +47,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'world',
+
+    # custom user model
     'user',
+
     'templating',
     'modelextra',
     'modelpractice',
@@ -70,6 +73,11 @@ INSTALLED_APPS = [
 
     #DRF rest app
     'rest',
+    'rest_framework',
+
+    # DRF authentication
+    # authtoken for rest framework
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [

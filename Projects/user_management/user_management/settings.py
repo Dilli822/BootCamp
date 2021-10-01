@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-8(3y@6k9wkmd)7nmam(2ih8rwx3dz0h%mso9-x1wm#un+)wk4i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -135,3 +135,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # which was only allowing the active user
 # try with pycharm
 AUTHENICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUserModelBackend']
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
